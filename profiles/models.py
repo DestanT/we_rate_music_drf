@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to='we-rate-music/profile', default='../default_profile_lcovgw'
@@ -20,13 +20,13 @@ class Profile(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.user}'s profile"
+        return f"{self.owner}'s profile"
 
 
 # Credit: code from Code Institute's React walkthrough project
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(owner=instance)
 
 
 post_save.connect(create_profile, sender=User)

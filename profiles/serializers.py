@@ -4,10 +4,10 @@ from .models import Profile
 
 # Credit: code from Code Institute's React walkthrough project
 class ProfileSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Profile
         fields = [
-            'id', 'user', 'created_at', 'image', 'background'
+            'id', 'owner', 'created_at', 'image', 'background'
         ]
