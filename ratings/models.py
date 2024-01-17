@@ -9,7 +9,7 @@ User = get_user_model()
 
 class Rating(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE, related_name='ratings')
     score = models.PositiveSmallIntegerField(
         validators=[
             MinValueValidator(1),
