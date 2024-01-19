@@ -1,4 +1,5 @@
 from django.db.models import Count, Avg
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters, permissions
 from we_rate_music_drf.permissions import IsOwnerOrReadOnly
 from .models import Playlist
@@ -14,7 +15,8 @@ class PlaylistList(generics.ListCreateAPIView):
     ).order_by('-added_on')
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter
+        filters.SearchFilter,
+        DjangoFilterBackend
     ]
     ordering_fields = [
         'ratings_count',
@@ -24,6 +26,14 @@ class PlaylistList(generics.ListCreateAPIView):
     search_fields = [
         'owner__username',
         'title'
+    ]
+    filterset_fields = [
+        # User feed - playlists of followed users
+        'owner__followed_by__owner__profile',
+        # User's rated playlists
+        'ratings__owner__profile',
+        # User's playlists
+        'owner__profile'
     ]
 
     def perform_create(self, serializer):
