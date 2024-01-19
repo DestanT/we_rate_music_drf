@@ -12,11 +12,18 @@ class PlaylistList(generics.ListCreateAPIView):
         ratings_count = Count('ratings', distinct=True),
         average_rating = Avg('ratings__score')
     ).order_by('-added_on')
-    filter_backends = [filters.OrderingFilter]
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter
+    ]
     ordering_fields = [
         'ratings_count',
         'average_rating',
         'ratings__created_at'
+    ]
+    search_fields = [
+        'owner__username',
+        'title'
     ]
 
     def perform_create(self, serializer):
