@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Avg
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
 from we_rate_music_drf.permissions import IsOwnerOrReadOnly
@@ -16,7 +16,8 @@ class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.annotate(
         playlists_count = Count('owner__playlist', distinct=True),
         followers_count = Count('owner__followed_by', distinct=True),
-        following_count = Count('owner__following', distinct=True)
+        following_count = Count('owner__following', distinct=True),
+        average_rating = Avg('owner__rating__score')
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
