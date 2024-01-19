@@ -1,4 +1,5 @@
 from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
 from we_rate_music_drf.permissions import IsOwnerOrReadOnly
 from .models import Profile
@@ -17,13 +18,22 @@ class ProfileList(generics.ListAPIView):
         followers_count = Count('owner__followed_by', distinct=True),
         following_count = Count('owner__following', distinct=True)
     ).order_by('-created_at')
-    filter_backends = [filters.OrderingFilter]
+    filter_backends = [
+        filters.OrderingFilter,
+        DjangoFilterBackend
+    ]
     ordering_fields = [
         'playlists_count',
         'followers_count',
         'following_count',
         'owner__followed_by__created_at',
         'owner__following__created_at'
+    ]
+    filterset_fields = [
+        # Profiles of other users following owner
+        'owner__following__followed__profile',
+        # Profiles followed by owner
+        'owner__followed_by__owner__profile'
     ]
 
 
