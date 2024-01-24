@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import NavBar from './components/NavBar';
 import Container from 'react-bootstrap/Container';
 import { Route, Switch } from 'react-router-dom';
+import './api/axiosDefaults';
+import SignUpForm from './pages/auth/SignUpForm';
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={() => <h1>Home Page</h1>} />
           <Route exact path='/signin' render={() => <h1>Sign In</h1>} />
+          <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/profile' render={() => <h1>Profile</h1>} />
           <Route exact path='/popular' render={() => <h1>Popular</h1>} />
           <Route exact path='/feed' render={() => <h1>Feed</h1>} />
