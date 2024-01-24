@@ -1,3 +1,4 @@
+// CREDIT: Code taken from Code Institute's "Moments" walkthrough project
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -17,8 +18,6 @@ import {
 import axios from 'axios';
 // import { useRedirect } from '../../hooks/useRedirect';
 
-
-// CREDIT: Code taken from Code Institute's "Moments" walkthrough project
 const SignUpForm = () => {
 //   useRedirect('loggedIn');
   const [signUpData, setSignUpData] = useState({

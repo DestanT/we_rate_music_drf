@@ -1,3 +1,4 @@
+// CREDIT: Code taken from Code Institute's "Moments" walkthrough project
 import axios from 'axios';
 
 axios.defaults.baseURL = '/api';
