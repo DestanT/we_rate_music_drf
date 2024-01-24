@@ -35,3 +35,11 @@
   font-weight: 600;
   color: #af3c2d;
 }
+
+.SignUpCol {
+  height: 375px;
+}
+
+.SignInCol {
+  height: 320px;
+}
