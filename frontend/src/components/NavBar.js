@@ -15,7 +15,7 @@ const NavBar = () => {
           href='#ratings'
         >
           {/* Star icon */}
-          <FontAwesomeIcon icon={faStar} style={{color: '#df604e',}} size='2xl' />
+          <FontAwesomeIcon icon={faStar} size='2xl' />
         </Nav.Link>
       </Nav>
 
@@ -24,7 +24,7 @@ const NavBar = () => {
           href='#followed'
         >
           {/* Group/Follow icon */}
-          <FontAwesomeIcon icon={faPeopleGroup} style={{color: '#df604e',}} size='2xl' />
+          <FontAwesomeIcon icon={faPeopleGroup} size='2xl' />
         </Nav.Link>
       </Nav>
 
@@ -34,7 +34,7 @@ const NavBar = () => {
           href='#my-profile'
         >
           {/* Profile image */}
-          <FontAwesomeIcon icon={faSquare} style={{color: '#df604e',}} size='2xl' />
+          <FontAwesomeIcon icon={faSquare} size='2xl' />
         </Nav.Link>
       </Nav>
 
@@ -43,7 +43,7 @@ const NavBar = () => {
           href='#placeholder'
         >
           {/* Placeholder - ^^ IMPLEMENT IF/ELSE FOR PROFILE IMAGE FOR NAV.LINK/NAVBAR.BRAND ^^ */}
-          <FontAwesomeIcon icon={faSquare} style={{color: '#df604e',}} size='2xl' />
+          <FontAwesomeIcon icon={faSquare} size='2xl' />
         </Nav.Link>
       </Nav>
 
