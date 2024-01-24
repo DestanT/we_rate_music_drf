@@ -1,0 +1,48 @@
+/* CREDIT: Code taken from Code Institute's "Moments" walkthrough project */
+.Button {
+  font-size: 0.9rem;
+  font-weight: 500;
+  align-self: center;
+  background-color: #df604e;
+  border-radius: 100px;
+  border-color: transparent;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
+  color: #1f1f1f;
+  transition:
+    color ease-in-out 0.3s,
+    font-weight ease-in-out 0.4s,
+    letter-spacing ease-in-out 0.4s;
+}
+  
+.Button:hover {
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  background-color: #af3c2d;
+  color: #ffffff;
+  border-color: transparent;
+  cursor: pointer;
+  transition:
+    color ease-in-out 0.3s,
+    font-weight ease-in-out 0.4s,
+    letter-spacing ease-in-out 0.4s;
+}
+  
+.Button:hover:active {
+  background-color: #af3c2d !important;
+}
+  
+.Button:active {
+  background-color: #af3c2d !important;
+}
+  
+.Button:focus {
+  background-color: #af3c2d;
+}
+  
+.Wide {
+  padding: 10px 50px;
+  width: 100%;
+}
