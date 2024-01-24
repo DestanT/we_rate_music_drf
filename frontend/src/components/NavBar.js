@@ -13,6 +13,8 @@ const NavBar = () => {
 
       <Nav className='mr-auto'>
         <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
           to='/popular'
         >
           {/* Star icon */}
@@ -22,6 +24,8 @@ const NavBar = () => {
 
       <Nav className='mr-auto'>
         <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
           to='/feed'
         >
           {/* Group/Follow icon */}
@@ -32,6 +36,8 @@ const NavBar = () => {
       <Nav>
         {/* <Navbar.Brand href='#my-profile'>We Rate Music</Navbar.Brand> DELETE/CHANGE */}
         <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
           to='/profile'
         >
           {/* Profile image */}
@@ -41,6 +47,8 @@ const NavBar = () => {
 
       <Nav className='ml-auto'>
         <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
           to='/placeholder'
         >
           {/* Placeholder - ^^ IMPLEMENT IF/ELSE FOR PROFILE IMAGE FOR NAV.LINK/NAVBAR.BRAND ^^ */}
@@ -50,6 +58,8 @@ const NavBar = () => {
 
       <Nav className='ml-auto'>
         <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
           to='/spotify-search'
         >
           {/* Spotify link */}

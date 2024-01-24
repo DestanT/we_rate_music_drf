@@ -1,3 +1,11 @@
 .CustomBackground {
     background-color: #5a5550;
 }
+
+.NavLink {
+    padding: 10px;
+}
+
+.Active svg {
+    color: #af3c2d;
+}
