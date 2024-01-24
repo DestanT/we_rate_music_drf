@@ -5,11 +5,12 @@ import Container from 'react-bootstrap/Container';
 import { Route, Switch } from 'react-router-dom';
 import './api/axiosDefaults';
 import SignUpForm from './pages/auth/SignUpForm';
+import SignInForm from './pages/auth/SignInForm';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 
 function App() {
   const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || '';
+  const profile_username = currentUser?.username || '';
 
   return (
     <div className={styles.App}>
@@ -17,9 +18,9 @@ function App() {
       <Container>
         <Switch>
           <Route exact path='/' render={() => <h1>Home Page</h1>} />
-          <Route exact path='/signin' render={() => <h1>Sign In</h1>} />
+          <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
-          <Route exact path='/profile' render={() => <h1>Profile of {profile_id}</h1>} />
+          <Route exact path='/profile' render={() => <h1>{`Profile of ${profile_username}`}</h1>} />
           <Route exact path='/popular' render={() => <h1>Popular</h1>} />
           <Route exact path='/feed' render={() => <h1>Feed</h1>} />
           <Route exact path='/spotify-search' render={() => <h1>Spotify Search</h1>} />
