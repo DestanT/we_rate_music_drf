@@ -18,6 +18,7 @@ function App() {
           <Route exact path='/feed' render={() => <h1>Feed</h1>} />
           <Route exact path='/spotify-search' render={() => <h1>Spotify Search</h1>} />
           <Route exact path='/placeholder' render={() => <h1>Placeholder</h1>} />
+          <Route render={() => <h1>Page Not Found!</h1>} />
         </Switch>
       </Container>
     </div>
