@@ -6,9 +6,11 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faStar, faPeopleGroup, faSquare, faUserPlus, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  console.log(currentUser)
   const loggedOutIcons = (
     <>
       <Nav className='m-auto'>
@@ -63,11 +65,10 @@ const NavBar = () => {
       <Nav>
         <NavLink
           className={styles.NavLink}
-          activeClassName={styles.Active}
-          to='/profile'
+          to={`/profiles/${currentUser?.profile_id}`}
         >
           {/* Profile image */}
-          <FontAwesomeIcon icon={faSquare} size='2xl' />
+          <Avatar src={currentUser?.profile_image} height={40} />
         </NavLink>
       </Nav>
 
@@ -85,7 +86,6 @@ const NavBar = () => {
       <Nav className='ml-auto'>
         <NavLink
           className={styles.NavLink}
-          activeClassName={styles.Active}
           to='/spotify-search'
         >
           {/* Spotify link */}
