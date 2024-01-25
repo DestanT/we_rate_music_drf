@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .settings import (
-    REST_AUTH, JWT_AUTH_SAMESITE,
+    REST_USE_JWT, JWT_AUTH_SAMESITE,
     JWT_AUTH_SECURE,
 )
 
