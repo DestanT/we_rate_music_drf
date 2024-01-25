@@ -3,14 +3,41 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { faStar, faPeopleGroup, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faPeopleGroup, faSquare, faUserPlus, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 const NavBar = () => {
-  return (
-  <Navbar className={styles.CustomBackground} expand='md' fixed='bottom'>
-    <Container>
+  const currentUser = useCurrentUser();
+  const loggedOutIcons = (
+    <>
+      <Nav className='m-auto'>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to='/signup'
+        >
+          {/* Signup icon */}
+          <FontAwesomeIcon icon={faUserPlus} size='2xl' />
+        </NavLink>
+        Sign Up!
+      </Nav>
 
+      <Nav className='m-auto'>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to='/signin'
+        >
+          {/* Signin icon */}
+          <FontAwesomeIcon icon={faRightToBracket} size='2xl' />
+        </NavLink>
+        Login
+      </Nav>
+    </>
+  );
+  const loggedInIcons = (
+    <>
       <Nav className='mr-auto'>
         <NavLink
           className={styles.NavLink}
@@ -34,7 +61,6 @@ const NavBar = () => {
       </Nav>
 
       <Nav>
-        {/* <Navbar.Brand href='#my-profile'>We Rate Music</Navbar.Brand> DELETE/CHANGE */}
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
@@ -51,7 +77,7 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to='/placeholder'
         >
-          {/* Placeholder - ^^ IMPLEMENT IF/ELSE FOR PROFILE IMAGE FOR NAV.LINK/NAVBAR.BRAND ^^ */}
+          {/* Placeholder */}
           <FontAwesomeIcon icon={faSquare} size='2xl' />
         </NavLink>
       </Nav>
@@ -66,7 +92,13 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faSpotify} style={{color: '#1db954',}} size='2xl' />
         </NavLink>
       </Nav>
-      
+    </>
+  )
+
+  return (
+  <Navbar className={styles.CustomBackground} expand='md' fixed='bottom'>
+    <Container>
+      {currentUser ? loggedInIcons : loggedOutIcons}      
     </Container>
   </Navbar>
   )
