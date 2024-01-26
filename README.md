@@ -68,6 +68,8 @@
 
 ## Django Rest Framework
 
+Django Rest Framework API serves as the backend to the React frontend application. The API endpoints were designed with the user stories for the whole project in mind, which can be found [here](LINK). PostgreSQL manages the databases and serves the data.
+
 ### Database Modeling
 
 The database for this project is a PostgreSQL database. The database is made up of five models: User and Profile.
@@ -140,3 +142,24 @@ The seria
   - not strong enough password
   - talk about errors.non_field_errors
   - redirected to sign in page after successful signup.
+
+## Development
+Installation of DRF:
+- 'git clone <my-project-url>'
+- cd 'my-project'
+- 'pip install -r requirements.txt'
+- 'python manage.py runserver'
+- 'nvm install 16 && use 16'
+- 'npm start' 
+
+## Frontend React Application
+
+### Spotify API
+used Spotify Developer Web API documentation, more specifically the "Authorization Code with PKCE Flow" found [here](!https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow) was used.
+- users login to their spotify accounts and authorize the application
+- the application requires the user to accept:
+  - scope vars
+  - scope vars
+  - scope vars
+- user can add a playlist from their spotify account to display on the app
+- other users can interact with playlists in the app by rating them
