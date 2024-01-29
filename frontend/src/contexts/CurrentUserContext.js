@@ -32,18 +32,18 @@ export const CurrentUserProvider = ({ children }) => {
     axiosReq.interceptors.request.use(
       async (config) => {
         // if (shouldRefreshToken()) {
-          try {
-            await axios.post('/dj-rest-auth/token/refresh/');
-          } catch (err) {
-            setCurrentUser((prevCurrentUser) => {
-              if (prevCurrentUser) {
-                history.push('/signin');
-              }
-              return null;
-            });
-            // removeTokenTimestamp();
-            return config;
-          }
+        try {
+          await axios.post('/dj-rest-auth/token/refresh/');
+        } catch (err) {
+          setCurrentUser((prevCurrentUser) => {
+            if (prevCurrentUser) {
+              history.push('/signin');
+            }
+            return null;
+          });
+          // removeTokenTimestamp();
+          return config;
+        }
         // }
         return config;
       },
