@@ -105,26 +105,52 @@ The seria
 
 ## Frontend React Application
 
-### Components & Features
+### /API
 
-#### NavBar
-- will change based on user login status
+#### /spotifyApi
 
-### Contexts
-
-#### CurrentUserContext
-- Credit: CI walkthrough project
-- will store the current user's information and provide it to the rest off the App.
-
-### API
+##### searchForItem
+- search query
+- search type
 
 #### Axios
 - talk about /api/axiosDefaults.js file
 - Credit to CI moments walkthrough
 
-### Pages
+### /Components
 
-#### SignInForm
+#### Avatar
+- User profile avatar
+
+#### NavBar
+- will change based on user login status
+
+#### Playlist
+- component logic to house each individual playlist/album received from spotify api
+- also used to display in profile and feed views
+
+### /Contexts
+
+#### CurrentUserContext
+- Credit: CI walkthrough project
+- will store the current user's information and provide it to the rest off the App.
+
+#### SpotifyIframeContext
+- stores spotify playlists' uri, which is used in the iFrame player
+- the reason it is used as a global context is so that the user can be anywhere in the app and still continue listening to the playlist they had originally clicked on
+- everytime user clicks on different playlist the context is updated with the new uri
+
+### /Hooks
+
+#### useSpotifyAuth
+- Authentication and access token
+- refresh token logic
+
+### /Pages
+
+#### /Auth
+
+##### SignInForm
 - more or less direct copies of CI moments walkthrough
 - uses setCurrentUser from the CurrentUserContext hook
 - talk about redirection after login
@@ -133,7 +159,7 @@ The seria
   - password incorrect
   - talk about errors.non_field_errors              
 
-#### SignUpForm
+##### SignUpForm
 - more or less direct copies of CI moments walkthrough
 - uses state to send axios.post request to dj-rest-auth’s /registration endpoint.
 - alerts
@@ -142,6 +168,27 @@ The seria
   - not strong enough password
   - talk about errors.non_field_errors
   - redirected to sign in page after successful signup.
+  
+#### /Playlists
+
+##### PlaylistsPage
+- logic to display playlist components
+- is used in feed, profile view, and spotify search page
+
+##### SpotifySearchPage
+- used in spotify search page
+- displays playlist components
+NOTE: consider possible merge with PlaylistsPage!
+
+### /Styles
+- all the module.css files for custom css
+
+### /Utils
+
+#### spotifyAuthUtils
+- code verifier logic
+- code challenge logic
+- copied from Spotify Developer documentation
 
 ## Development
 Installation of DRF:
@@ -163,3 +210,4 @@ used Spotify Developer Web API documentation, more specifically the "Authorizati
   - scope vars
 - user can add a playlist from their spotify account to display on the app
 - other users can interact with playlists in the app by rating them
+
