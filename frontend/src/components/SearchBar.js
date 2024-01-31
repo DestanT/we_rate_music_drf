@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/Button.module.css';
+import btnStyles from '../styles/Button.module.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +22,7 @@ function SearchBar({ onSearch }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <InputGroup.Append>
-            <Button type='submit' className={styles.Button}>
+            <Button type='submit' className={btnStyles.Button}>
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
                 style={{ color: '#5a5550' }}
