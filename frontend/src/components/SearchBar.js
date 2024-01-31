@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import styles from '../styles/Button.module.css';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,16 +13,24 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <Form inline onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId='searchForm'>
-        <Form.Control
-          type='text'
-          placeholder='Search Spotify'
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <Button type='submit' className='my-1'>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </Button>
+        <InputGroup>
+          <Form.Control
+            type='text'
+            placeholder='Search Spotify'
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <InputGroup.Append>
+            <Button type='submit' className={styles.Button}>
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                style={{ color: '#5a5550' }}
+                size='lg'
+              />
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
       </Form.Group>
     </Form>
   );
