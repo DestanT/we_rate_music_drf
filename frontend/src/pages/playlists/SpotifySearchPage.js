@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row } from 'react-bootstrap';
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { getUsersProfile } from '../../api/spotifyApi/getUsersProfile';
 import { searchForItem } from '../../api/spotifyApi/searchForItem';
@@ -35,15 +35,19 @@ const SpotifySearchPage = () => {
       <Button onClick={handleAuthentication}>Authenticate</Button>
       <Button onClick={getUsersProfile}>get profile</Button>
       <Button onClick={searchForItem}>searchForItem</Button>
-      {searchResults?.map((result) => (
-        <Playlist
-          key={result.id}
-          title={result.name}
-          image={result.images[0]?.url}
-          url={result.external_urls.spotify}
-          iframe_uri={result.uri}
-        />
-      ))}
+      <Container>
+        <Row>
+          {searchResults?.map((result) => (
+            <Playlist
+              key={result.id}
+              title={result.name}
+              image={result.images[0]?.url}
+              url={result.external_urls.spotify}
+              iframe_uri={result.uri}
+            />
+          ))}
+        </Row>
+      </Container>
     </div>
   );
 };
