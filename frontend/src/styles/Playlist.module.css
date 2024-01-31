@@ -1,0 +1,13 @@
+.Playlist {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+  
+.Image {
+    padding: 0.25rem;
+    background-color: #5a5550;
+    border: 1px solid #5a5550;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;    
+}
