@@ -3,9 +3,9 @@
   font-size: 0.9rem;
   font-weight: 500;
   align-self: center;
-  background-color: #df604e;
+  background-color: #df604e !important;
   border-radius: 100px;
-  border-color: transparent;
+  border-color: transparent !important;
   padding: 4px 10px;
   margin-left: 2px;
   margin-right: 2px;
@@ -20,7 +20,7 @@
 .Button:hover {
   font-weight: 700;
   letter-spacing: 0.05rem;
-  background-color: #af3c2d;
+  background-color: #af3c2d !important;
   color: #ffffff;
   border-color: transparent;
   cursor: pointer;
