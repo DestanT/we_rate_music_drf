@@ -1,18 +1,24 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import styles from '../styles/PlaylistsPage.module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from '../styles/Playlist.module.css';
 
 const Playlist = (props) => {
   const { title, image, url, iframe_uri } = props;
+  const defaultImage =
+    'https://res.cloudinary.com/dxgzepuov/image/upload/v1702896303/default_post_uq5gxz.jpg';
   return (
-    <Card>
-      <Card.Img variant='top' src={image} className={styles.Playlist} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{url}</Card.Text>
-        <Card.Text>{iframe_uri}</Card.Text>
-      </Card.Body>
-    </Card>
+    <div className='media'>
+      <img
+        src={image || defaultImage}
+        className={`mr-3 ${styles.Playlist}`}
+        alt='...'
+      />
+      <div className='media-body'>
+        <h5 className='mt-0'>{title}</h5>
+        <p>{url}</p>
+        <p>{iframe_uri}</p>
+      </div>
+    </div>
   );
 };
 
