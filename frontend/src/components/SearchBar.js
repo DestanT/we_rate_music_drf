@@ -25,7 +25,7 @@ function SearchBar({ onSearch }) {
             <Button type='submit' className={btnStyles.Button}>
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
-                style={{ color: '#5a5550' }}
+                style={{ color: '#3d3d3d' }}
                 size='lg'
               />
             </Button>
