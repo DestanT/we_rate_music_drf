@@ -13,6 +13,7 @@ function SpotifyPlayer() {
     window.onSpotifyIframeApiReady = (IFrameAPI) => {
       const options = {
         width: '100%',
+        height: '250px',
         uri: 'spotify:episode:7makk4oTQel546B0PZlDM5',
       };
 
