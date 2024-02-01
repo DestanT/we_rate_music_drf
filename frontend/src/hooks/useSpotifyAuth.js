@@ -10,7 +10,7 @@ import {
 
 export const useSpotifyAuth = () => {
   const spotifyAuthentication = async () => {
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email streaming';
     const authUrl = new URL('https://accounts.spotify.com/authorize');
 
     // generated in utils/spotifyAuthUtils.js
