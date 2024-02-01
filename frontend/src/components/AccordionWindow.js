@@ -14,13 +14,13 @@ function AccordionWindow() {
             as={Button}
             variant='link'
             eventKey='0'
-            className={styles.Button}
+            className={styles.PaddingReset}
           >
             <FontAwesomeIcon icon={faChevronUp} />
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey='0'>
-          <Card.Body>
+          <Card.Body className={styles.PaddingReset}>
             <SpotifyPlayer />
           </Card.Body>
         </Accordion.Collapse>
