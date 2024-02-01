@@ -1,6 +1,6 @@
 .AccordionPosition {
   position: fixed;
-  bottom: 51px; /* tuned for minimum "whitespace" */
+  bottom: 69px; /* tuned for minimum "whitespace" */
   width: 100%;
   z-index: 999;
 }
@@ -8,6 +8,7 @@
 .Header {
   padding: 0;
   background-color: #3d3d3d;
+  border-bottom: none;
 }
 
 .Card {
