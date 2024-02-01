@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Profile.module.css';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackwardStep } from '@fortawesome/free-solid-svg-icons';
+import { faBackward } from '@fortawesome/free-solid-svg-icons';
 import Avatar from './Avatar';
 
 const Profile = () => {
@@ -19,7 +19,7 @@ const Profile = () => {
         <Row>
           <Col xs={3}>
             <FontAwesomeIcon
-              icon={faBackwardStep}
+              icon={faBackward}
               size='xl'
               className={styles.FontAwesomeIcon}
             />
