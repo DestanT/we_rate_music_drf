@@ -8,6 +8,7 @@ import SignUpForm from './pages/auth/SignUpForm';
 import SignInForm from './pages/auth/SignInForm';
 import SpotifySearchPage from './pages/playlists/SpotifySearchPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
+import AccordionWindow from './components/AccordionWindow';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+      <AccordionWindow />
       <Container>
         <Switch>
           <Route exact path='/' render={() => <h1>Home Page</h1>} />
