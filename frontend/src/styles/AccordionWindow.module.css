@@ -1,0 +1,18 @@
+.AccordionPosition {
+  position: fixed;
+  bottom: 76px; /* height of the NavBar */
+  width: 100%;
+}
+
+.Header {
+  padding: 0;
+  background-color: #3d3d3d;
+}
+
+.Card {
+  background-color: #d8d3cd;
+}
+
+.Button {
+  padding: 0;
+}
