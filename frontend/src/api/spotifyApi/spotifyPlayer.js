@@ -16,7 +16,7 @@ function SpotifyPlayer() {
     window.onSpotifyIframeApiReady = (IFrameAPI) => {
       const options = {
         width: '100%',
-        height: '250px',
+        height: '352px', // 352px is the minimum height before the player resizes to a smaller size
         uri: spotifyPlayerUri,
       };
 
