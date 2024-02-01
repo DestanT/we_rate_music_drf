@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
+import { SpotifyPlayerUriProvider } from './contexts/SpotifyPlayerUriContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <CurrentUserProvider>
-      <Router>
-        <App />
-      </Router>
+      <SpotifyPlayerUriProvider>
+        <Router>
+          <App />
+        </Router>
+      </SpotifyPlayerUriProvider>
     </CurrentUserProvider>
   </React.StrictMode>,
   document.getElementById('root')
