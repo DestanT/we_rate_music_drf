@@ -22,7 +22,7 @@ function App() {
         <Route exact path='/' render={() => <h1>Home Page</h1>} />
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
-        <Route exact path='/profile' render={() => <ProfilePage />} />
+        <Route exact path='/profile/:id' render={() => <ProfilePage />} />
         <Route exact path='/popular' render={() => <h1>Popular</h1>} />
         <Route exact path='/feed' render={() => <h1>Followed Users</h1>} />
         <Route
