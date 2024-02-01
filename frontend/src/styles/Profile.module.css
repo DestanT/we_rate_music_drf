@@ -1,0 +1,24 @@
+.ProfileContainer {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+    background-color: #3d3d3d;
+    padding-top: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    color: #d8d3cd;
+}
+
+.FontAwesomeIcon {
+    filter: drop-shadow(2px 2px 4px black);
+}
+
+.StatsContainer {
+    margin-top: 3rem;
+    background-color: #3d3d3dbb;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 7px #df604e;
+}
