@@ -7,7 +7,10 @@ import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 function AccordionWindow() {
   return (
-    <Accordion defaultActiveKey='0' className={styles.AccordionPosition}>
+    <Accordion
+      // defaultActiveKey='0'
+      className={styles.AccordionPosition}
+    >
       <Card className={styles.Card}>
         <Card.Header className={styles.Header}>
           <Accordion.Toggle
