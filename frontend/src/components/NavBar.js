@@ -3,14 +3,20 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { faStar, faPeopleGroup, faSquare, faUserPlus, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faPeopleGroup,
+  faSquare,
+  faUserPlus,
+  faRightToBracket,
+} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  console.log(currentUser)
+
   const loggedOutIcons = (
     <>
       <Nav className='m-auto'>
@@ -65,7 +71,7 @@ const NavBar = () => {
       <Nav>
         <NavLink
           className={styles.NavLink}
-          to={`/profiles/${currentUser?.profile_id}`}
+          to={`/profile/${currentUser?.profile_id}`}
         >
           {/* Profile image */}
           <Avatar src={currentUser?.profile_image} height={40} />
@@ -84,24 +90,23 @@ const NavBar = () => {
       </Nav>
 
       <Nav className='ml-auto'>
-        <NavLink
-          className={styles.NavLink}
-          to='/spotify-search'
-        >
+        <NavLink className={styles.NavLink} to='/spotify-search'>
           {/* Spotify link */}
-          <FontAwesomeIcon icon={faSpotify} style={{color: '#1db954',}} size='2xl' />
+          <FontAwesomeIcon
+            icon={faSpotify}
+            style={{ color: '#1db954' }}
+            size='2xl'
+          />
         </NavLink>
       </Nav>
     </>
-  )
+  );
 
   return (
-  <Navbar className={styles.CustomBackground} expand='md' fixed='bottom'>
-    <Container>
-      {currentUser ? loggedInIcons : loggedOutIcons}      
-    </Container>
-  </Navbar>
-  )
-}
+    <Navbar className={styles.CustomBackground} expand='md' fixed='bottom'>
+      <Container>{currentUser ? loggedInIcons : loggedOutIcons}</Container>
+    </Navbar>
+  );
+};
 
-export default NavBar
+export default NavBar;
