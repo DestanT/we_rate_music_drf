@@ -32,14 +32,12 @@ const Playlist = ({ playlist }) => {
 
   return (
     <Button variant='link' onClick={handleClick}>
-      <Col xs={12} md={4} lg={3} className={styles.Playlist}>
-        <img
-          src={image || defaultImage}
-          className={styles.Image}
-          alt={`${title}'s cover art`}
-        />
-        <h5 className='mt-0'>{title}</h5>
-      </Col>
+      <img
+        src={image || defaultImage}
+        className={styles.Image}
+        alt={`${title}'s cover art`}
+      />
+      <h5 className='mt-0'>{title}</h5>
     </Button>
   );
 };
