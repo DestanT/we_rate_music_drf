@@ -9,6 +9,7 @@ import SpotifySearchPage from './pages/playlists/SpotifySearchPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import AccordionWindow from './components/AccordionWindow';
 import ProfilePage from './pages/ProfilePage';
+import PlaylistsPage from './pages/playlists/PlaylistsPage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -23,7 +24,7 @@ function App() {
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
         <Route exact path='/profile/:id' render={() => <ProfilePage />} />
-        <Route exact path='/popular' render={() => <h1>Popular</h1>} />
+        <Route exact path='/popular' render={() => <PlaylistsPage />} />
         <Route exact path='/feed' render={() => <h1>Followed Users</h1>} />
         <Route
           exact
