@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Profile.module.css';
+import loadingStyles from '../styles/LoadingSpinner.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
 import Avatar from './Avatar';
 import { axiosReq } from '../api/axiosDefaults';
 import { useParams } from 'react-router-dom';
+import LoadingSpinner from './LoadingSpinner';
 
 const Profile = () => {
   const { id } = useParams();
   const [profileData, setProfileData] = useState(null);
-
-  const {
-    owner,
-    image,
-    background,
-    followers_count,
-    following_count,
-    playlists_count,
-  } = profileData;
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
         const [{ data }] = await Promise.all([axiosReq.get(`profiles/${id}`)]);
         setProfileData(data);
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
 
+    setHasLoaded(false);
     fetchProfileData();
   }, [id]);
 
-  return (
+  return hasLoaded ? (
+    // Profile data loaded
     <Container
       className={styles.ProfileContainer}
-      style={{ backgroundImage: `url(${background})` }}
+      style={{ backgroundImage: `url(${profileData.background})` }}
     >
       {/* Header */}
       <Container>
@@ -49,7 +46,7 @@ const Profile = () => {
             />
           </Col>
           <Col xs={6}>
-            <h2>{owner}</h2>
+            <h2>{profileData.owner}</h2>
           </Col>
           <Col xs={3}>Settings</Col>
         </Row>
@@ -59,20 +56,20 @@ const Profile = () => {
       <Container className={styles.StatsContainer}>
         <Row>
           <Col xs={3}>
-            <Avatar src={image} height={100} />
+            <Avatar src={profileData.image} height={100} />
           </Col>
           <Col xs={9}>
             <Row>
               <Col xs={4}>
-                <h3>{followers_count}</h3>
+                <h3>{profileData.followers_count}</h3>
                 <p>Followers</p>
               </Col>
               <Col xs={4}>
-                <h3>{following_count}</h3>
+                <h3>{profileData.following_count}</h3>
                 <p>Following</p>
               </Col>
               <Col xs={4}>
-                <h3>{playlists_count}</h3>
+                <h3>{profileData.playlists_count}</h3>
                 <p>Playlists</p>
               </Col>
             </Row>
@@ -80,6 +77,19 @@ const Profile = () => {
         </Row>
       </Container>
     </Container>
+  ) : (
+    // Profile data not yet loaded
+    <>
+      {/* Replicated container structure and styles */}
+      <Container className={styles.ProfileContainer}>
+        <Container>
+          <LoadingSpinner className={loadingStyles.Centered} />
+        </Container>
+        <Container className={styles.StatsContainer}>
+          <LoadingSpinner className={loadingStyles.Centered} />
+        </Container>
+      </Container>
+    </>
   );
 };
 
