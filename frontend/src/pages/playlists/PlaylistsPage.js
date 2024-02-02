@@ -4,6 +4,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Playlist from '../../components/Playlist';
 import { axiosReq } from '../../api/axiosDefaults';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import styles from '../../styles/PlaylistsPage.module.css';
 
 const PlaylistsPage = () => {
   const currentUser = useCurrentUser();
@@ -29,7 +30,9 @@ const PlaylistsPage = () => {
   return hasLoaded ? (
     <Row>
       {playlists.map((playlist) => (
-        <Playlist key={playlist.id} playlist={playlist} />
+        <Col xs={12} md={4} lg={3} className={styles.Column}>
+          <Playlist key={playlist.id} playlist={playlist} />
+        </Col>
       ))}
     </Row>
   ) : (
