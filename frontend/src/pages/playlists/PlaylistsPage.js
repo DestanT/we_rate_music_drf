@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Playlist from '../../components/Playlist';
 import { axiosReq } from '../../api/axiosDefaults';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import styles from '../../styles/PlaylistsPage.module.css';
+import loadingStyles from '../../styles/LoadingSpinner.module.css';
 
 const PlaylistsPage = () => {
   const currentUser = useCurrentUser();
@@ -36,7 +37,7 @@ const PlaylistsPage = () => {
       ))}
     </Row>
   ) : (
-    <LoadingSpinner />
+    <LoadingSpinner className={loadingStyles.Centered} />
   );
 };
 
