@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/Profile.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
 import Avatar from './Avatar';
+import { axiosReq } from '../api/axiosDefaults';
+import { useParams } from 'react-router-dom';
 
-const Profile = (props) => {
-  if (!props.data) {
-    return <h1>Loading...</h1>;
-  }
+const Profile = () => {
+  const { id } = useParams();
+  const [profileData, setProfileData] = useState(null);
+
   const {
     owner,
     image,
     background,
-    playlists_count,
     followers_count,
     following_count,
-  } = props.data;
+    playlists_count,
+  } = profileData;
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const [{ data }] = await Promise.all([axiosReq.get(`profiles/${id}`)]);
+        setProfileData(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchProfileData();
+  }, [id]);
 
   return (
     <Container
