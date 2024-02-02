@@ -17,7 +17,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const [{ data }] = await Promise.all([axiosReq.get(`profiles/${id}`)]);
+        const { data } = await axiosReq.get(`profiles/${id}`);
         setProfileData(data);
         setHasLoaded(true);
       } catch (err) {
