@@ -26,7 +26,7 @@ function SpotifyPlayer() {
 
       IFrameAPI.createController(playerRef.current, options, callback);
     };
-  }, []);
+  }, [spotifyPlayerUri]);
 
   useEffect(() => {
     if (embedController) {
