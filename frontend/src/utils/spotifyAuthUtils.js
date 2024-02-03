@@ -24,9 +24,17 @@ const base64encode = (input) => {
 
 // Exports
 export const clientId = '51c949a050b74ceba5688d10a1c7f5f1';
-export const redirectUri = 'http://localhost:3000/spotify-search';
 export const codeVerifier = generateRandomString(64);
 export const getCodeChallenge = async () => {
   const hashed = await sha256(codeVerifier);
   return base64encode(hashed);
 };
+
+// Redirect URI
+export let redirectUri;
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+  redirectUri = 'http://localhost:3000/spotify-search';
+} else {
+  redirectUri =
+    'https://we-rate-music-drf-1626129441d6.herokuapp.com/spotify-search';
+}
