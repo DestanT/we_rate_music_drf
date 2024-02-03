@@ -32,7 +32,7 @@ const PlaylistsPage = () => {
     <Row>
       {playlists.map((playlist) => (
         <Col xs={12} md={4} lg={3} className={styles.Column}>
-          <Playlist key={playlist.id} playlist={playlist} />
+          <Playlist key={playlist.id} data={playlist} />
         </Col>
       ))}
     </Row>

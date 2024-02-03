@@ -3,7 +3,7 @@ import styles from '../styles/Playlist.module.css';
 import { Col, Button } from 'react-bootstrap';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
-const Playlist = ({ playlist }) => {
+const Playlist = ({ data }) => {
   // EVERYTHING FOR NOW... DELETE UNUSED.
   const {
     added_on,
@@ -17,7 +17,7 @@ const Playlist = ({ playlist }) => {
     ratings_count,
     title,
     urls,
-  } = playlist;
+  } = data;
 
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
 
