@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/Playlist.module.css';
-import { Col, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 const Playlist = ({ data }) => {
@@ -16,7 +16,7 @@ const Playlist = ({ data }) => {
     rating_id,
     ratings_count,
     title,
-    urls,
+    url,
   } = data;
 
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
