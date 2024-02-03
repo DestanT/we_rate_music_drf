@@ -5,6 +5,7 @@ import { getUsersProfile } from '../../api/spotifyApi/getUsersProfile';
 import { searchForItem } from '../../api/spotifyApi/searchForItem';
 import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
+import { normaliseSpotifyData } from '../../utils/dataUtils';
 
 const SpotifySearchPage = () => {
   const [searchResults, setSearchResults] = useState();
@@ -22,7 +23,6 @@ const SpotifySearchPage = () => {
       );
       const data = await response.json();
       setSearchResults(data.artists.items);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -38,13 +38,7 @@ const SpotifySearchPage = () => {
       <Container>
         <Row>
           {searchResults?.map((result) => (
-            <Playlist
-              key={result.id}
-              title={result.name}
-              image={result.images[0]?.url}
-              url={result.external_urls.spotify}
-              iframe_uri={result.uri}
-            />
+            <Playlist key={result.id} data={normaliseSpotifyData(result)} />
           ))}
         </Row>
       </Container>
