@@ -6,6 +6,7 @@ User = get_user_model()
 
 
 class Playlist(models.Model):
+    spotify_id = models.CharField(max_length=255)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
