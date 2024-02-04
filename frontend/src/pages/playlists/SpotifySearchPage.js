@@ -6,6 +6,7 @@ import { searchForItem } from '../../api/spotifyApi/searchForItem';
 import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
 import { normaliseSpotifyData } from '../../utils/dataUtils';
+import AddPlaylist from '../../forms/AddPlaylist';
 
 const SpotifySearchPage = () => {
   const [searchResults, setSearchResults] = useState();
@@ -38,7 +39,10 @@ const SpotifySearchPage = () => {
       <Container>
         <Row>
           {searchResults?.map((result) => (
-            <Playlist key={result.id} data={normaliseSpotifyData(result)} />
+            <React.Fragment key={result.id}>
+              <Playlist data={normaliseSpotifyData(result)} />
+              <AddPlaylist playlist={result} />
+            </React.Fragment>
           ))}
         </Row>
       </Container>
