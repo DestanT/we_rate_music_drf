@@ -4,19 +4,21 @@ import { Button } from 'react-bootstrap';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 const Playlist = ({ data }) => {
-  // EVERYTHING FOR NOW... DELETE UNUSED.
   const {
+    // Spotify data
+    spotify_id,
+    title,
+    image,
+    url,
+    iframe_uri,
+    // DRF data
+    id,
+    owner,
+    is_owner,
     added_on,
     average_rating,
-    id,
-    iframe_uri,
-    image,
-    is_owner,
-    owner,
     rating_id,
     ratings_count,
-    title,
-    url,
   } = data;
 
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
