@@ -9,6 +9,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
     rating_id = serializers.SerializerMethodField()
     ratings_count = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
+    spotify_id = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -26,7 +27,8 @@ class PlaylistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Playlist
         fields = [
-            'id', 'owner', 'added_on', 'title', 'image',
-            'is_owner', 'url', 'iframe_uri', 'rating_id',
+            'id', 'spotify_id', 'owner', 'is_owner',
+            'added_on', 'title', 'image',
+            'url', 'iframe_uri', 'rating_id',
             'ratings_count', 'average_rating'
         ]
