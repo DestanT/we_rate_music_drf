@@ -32,8 +32,13 @@ const PlaylistsPage = () => {
     <Container>
       <Row>
         {playlists.map((playlist) => (
-          <Col xs={4} md={3} className={appStyles.PaddingReset}>
-            <Playlist key={playlist.id} data={playlist} />
+          <Col
+            className={appStyles.PaddingReset}
+            key={playlist.id}
+            xs={4}
+            md={3}
+          >
+            <Playlist data={playlist} />
           </Col>
         ))}
       </Row>
