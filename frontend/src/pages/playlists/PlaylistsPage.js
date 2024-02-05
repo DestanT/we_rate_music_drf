@@ -60,6 +60,7 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
             <Button
               variant='link'
               onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
+              className={styles.Button}
             >
               <Playlist data={playlist} />
             </Button>
