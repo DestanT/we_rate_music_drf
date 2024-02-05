@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
+import playlistStyles from '../../styles/Playlist.module.css';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { getUsersProfile } from '../../api/spotifyApi/getUsersProfile';
 import { searchForItem } from '../../api/spotifyApi/searchForItem';
@@ -39,10 +40,10 @@ const SpotifySearchPage = () => {
       <Container>
         <Row>
           {searchResults?.map((result) => (
-            <React.Fragment key={result.id}>
+            <Col key={result.id} xs={4} md={3} className={playlistStyles.Col}>
               <Playlist data={normaliseSpotifyData(result)} />
               <AddPlaylist playlist={result} />
-            </React.Fragment>
+            </Col>
           ))}
         </Row>
       </Container>
