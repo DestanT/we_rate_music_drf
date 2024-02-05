@@ -42,9 +42,14 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
 
   return hasLoaded ? (
     <Container>
-      <Row>
-        <InfiniteScroll
-          children={playlists.results.map((playlist) => (
+      <InfiniteScroll
+        dataLength={playlists.results.length}
+        loader={<LoadingSpinner />}
+        hasMore={!!playlists.next}
+        next={() => fetchMoreData(playlists, setPlaylists)}
+      >
+        <Row>
+          {playlists.results.map((playlist) => (
             <Col
               className={appStyles.PaddingReset}
               key={playlist.id}
@@ -60,12 +65,8 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
               </Button>
             </Col>
           ))}
-          dataLength={playlists.results.length}
-          loader={<LoadingSpinner />}
-          hasMore={!!playlists.next}
-          next={() => fetchMoreData(playlists, setPlaylists)}
-        />
-      </Row>
+        </Row>
+      </InfiniteScroll>
     </Container>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
