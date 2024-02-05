@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Playlist from '../../components/Playlist';
 import { axiosReq } from '../../api/axiosDefaults';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import styles from '../../styles/PlaylistsPage.module.css';
+import appStyles from '../../App.module.css';
 import loadingStyles from '../../styles/LoadingSpinner.module.css';
 
 const PlaylistsPage = () => {
@@ -29,13 +29,15 @@ const PlaylistsPage = () => {
   }, []);
 
   return hasLoaded ? (
-    <Row>
-      {playlists.map((playlist) => (
-        <Col xs={12} md={4} lg={3} className={styles.Column}>
-          <Playlist key={playlist.id} data={playlist} />
-        </Col>
-      ))}
-    </Row>
+    <Container>
+      <Row>
+        {playlists.map((playlist) => (
+          <Col xs={4} md={3} className={appStyles.PaddingReset}>
+            <Playlist key={playlist.id} data={playlist} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
   );
