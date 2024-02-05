@@ -21,3 +21,6 @@ class Rating(models.Model):
 
     class Meta:
         unique_together = ['owner', 'playlist']
+
+    def __str__(self):
+        return f"{self.owner} rated {self.playlist} a {self.score}"
