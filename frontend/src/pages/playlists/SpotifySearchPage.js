@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import playlistStyles from '../../styles/Playlist.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { getUsersProfile } from '../../api/spotifyApi/getUsersProfile';
@@ -8,10 +9,12 @@ import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
 import { normaliseSpotifyData } from '../../utils/dataUtils';
 import AddPlaylist from '../../forms/AddPlaylist';
+import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 
 const SpotifySearchPage = () => {
   const [searchResults, setSearchResults] = useState();
   const { handleAuthentication } = useSpotifyAuth();
+  const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
 
   const handleSearch = async (searchQuery) => {
     try {
@@ -41,7 +44,15 @@ const SpotifySearchPage = () => {
         <Row>
           {searchResults?.map((result) => (
             <Col key={result.id} xs={4} md={3} className={playlistStyles.Col}>
-              <Playlist data={normaliseSpotifyData(result)} />
+              <Button
+                variant='link'
+                onClick={() => {
+                  setSpotifyPlayerUri(result.iframe_uri);
+                }}
+                className={btnStyles.Button}
+              >
+                <Playlist data={normaliseSpotifyData(result)} />
+              </Button>
               <AddPlaylist playlist={result} />
             </Col>
           ))}
