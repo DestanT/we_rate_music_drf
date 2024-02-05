@@ -8,7 +8,7 @@ import { searchForItem } from '../../api/spotifyApi/searchForItem';
 import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
 import { normaliseSpotifyData } from '../../utils/dataUtils';
-import AddPlaylist from '../../forms/AddPlaylist';
+import AddPlaylistButton from '../../forms/AddPlaylistButton';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 
 const SpotifySearchPage = () => {
@@ -69,7 +69,7 @@ const SpotifySearchPage = () => {
               >
                 <Playlist data={normaliseSpotifyData(result)} />
               </Button>
-              <AddPlaylist playlist={result} />
+              <AddPlaylistButton playlistData={result} />
             </Col>
           ))}
         </Row>
