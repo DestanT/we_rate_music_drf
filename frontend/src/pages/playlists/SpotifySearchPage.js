@@ -28,9 +28,16 @@ const SpotifySearchPage = () => {
       );
       const data = await response.json();
       setSearchResults(data.artists.items);
+      console.log(data.artists.items);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const updateSpotifyPlayerUri = (uri) => {
+    setSpotifyPlayerUri(uri);
+    console.log(uri);
   };
 
   return (
@@ -46,9 +53,7 @@ const SpotifySearchPage = () => {
             <Col key={result.id} xs={4} md={3} className={playlistStyles.Col}>
               <Button
                 variant='link'
-                onClick={() => {
-                  setSpotifyPlayerUri(result.iframe_uri);
-                }}
+                onClick={() => updateSpotifyPlayerUri(result.uri)}
                 className={btnStyles.Button}
               >
                 <Playlist data={normaliseSpotifyData(result)} />
