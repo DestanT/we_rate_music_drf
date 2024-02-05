@@ -27,9 +27,16 @@ const SpotifySearchPage = () => {
         }
       );
       const data = await response.json();
-      setSearchResults(data.artists.items);
-      console.log(data.artists.items);
-      console.log(data);
+
+      // Combine the items from albums, playlists, and artists
+      const combinedData = [
+        ...data.albums.items,
+        ...data.playlists.items,
+        ...data.artists.items,
+      ];
+
+      setSearchResults(combinedData);
+      console.log(combinedData);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +44,6 @@ const SpotifySearchPage = () => {
 
   const updateSpotifyPlayerUri = (uri) => {
     setSpotifyPlayerUri(uri);
-    console.log(uri);
   };
 
   return (
