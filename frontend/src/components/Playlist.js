@@ -33,7 +33,7 @@ const Playlist = ({ data }) => {
   };
 
   return (
-    <Button variant='link' onClick={handleClick}>
+    <Button variant='link' onClick={handleClick} className={styles.Button}>
       <img
         src={image || defaultImage}
         className={styles.Image}
