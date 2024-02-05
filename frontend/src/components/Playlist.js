@@ -30,7 +30,6 @@ const Playlist = ({ data }) => {
         className={styles.Image}
         alt={`${title}'s cover art`}
       />
-      <h5 className='mt-0'>{title}</h5>
     </>
   );
 };
