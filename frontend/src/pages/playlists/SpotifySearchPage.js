@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import playlistStyles from '../../styles/Playlist.module.css';
+import appStyles from '../../App.module.css';
 import btnStyles from '../../styles/Button.module.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
@@ -56,7 +56,12 @@ const SpotifySearchPage = () => {
       <Container>
         <Row>
           {searchResults?.map((result) => (
-            <Col key={result.id} xs={4} md={3} className={playlistStyles.Col}>
+            <Col
+              key={result.id}
+              xs={4}
+              md={3}
+              className={appStyles.PaddingReset}
+            >
               <Button
                 variant='link'
                 onClick={() => updateSpotifyPlayerUri(result.uri)}
