@@ -46,3 +46,7 @@
   padding: 10px 50px;
   width: 100%;
 }
+
+.PaddingReset {
+  padding: 0;
+}
