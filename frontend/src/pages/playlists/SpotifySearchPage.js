@@ -15,7 +15,7 @@ const SpotifySearchPage = () => {
   const handleSearch = async (searchQuery) => {
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=${searchQuery}&type=artist`,
+        `https://api.spotify.com/v1/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist&limit=50`,
         {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
