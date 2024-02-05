@@ -57,10 +57,10 @@ const SpotifySearchPage = () => {
         <Row>
           {searchResults?.map((result) => (
             <Col
+              className={appStyles.PaddingReset}
               key={result.id}
               xs={4}
               md={3}
-              className={appStyles.PaddingReset}
             >
               <Button
                 variant='link'
