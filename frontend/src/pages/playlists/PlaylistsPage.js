@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Playlist from '../../components/Playlist';
 import { axiosReq } from '../../api/axiosDefaults';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
 import loadingStyles from '../../styles/LoadingSpinner.module.css';
+import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 
 const PlaylistsPage = () => {
   const currentUser = useCurrentUser();
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -28,6 +31,10 @@ const PlaylistsPage = () => {
     fetchPlaylists();
   }, []);
 
+  const updateSpotifyPlayerUri = (uri) => {
+    setSpotifyPlayerUri(uri);
+  };
+
   return hasLoaded ? (
     <Container>
       <Row>
@@ -38,7 +45,13 @@ const PlaylistsPage = () => {
             xs={4}
             md={3}
           >
-            <Playlist data={playlist} />
+            <Button
+              variant='link'
+              onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
+              className={btnStyles.Button}
+            >
+              <Playlist data={playlist} />
+            </Button>
           </Col>
         ))}
       </Row>
