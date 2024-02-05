@@ -42,32 +42,31 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
   };
 
   return hasLoaded ? (
-    <Container className={styles.MarginTop}>
-      <InfiniteScroll
+    <Container className={styles.PaddingTop}>
+      {/* <InfiniteScroll
         dataLength={playlists.results.length}
         loader={<LoadingSpinner />}
         hasMore={!!playlists.next}
         next={() => fetchMoreData(playlists, setPlaylists)}
-      >
-        <Row>
-          {playlists.results.map((playlist) => (
-            <Col
-              className={appStyles.PaddingReset}
-              key={playlist.id}
-              xs={4}
-              md={3}
+      > */}
+      <Row>
+        {playlists.results.map((playlist) => (
+          <Col
+            className={appStyles.PaddingReset}
+            key={playlist.id}
+            xs={4}
+            md={3}
+          >
+            <Button
+              variant='link'
+              onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
             >
-              <Button
-                variant='link'
-                onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
-                className={btnStyles.Button}
-              >
-                <Playlist data={playlist} />
-              </Button>
-            </Col>
-          ))}
-        </Row>
-      </InfiniteScroll>
+              <Playlist data={playlist} />
+            </Button>
+          </Col>
+        ))}
+      </Row>
+      {/* </InfiniteScroll> */}
     </Container>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
