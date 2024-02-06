@@ -53,7 +53,11 @@ export const useSpotifyAuth = () => {
     const body = await fetch(url, payload);
     const response = await body.json();
 
-    localStorage.setItem('access_token', response.access_token);
+    if (response.access_token) {
+      localStorage.setItem('access_token', response.access_token);
+    } else {
+      console.log('Error: ', response);
+    }
   };
 
   const handleAuthentication = async () => {
