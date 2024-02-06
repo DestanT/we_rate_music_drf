@@ -37,32 +37,33 @@ const PlaylistsPage = ({ filter = '' }) => {
   }, []);
 
   return hasLoaded ? (
-    <Container className={styles.PaddingTop}>
-      {/* <InfiniteScroll
+    <Container className={styles.Container}>
+      <InfiniteScroll
         dataLength={playlists.results.length}
         loader={<LoadingSpinner />}
         hasMore={!!playlists.next}
         next={() => fetchMoreData(playlists, setPlaylists)}
-      > */}
-      <Row>
-        {playlists.results.map((playlist) => (
-          <Col
-            className={appStyles.PaddingReset}
-            key={playlist.id}
-            xs={4}
-            md={3}
-          >
-            <Button
-              variant='link'
-              onClick={() => history.push(`/playlist/${playlist.id}`)}
-              className={styles.Button}
+        className={styles.InfiniteScroll}
+      >
+        <Row>
+          {playlists.results.map((playlist) => (
+            <Col
+              className={appStyles.PaddingReset}
+              key={playlist.id}
+              xs={4}
+              md={3}
             >
-              <Playlist data={playlist} />
-            </Button>
-          </Col>
-        ))}
-      </Row>
-      {/* </InfiniteScroll> */}
+              <Button
+                variant='link'
+                onClick={() => history.push(`/playlist/${playlist.id}`)}
+                className={styles.Button}
+              >
+                <Playlist data={playlist} />
+              </Button>
+            </Col>
+          ))}
+        </Row>
+      </InfiniteScroll>
     </Container>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
