@@ -14,7 +14,7 @@ import styles from '../../styles/PlaylistsPage.module.css';
 import appStyles from '../../App.module.css';
 import loadingStyles from '../../styles/LoadingSpinner.module.css';
 
-const PlaylistsPage = ({ filter = 'owner__profile' }) => {
+const PlaylistsPage = ({ filter = '' }) => {
   const currentUser = useCurrentUser();
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
