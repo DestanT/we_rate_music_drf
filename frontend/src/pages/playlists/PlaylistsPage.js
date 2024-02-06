@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 import { fetchMoreData } from '../../utils/dataUtils';
 
 import Playlist from '../../components/Playlist';
@@ -12,14 +12,13 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 
 import styles from '../../styles/PlaylistsPage.module.css';
 import appStyles from '../../App.module.css';
-import btnStyles from '../../styles/Button.module.css';
 import loadingStyles from '../../styles/LoadingSpinner.module.css';
 
 const PlaylistsPage = ({ filter = 'owner__profile' }) => {
   const currentUser = useCurrentUser();
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -36,10 +35,6 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
     setHasLoaded(false);
     fetchPlaylists();
   }, []);
-
-  const updateSpotifyPlayerUri = (uri) => {
-    setSpotifyPlayerUri(uri);
-  };
 
   return hasLoaded ? (
     <Container className={styles.PaddingTop}>
@@ -59,7 +54,7 @@ const PlaylistsPage = ({ filter = 'owner__profile' }) => {
           >
             <Button
               variant='link'
-              onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
+              onClick={() => history.push(`/playlist/${playlist.id}`)}
               className={styles.Button}
             >
               <Playlist data={playlist} />
