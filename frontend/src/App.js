@@ -24,17 +24,9 @@ function App() {
         <Route exact path='/' render={() => <h1>Home Page</h1>} />
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
-        <Route
-          exact
-          path='/profile/:profileId'
-          render={() => <ProfilePage />}
-        />
+        <Route exact path='/profile/:userId' render={() => <ProfilePage />} />
         <Route exact path='/popular' render={() => <PlaylistsPage />} />
-        <Route
-          exact
-          path='/playlist/:playlistId'
-          render={() => <PlaylistDetail />}
-        />
+        <Route exact path='/playlist/:id' render={() => <PlaylistDetail />} />
         <Route exact path='/feed' render={() => <h1>Followed Users</h1>} />
         <Route
           exact
