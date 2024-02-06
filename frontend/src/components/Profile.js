@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import styles from '../styles/Profile.module.css';
-import loadingStyles from '../styles/LoadingSpinner.module.css';
+import { axiosReq } from '../api/axiosDefaults';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
+
 import Avatar from './Avatar';
-import { axiosReq } from '../api/axiosDefaults';
-import { useParams } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
 
-const Profile = () => {
-  const { id } = useParams();
+import styles from '../styles/Profile.module.css';
+import loadingStyles from '../styles/LoadingSpinner.module.css';
+
+const Profile = ({ userId }) => {
   const [profileData, setProfileData] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const { data } = await axiosReq.get(`profiles/${id}`);
+        const { data } = await axiosReq.get(`profiles/${userId}`);
         setProfileData(data);
         setHasLoaded(true);
       } catch (err) {
@@ -27,7 +28,7 @@ const Profile = () => {
 
     setHasLoaded(false);
     fetchProfileData();
-  }, [id]);
+  }, [userId]);
 
   return hasLoaded ? (
     // Profile data loaded
