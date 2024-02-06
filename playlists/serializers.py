@@ -5,6 +5,7 @@ from ratings.models import Rating
 
 class PlaylistSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    owner_id = serializers.ReadOnlyField(source='owner.id')
     is_owner = serializers.SerializerMethodField()
     rating_id = serializers.SerializerMethodField()
     ratings_count = serializers.ReadOnlyField()
@@ -26,7 +27,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Playlist
         fields = [
-            'id', 'spotify_id', 'owner', 'is_owner',
+            'id', 'spotify_id', 'owner', 'owner_id', 'is_owner',
             'added_on', 'title', 'image',
             'url', 'iframe_uri', 'rating_id',
             'ratings_count', 'average_rating'
