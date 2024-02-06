@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import appStyles from '../../App.module.css';
-import btnStyles from '../../styles/Button.module.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
-import { getUsersProfile } from '../../api/spotifyApi/getUsersProfile';
-import { searchForItem } from '../../api/spotifyApi/searchForItem';
-import SearchBar from '../../components/SearchBar';
-import Playlist from '../../components/Playlist';
-import { normaliseSpotifyData } from '../../utils/dataUtils';
-import AddPlaylistButton from '../../forms/AddPlaylistButton';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 
+import SearchBar from '../../components/SearchBar';
+import Playlist from '../../components/Playlist';
+import AddPlaylistButton from '../../forms/AddPlaylistButton';
+
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
+
 const SpotifySearchPage = () => {
-  const [searchResults, setSearchResults] = useState();
   const { handleAuthentication } = useSpotifyAuth();
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
+  const [searchResults, setSearchResults] = useState();
 
   const handleSearch = async (searchQuery) => {
     try {
@@ -36,7 +36,6 @@ const SpotifySearchPage = () => {
       ];
 
       setSearchResults(combinedData);
-      console.log(combinedData);
     } catch (error) {
       console.log(error);
     }
@@ -51,8 +50,6 @@ const SpotifySearchPage = () => {
       <h1>Spotify Page</h1>
       <SearchBar onSearch={handleSearch} />
       <Button onClick={handleAuthentication}>Authenticate</Button>
-      <Button onClick={getUsersProfile}>get profile</Button>
-      <Button onClick={searchForItem}>searchForItem</Button>
       <Container>
         <Row>
           {searchResults?.map((result) => (
@@ -67,7 +64,7 @@ const SpotifySearchPage = () => {
                 onClick={() => updateSpotifyPlayerUri(result.uri)}
                 className={btnStyles.Button}
               >
-                <Playlist data={normaliseSpotifyData(result)} />
+                <Playlist image={result.images[0]?.url} title={result.name} />
               </Button>
               <AddPlaylistButton playlistData={result} />
             </Col>
