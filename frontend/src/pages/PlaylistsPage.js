@@ -10,9 +10,9 @@ import { fetchMoreData } from '../utils/dataUtils';
 import Playlist from '../components/Playlist';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-import styles from '../../styles/PlaylistsPage.module.css';
-import appStyles from '../../App.module.css';
-import loadingStyles from '../../styles/LoadingSpinner.module.css';
+import styles from '../styles/PlaylistsPage.module.css';
+import appStyles from '../App.module.css';
+import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 const PlaylistsPage = ({ filter = '' }) => {
   const [playlists, setPlaylists] = useState([]);

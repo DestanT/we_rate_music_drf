@@ -5,12 +5,12 @@ import { useSpotifyAuth } from './useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
+import Profile from '../components/Profile';
 import SearchBar from '../components/SearchBar';
 import Playlist from '../components/Playlist';
 import AddPlaylistButton from './AddPlaylistButton';
 
-import styles from '../../styles/SpotifySearchPage.module.css';
-import Profile from '../components/Profile';
+import styles from '../styles/SpotifySearchPage.module.css';
 
 const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();
