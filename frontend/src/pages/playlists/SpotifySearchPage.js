@@ -3,16 +3,19 @@ import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
 import AddPlaylistButton from '../../forms/AddPlaylistButton';
 
 import styles from '../../styles/SpotifySearchPage.module.css';
+import Profile from '../../components/Profile';
 
 const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
+  const currentUser = useCurrentUser();
   const [searchResults, setSearchResults] = useState();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
@@ -57,41 +60,48 @@ const SpotifySearchPage = () => {
   };
 
   return (
-    <div>
-      <h1>Spotify Page</h1>
-      <SearchBar onSearch={handleSearch} />
-      {showAlert && errors?.message && (
-        <Alert
-          variant='warning'
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          {errors.message}
-        </Alert>
-      )}
-      <Button onClick={handleAuthentication}>Authenticate</Button>
-      <Container>
-        <Row>
-          {searchResults?.map((result) => (
-            <Col className={styles.PaddingReset} key={result.id} xs={4} md={3}>
-              <Button
-                variant='link'
-                onClick={() => updateSpotifyPlayerUri(result.uri)}
+    <>
+      <Profile userId={currentUser.pk} />
+      <Container className={styles.Container}>
+        <SearchBar onSearch={handleSearch} />
+        {showAlert && errors?.message && (
+          <Alert
+            variant='warning'
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            {errors.message}
+          </Alert>
+        )}
+        <Button onClick={handleAuthentication}>Authenticate</Button>
+        <Container>
+          <Row>
+            {searchResults?.map((result) => (
+              <Col
                 className={styles.PaddingReset}
+                key={result.id}
+                xs={4}
+                md={3}
               >
-                <Playlist image={result.images[0]?.url} title={result.name} />
-              </Button>
-              <Row>
-                <Col>
-                  <p>{result.name}</p>
-                </Col>
-              </Row>
-              <AddPlaylistButton playlistData={result} />
-            </Col>
-          ))}
-        </Row>
+                <Button
+                  variant='link'
+                  onClick={() => updateSpotifyPlayerUri(result.uri)}
+                  className={styles.PaddingReset}
+                >
+                  <Playlist image={result.images[0]?.url} title={result.name} />
+                </Button>
+                <Row>
+                  <Col>
+                    <p>{result.name}</p>
+                  </Col>
+                </Row>
+                <AddPlaylistButton playlistData={result} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </Container>
-    </div>
+    </>
   );
 };
 
