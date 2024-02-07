@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
-import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
+import { useSpotifyAuth } from '../../spotify/useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
