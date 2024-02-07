@@ -43,7 +43,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    const requestInterceptor = axiosReq.interceptors.request.use(
+    axiosReq.interceptors.request.use(
       async (config) => {
         // if (shouldRefreshToken()) {
         try {
@@ -66,7 +66,7 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
 
-    const responseInterceptor = axiosRes.interceptors.response.use(
+    axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
@@ -86,12 +86,6 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
-
-    // Cleanup - in case of early unmounting of components that use this context
-    return () => {
-      axiosReq.interceptors.request.eject(requestInterceptor);
-      axiosRes.interceptors.response.eject(responseInterceptor);
-    };
   }, [history]);
 
   return (
