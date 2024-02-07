@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
+import styles from '../styles/ModalWindow.module.css';
+import btnStyles from '../styles/Button.module.css';
+
 /**
  * ModalWindow component renders a modal window.
  *
@@ -13,21 +16,20 @@ import { Button, Modal } from 'react-bootstrap';
  */
 function ModalWindow(props) {
   return (
-    <Modal
-      {...props}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>
+    <Modal {...props} size='sm' aria-labelledby='confirmation modal' centered>
+      <Modal.Header className={styles.Header} closeButton>
+        <Modal.Title id='confirmation modal' className={styles.Color}>
           {props.title}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>{props.body}</Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={props.onConfirm}>Confirm</Button>
+      <Modal.Body className={styles.Body}>{props.body}</Modal.Body>
+      <Modal.Footer className={styles.Footer}>
+        <Button onClick={props.onHide} className={btnStyles.Button}>
+          Close
+        </Button>
+        <Button onClick={props.onConfirm} className={btnStyles.Button}>
+          Confirm
+        </Button>
       </Modal.Footer>
     </Modal>
   );
