@@ -63,8 +63,10 @@ function AddPlaylistButton({ playlistData: playlist }) {
         show={modalShow}
         onHide={() => setModalShow(false)}
         onConfirm={handleSubmit}
-        title='Add playlist to profile?'
-        body={<Playlist data={normaliseSpotifyData(playlist)} />}
+        title={`Add "${playlist.name}" to your profile?`}
+        body={
+          <Playlist image={playlist.images[0]?.url} title={playlist.name} />
+        }
       />
     </>
   );
