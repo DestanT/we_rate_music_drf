@@ -72,7 +72,7 @@ const PlaylistsPage = ({ filter = '' }) => {
                 onClick={() => history.push(`/playlist/${playlist.id}`)}
                 className={styles.Button}
               >
-                <Playlist data={playlist} />
+                <Playlist image={playlist.image} title={playlist.title} />
               </Button>
             </Col>
           ))}
