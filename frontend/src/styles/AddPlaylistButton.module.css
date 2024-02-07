@@ -1,0 +1,23 @@
+.Button {
+    padding: 0;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.Button:hover {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.Button:hover:active {
+    background-color: transparent;
+}
+    
+.Button:active {
+    background-color: transparent;
+}
+    
+.Button:focus {
+    background-color: transparent;
+}
