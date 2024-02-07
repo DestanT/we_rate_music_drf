@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import React, { useRef, useState } from 'react';
+import {
+  Alert,
+  Button,
+  Col,
+  Container,
+  Overlay,
+  Row,
+  Tooltip,
+} from 'react-bootstrap';
 
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
@@ -15,8 +23,16 @@ const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const [searchResults, setSearchResults] = useState();
+  const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSearch = async (searchQuery) => {
+    if (!searchQuery) {
+      setErrors({ message: 'Search field is empty' });
+      setShowAlert(true);
+      return;
+    }
+
     try {
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist&limit=50`,
@@ -30,14 +46,17 @@ const SpotifySearchPage = () => {
 
       // Combine the items from albums, playlists, and artists
       const combinedData = [
-        ...data.albums.items,
-        ...data.playlists.items,
-        ...data.artists.items,
+        ...(data.albums?.items || []),
+        ...(data.playlists?.items || []),
+        ...(data.artists?.items || []),
       ];
 
       setSearchResults(combinedData);
     } catch (error) {
-      console.log(error);
+      setErrors({
+        message: error.response?.data || 'An error occurred in fetching',
+      });
+      setShowAlert(true);
     }
   };
 
@@ -49,6 +68,15 @@ const SpotifySearchPage = () => {
     <div>
       <h1>Spotify Page</h1>
       <SearchBar onSearch={handleSearch} />
+      {showAlert && errors?.message && (
+        <Alert
+          variant='warning'
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {errors.message}
+        </Alert>
+      )}
       <Button onClick={handleAuthentication}>Authenticate</Button>
       <Container>
         <Row>
