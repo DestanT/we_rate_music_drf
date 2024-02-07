@@ -1,6 +1,6 @@
 // SOURCE: https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
 import React, { useEffect, useRef, useState } from 'react';
-import { useSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
+import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 function SpotifyPlayer() {
   const playerRef = useRef();

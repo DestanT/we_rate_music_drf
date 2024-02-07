@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/AccordionWindow.module.css';
 import { Accordion, Card, Button } from 'react-bootstrap';
-import SpotifyPlayer from '../api/spotifyApi/spotifyPlayer';
+import SpotifyPlayer from '../spotify/SpotifyPlayer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
