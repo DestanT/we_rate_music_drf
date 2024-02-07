@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
-import { useSpotifyAuth } from '../../spotify/useSpotifyAuth';
-import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useSpotifyAuth } from './useSpotifyAuth';
+import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-import SearchBar from '../../components/SearchBar';
-import Playlist from '../../components/Playlist';
-import AddPlaylistButton from '../../spotify/AddPlaylistButton';
+import SearchBar from '../components/SearchBar';
+import Playlist from '../components/Playlist';
+import AddPlaylistButton from './AddPlaylistButton';
 
 import styles from '../../styles/SpotifySearchPage.module.css';
-import Profile from '../../components/Profile';
+import Profile from '../components/Profile';
 
 const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();

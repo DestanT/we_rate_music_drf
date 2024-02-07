@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import './api/axiosDefaults';
 import SignUpForm from './pages/auth/SignUpForm';
 import SignInForm from './pages/auth/SignInForm';
-import SpotifySearchPage from './pages/playlists/SpotifySearchPage';
+import SpotifySearchPage from './spotify/SpotifySearchPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import AccordionWindow from './components/AccordionWindow';
 import ProfilePage from './pages/ProfilePage';
