@@ -16,12 +16,26 @@ export const CurrentUserProvider = ({ children }) => {
   const history = useHistory();
 
   const handleMount = async () => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     try {
-      const { data } = await axiosRes.get('dj-rest-auth/user/');
+      const { data } = await axiosRes.get('dj-rest-auth/user/', {
+        cancelToken: source.token,
+      });
       setCurrentUser(data);
     } catch (err) {
-      console.log(err);
+      if (axios.isCancel(err)) {
+        console.log('Request canceled', err.message);
+      } else {
+        console.log(err);
+      }
     }
+
+    // Cleanup
+    return () => {
+      source.cancel('Request canceled');
+    };
   };
 
   useEffect(() => {
@@ -29,7 +43,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    axiosReq.interceptors.request.use(
+    const requestInterceptor = axiosReq.interceptors.request.use(
       async (config) => {
         // if (shouldRefreshToken()) {
         try {
@@ -52,7 +66,7 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
 
-    axiosRes.interceptors.response.use(
+    const responseInterceptor = axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
@@ -72,6 +86,12 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
+
+    // Cleanup - in case of early unmounting of components that use this context
+    return () => {
+      axiosReq.interceptors.request.eject(requestInterceptor);
+      axiosRes.interceptors.response.eject(responseInterceptor);
+    };
   }, [history]);
 
   return (
