@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { axiosReq } from '../api/axiosDefaults';
+import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
@@ -16,18 +17,33 @@ const Profile = ({ userId }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    // Sends a CancelToken with the request
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     const fetchProfileData = async () => {
       try {
-        const { data } = await axiosReq.get(`profiles/${userId}`);
+        const { data } = await axiosReq.get(`profiles/${userId}`, {
+          cancelToken: source.token,
+        });
         setProfileData(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
+        } else {
+          console.log(err);
+        }
       }
     };
 
     setHasLoaded(false);
     fetchProfileData();
+
+    // Cleanup
+    return () => {
+      source.cancel('Request canceled');
+    };
   }, [userId]);
 
   return hasLoaded ? (
