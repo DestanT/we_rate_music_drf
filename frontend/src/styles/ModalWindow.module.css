@@ -1,0 +1,23 @@
+.Header {
+    background-color: #5a5550;
+}
+
+.Header :global(.close) {
+    color: #df604e;
+    text-shadow: 0 2px 0 #af3c2d;
+}
+
+.Body {
+    display: flex;
+    justify-content: center;
+    background-color: #5a5550;
+}
+
+.Color {
+    color: #d8d3cd;
+}
+
+.Footer {
+    background-color: #5a5550;
+    justify-content: center;
+}
