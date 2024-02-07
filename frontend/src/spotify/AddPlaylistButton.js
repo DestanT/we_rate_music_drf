@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { normaliseSpotifyData } from '../utils/dataUtils';
 import { axiosRes } from '../api/axiosDefaults';
@@ -8,10 +11,13 @@ import { axiosRes } from '../api/axiosDefaults';
 import ModalWindow from '../components/ModalWindow';
 import Playlist from '../components/Playlist';
 
+import styles from '../styles/AddPlaylistButton.module.css';
+
 function AddPlaylistButton({ playlistData: playlist }) {
   const currentUser = useCurrentUser();
-  const [errors, setErrors] = useState({});
   const [modalShow, setModalShow] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,19 +34,30 @@ function AddPlaylistButton({ playlistData: playlist }) {
       const response = await axiosRes.post('playlists/', data);
       console.log(response);
       setModalShow(false);
-    } catch (err) {
-      console.log(err);
-      if (err.response) {
-        setErrors(err.response.data);
-      }
-    } finally {
-      setModalShow(false);
+    } catch (error) {
+      setErrors({
+        message:
+          error.response?.data || 'Something went wrong! Please try again.',
+      });
+      setShowAlert(true);
     }
   };
 
   return (
     <>
-      <Button onClick={() => setModalShow(true)}>Add Playlist</Button>
+      <Button onClick={() => setModalShow(true)} className={styles.Button}>
+        <FontAwesomeIcon icon={faSquarePlus} />
+      </Button>
+
+      {showAlert && errors?.message && (
+        <Alert
+          variant='warning'
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {errors.message}
+        </Alert>
+      )}
 
       <ModalWindow
         show={modalShow}
@@ -49,18 +66,6 @@ function AddPlaylistButton({ playlistData: playlist }) {
         title='Add playlist to profile?'
         body={<Playlist data={normaliseSpotifyData(playlist)} />}
       />
-
-      {/* NOTE: REFINE */}
-      {errors && (
-        <Alert variant='warning'>
-          {errors.spotify_id && <p>{errors.spotify_id}</p>}
-          {errors.title && <p>{errors.title}</p>}
-          {errors.image && <p>{errors.image}</p>}
-          {errors.url && <p>{errors.url}</p>}
-          {errors.iframe_uri && <p>{errors.iframe_uri}</p>}
-          {errors.owner && <p>{errors.owner}</p>}
-        </Alert>
-      )}
     </>
   );
 }
