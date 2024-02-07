@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import PlaylistsPage from './playlists/PlaylistsPage';
+import PlaylistsPage from './PlaylistsPage';
 import Profile from '../components/Profile';
 
 const ProfilePage = () => {

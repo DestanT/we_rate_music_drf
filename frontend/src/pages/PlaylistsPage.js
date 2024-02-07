@@ -3,12 +3,12 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { axiosReq } from '../../api/axiosDefaults';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { fetchMoreData } from '../../utils/dataUtils';
+import { axiosReq } from '../api/axiosDefaults';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { fetchMoreData } from '../utils/dataUtils';
 
-import Playlist from '../../components/Playlist';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import Playlist from '../components/Playlist';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import styles from '../../styles/PlaylistsPage.module.css';
 import appStyles from '../../App.module.css';
