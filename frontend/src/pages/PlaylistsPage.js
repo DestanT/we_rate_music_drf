@@ -3,8 +3,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import axios from 'axios';
 import { axiosReq } from '../api/axiosDefaults';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { fetchMoreData } from '../utils/dataUtils';
 
 import Playlist from '../components/Playlist';
@@ -15,26 +15,40 @@ import appStyles from '../../App.module.css';
 import loadingStyles from '../../styles/LoadingSpinner.module.css';
 
 const PlaylistsPage = ({ filter = '' }) => {
-  const currentUser = useCurrentUser();
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
+    // Sends a CancelToken with the request
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     const fetchPlaylists = async () => {
       try {
-        const { data } = await axiosReq.get(`playlists/?${filter}`);
+        const { data } = await axiosReq.get(`playlists/?${filter}`, {
+          cancelToken: source.token,
+        });
         setPlaylists(data);
         console.log(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
+        } else {
+          console.log(err);
+        }
       }
     };
 
     setHasLoaded(false);
     fetchPlaylists();
-  }, []);
+
+    // Cleanup
+    return () => {
+      source.cancel('Request canceled');
+    };
+  }, [filter]);
 
   return hasLoaded ? (
     <Container className={styles.Container}>
