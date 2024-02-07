@@ -1,13 +1,5 @@
-import React, { useRef, useState } from 'react';
-import {
-  Alert,
-  Button,
-  Col,
-  Container,
-  Overlay,
-  Row,
-  Tooltip,
-} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../../contexts/SpotifyPlayerUriContext';
@@ -16,8 +8,7 @@ import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
 import AddPlaylistButton from '../../forms/AddPlaylistButton';
 
-import appStyles from '../../App.module.css';
-import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/SpotifySearchPage.module.css';
 
 const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();
@@ -27,6 +18,7 @@ const SpotifySearchPage = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const handleSearch = async (searchQuery) => {
+    // Empty search field
     if (!searchQuery) {
       setErrors({ message: 'Search field is empty' });
       setShowAlert(true);
@@ -81,16 +73,11 @@ const SpotifySearchPage = () => {
       <Container>
         <Row>
           {searchResults?.map((result) => (
-            <Col
-              className={appStyles.PaddingReset}
-              key={result.id}
-              xs={4}
-              md={3}
-            >
+            <Col className={styles.PaddingReset} key={result.id} xs={4} md={3}>
               <Button
                 variant='link'
                 onClick={() => updateSpotifyPlayerUri(result.uri)}
-                className={btnStyles.Button}
+                className={styles.PaddingReset}
               >
                 <Playlist image={result.images[0]?.url} title={result.name} />
               </Button>
