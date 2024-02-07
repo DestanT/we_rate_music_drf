@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth';
@@ -20,6 +20,16 @@ const SpotifySearchPage = () => {
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
 
+  // Loads the last search from local storage, if it exists
+  useEffect(() => {
+    const lastSearch = localStorage.getItem('lastSearch');
+    console.log(lastSearch);
+    if (lastSearch) {
+      setSearchResults(JSON.parse(lastSearch));
+      console.log(JSON.parse(lastSearch));
+    }
+  }, []);
+
   const handleSearch = async (searchQuery) => {
     // Empty search field
     if (!searchQuery) {
@@ -28,6 +38,9 @@ const SpotifySearchPage = () => {
       return;
     }
 
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     try {
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist&limit=50`,
@@ -35,6 +48,7 @@ const SpotifySearchPage = () => {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
           },
+          signal: signal,
         }
       );
       const data = await response.json();
@@ -47,12 +61,20 @@ const SpotifySearchPage = () => {
       ];
 
       setSearchResults(combinedData);
+      console.log(combinedData);
+      // Saves the search results to local storage for later use
+      localStorage.setItem('lastSearch', JSON.stringify(combinedData));
     } catch (error) {
       setErrors({
         message: error.response?.data || 'An error occurred in fetching',
       });
       setShowAlert(true);
     }
+
+    // Cleanup - in case of early unmounting
+    return () => {
+      controller.abort();
+    };
   };
 
   const updateSpotifyPlayerUri = (uri) => {
