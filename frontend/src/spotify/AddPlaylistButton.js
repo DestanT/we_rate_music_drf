@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
-import { normaliseSpotifyData } from '../utils/dataUtils';
 import { axiosRes } from '../api/axiosDefaults';
 
 import ModalWindow from '../components/ModalWindow';
