@@ -81,6 +81,11 @@ const SpotifySearchPage = () => {
               >
                 <Playlist image={result.images[0]?.url} title={result.name} />
               </Button>
+              <Row>
+                <Col>
+                  <p>{result.name}</p>
+                </Col>
+              </Row>
               <AddPlaylistButton playlistData={result} />
             </Col>
           ))}
