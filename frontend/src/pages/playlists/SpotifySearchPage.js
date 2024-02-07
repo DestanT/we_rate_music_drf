@@ -7,7 +7,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 import SearchBar from '../../components/SearchBar';
 import Playlist from '../../components/Playlist';
-import AddPlaylistButton from '../../forms/AddPlaylistButton';
+import AddPlaylistButton from '../../spotify/AddPlaylistButton';
 
 import styles from '../../styles/SpotifySearchPage.module.css';
 import Profile from '../../components/Profile';
