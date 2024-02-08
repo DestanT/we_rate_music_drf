@@ -14,7 +14,7 @@ import styles from '../styles/PlaylistsPage.module.css';
 import appStyles from '../App.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
 
-const PlaylistsPage = ({ filter = '' }) => {
+const PlaylistsPage = ({ filter = '', profileView = false }) => {
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
@@ -51,7 +51,9 @@ const PlaylistsPage = ({ filter = '' }) => {
   }, [filter]);
 
   return hasLoaded ? (
-    <Container className={styles.Container}>
+    <Container
+      className={profileView ? styles.ProfileContainer : styles.Container}
+    >
       <InfiniteScroll
         dataLength={playlists.results.length}
         loader={<LoadingSpinner />}
