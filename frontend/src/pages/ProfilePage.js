@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <>
       <Profile userId={userId} />
-      <PlaylistsPage filter={`owner__profile=${userId}`} />
+      <PlaylistsPage filter={`owner__profile=${userId}`} profileView />
     </>
   );
 };
