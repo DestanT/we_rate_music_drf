@@ -12,7 +12,7 @@
   text-align: center;
   padding: 10px;
 }
-  
+
 .Header {
   font-style: normal;
   font-weight: bold;
@@ -23,14 +23,14 @@
   text-transform: uppercase;
   color: #5a5550;
 }
-  
+
 .Link {
   text-decoration: none;
   text-align: center;
   display: block;
   margin: auto;
 }
-  
+
 .Link span {
   font-weight: 600;
   color: #af3c2d;

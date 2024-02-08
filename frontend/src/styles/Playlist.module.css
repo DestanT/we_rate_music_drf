@@ -1,14 +1,14 @@
 .Image {
-    padding: 0.25rem;
-    background-color: #5a5550;
-    border: 1px solid #5a5550;
-    border-radius: 0.25rem;
-    max-width: 33vw;
-    max-height: 20vh;
+  padding: 0.25rem;
+  background-color: #5a5550;
+  border: 1px solid #5a5550;
+  border-radius: 0.25rem;
+  max-width: 33vw;
+  max-height: 20vh;
 }
 
 @media screen and (min-width: 992px) {
-    .Image {
-        max-height: 29vh;
-    }
+  .Image {
+    max-height: 29vh;
+  }
 }
