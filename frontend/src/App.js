@@ -9,12 +9,12 @@ import SpotifySearchPage from './spotify/SpotifySearchPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import AccordionWindow from './components/AccordionWindow';
 import ProfilePage from './pages/ProfilePage';
-import PlaylistsPage from './pages/playlists/PlaylistsPage';
-import PlaylistDetail from './pages/playlists/PlaylistDetail';
+import PlaylistsPage from './pages/PlaylistsPage';
+import PlaylistDetail from './pages/PlaylistDetail';
 
 function App() {
   const currentUser = useCurrentUser();
-  const profile_username = currentUser?.username || '';
+  const profile_id = currentUser?.pk || '';
 
   return (
     <div className={styles.App}>
@@ -25,9 +25,23 @@ function App() {
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
         <Route exact path='/profile/:userId' render={() => <ProfilePage />} />
-        <Route exact path='/popular' render={() => <PlaylistsPage />} />
+        <Route
+          exact
+          path='/popular'
+          render={() => (
+            <PlaylistsPage filter={`ratings__owner__profile=${profile_id}`} />
+          )}
+        />
         <Route exact path='/playlist/:id' render={() => <PlaylistDetail />} />
-        <Route exact path='/feed' render={() => <h1>Followed Users</h1>} />
+        <Route
+          exact
+          path='/feed'
+          render={() => (
+            <PlaylistsPage
+              filter={`owner__followed_by__owner__profile=${profile_id}`}
+            />
+          )}
+        />
         <Route
           exact
           path='/spotify-search'
