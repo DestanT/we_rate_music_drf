@@ -1,9 +1,10 @@
-.Column {
-    padding-right: 5px !important;
-    padding-left: 5px !important;
+.Container {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.Container {
+.ProfileContainer {
     padding-top: 30vh;
     padding-left: 0px;
     padding-right: 0px;
