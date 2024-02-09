@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ModalWindow from './ModalWindow';
 import { useSetCurrentUser } from '../contexts/CurrentUserContext';
+import { removeTokenTimestamp } from '../utils/dataUtils';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +21,7 @@ const SignOutButton = () => {
     try {
       await axios.post('/dj-rest-auth/logout/');
       setCurrentUser(null);
+      removeTokenTimestamp();
       setModalShow(false);
       history.push('/');
     } catch (err) {
