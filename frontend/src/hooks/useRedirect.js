@@ -10,16 +10,19 @@ export const useRedirect = () => {
   const history = useHistory();
   const currentUser = useCurrentUser();
   const userAuthStatus = currentUser ? 'loggedIn' : 'loggedOut';
+  const authPages = ['/signin', '/signup'].includes(history.location.pathname);
 
   useEffect(() => {
     const handleMount = async () => {
       // if user is logged in and on signin/signup page, redirect to profile page
-      if (
-        (history.location.pathname === '/signin' ||
-          history.location.pathname === '/signup') &&
-        userAuthStatus === 'loggedIn'
-      ) {
-        history.push(`/profile/${currentUser.pk}`);
+      if (authPages) {
+        if (userAuthStatus === 'loggedIn') {
+          history.push(`/profile/${currentUser.pk}`);
+          return;
+        }
+        if (userAuthStatus === 'loggedOut') {
+          return;
+        }
       }
       try {
         await axios.post('/dj-rest-auth/token/refresh/');
@@ -36,5 +39,5 @@ export const useRedirect = () => {
     };
 
     handleMount();
-  }, [history, userAuthStatus, currentUser]);
+  }, [history, userAuthStatus, currentUser, authPages]);
 };
