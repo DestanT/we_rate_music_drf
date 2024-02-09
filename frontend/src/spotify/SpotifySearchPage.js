@@ -4,6 +4,7 @@ import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 import { useSpotifyAuth } from './useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useRedirect } from '../hooks/useRedirect';
 
 import Profile from '../components/Profile';
 import SearchBar from '../components/SearchBar';
@@ -19,6 +20,8 @@ const SpotifySearchPage = () => {
   const [searchResults, setSearchResults] = useState();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
+
+  useRedirect();
 
   // Loads the last search from local storage, if it exists
   useEffect(() => {
