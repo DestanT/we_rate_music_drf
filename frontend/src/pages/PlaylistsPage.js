@@ -3,6 +3,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { useRedirect } from '../hooks/useRedirect';
+
 import axios from 'axios';
 import { axiosReq } from '../api/axiosDefaults';
 import { fetchMoreData } from '../utils/dataUtils';
@@ -18,6 +20,8 @@ const PlaylistsPage = ({ filter = '', profileView = false }) => {
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
+
+  useRedirect();
 
   useEffect(() => {
     // Sends a CancelToken with the request
