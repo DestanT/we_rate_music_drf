@@ -8,6 +8,7 @@ import { faBackward } from '@fortawesome/free-solid-svg-icons';
 
 import Avatar from './Avatar';
 import LoadingSpinner from './LoadingSpinner';
+import SignOutButton from './SignOutButton';
 
 import styles from '../styles/Profile.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
@@ -65,7 +66,9 @@ const Profile = ({ userId }) => {
           <Col xs={6}>
             <h2>{profileData.owner}</h2>
           </Col>
-          <Col xs={3}>Settings</Col>
+          <Col xs={3}>
+            <SignOutButton />
+          </Col>
         </Row>
       </Container>
 
