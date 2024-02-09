@@ -36,5 +36,5 @@ export const useRedirect = () => {
     };
 
     handleMount();
-  }, [history, userAuthStatus, currentUser.pk]);
+  }, [history, userAuthStatus, currentUser]);
 };
