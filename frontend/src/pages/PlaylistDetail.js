@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 
+import { useRedirect } from '../hooks/useRedirect';
+
 import { axiosReq } from '../api/axiosDefaults';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
@@ -16,6 +18,8 @@ const PlaylistDetail = () => {
   const [ratings, setRatings] = useState([]);
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const history = useHistory();
+
+  useRedirect();
 
   useEffect(() => {
     const fetchPlaylist = async () => {
