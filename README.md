@@ -33,9 +33,15 @@
   <ul>
     <li>[Components & Features](#components—features)</li>
     <ul>
-      <li>[Component 1](#component-1)</li>
-      <li>[Component 2](#component-2)</li>
-      <li>[Component 3](#component-3)</li>
+      <li>[AccordionWindow](#accordionwindow)</li>
+      <li>[Avatar](#avatar)</li>
+      <li>[LoadingSpinner](#loadingspinner)</li>
+	  <li>[ModalWindow](#modalwindow)</li>
+	  <li>[NavBar](#navbar)</li>
+	  <li>[Playlist](#playlist)</li>
+	  <li>[Profile](#profile)</li>
+	  <li>[SearchBar](#searchbar)</li>
+	  <li>[SignOutButton](#signoutbutton)</li>
     </ul>
   </ul>
 </details>
@@ -119,15 +125,49 @@ The seria
 
 ### /Components
 
+#### AccordionWindow
+- The Accordion Window component expands automatically when a user interacts by clicking/pressing on a playlist by setting the default active key value to the event key value
+
 #### Avatar
-- User profile avatar
+- Takes in the props for the image source and height
+- height is defaulted at 45
+- displays the users profile image in an avatar
+
+#### LoadingSpinner
+- The loading spinner component holds a spinning Font Awesome icon
+- is used in ternaries while data fetching or other like actions are happening the loading spinner will be rendered to give users feedback, that their request has been heard and is being handled
+
+#### ModalWindow
+- The modal window component takes in props for title, body, onHide and onConfirm.
+- title: title for the modal
+- body: text/image to display in the main body of the modal
+- onHide: takes on the [setShowModal(false)] state from the component the modal lives in
+- every component that uses the ModalWindow component is expected to use 'const [showModal, setShowModal] = useState(false)'
+- onConfirm: whatever the primary function the user intended to run before the confirmation modal needed to be triggered is placed inside the onConfirm prop of the modal.
 
 #### NavBar
 - will change based on user login status
 
 #### Playlist
-- component logic to house each individual playlist/album received from spotify api
-- also used to display in profile and feed views
+- in essence very similar to the Avatar component, in that it will display the image of a playlist/album.
+- also takes in the title prop, only used in the alt attribute for screen readers
+
+#### Profile
+- fetchProfileData function:
+ - using the userId prop will fetch the profile data from the backend
+ - sets the profile data in a state of the component
+ - has a cleanup function that uses axios.CancelToken.source() to cancel the asynchronous request, should the component unmount early.
+ - this was esspecially important as the Profile component is on the SpotifySearchPage where the user is redirected for authorisation on Spotify, when being directed back to the app a memory leak warning would make the app crash.
+ - displays the followers count, following count, playlists and number of ratings given
+
+#### SearchBar
+- takes a function as a prop
+- displays a search bar
+
+#### SignOutButton
+- makes a post request to dj-rest-auth/logout
+- allows users to sign out of the application
+- ModalWindow component incorporated
 
 ### /Contexts
 
@@ -140,7 +180,22 @@ The seria
 - the reason it is used as a global context is so that the user can be anywhere in the app and still continue listening to the playlist they had originally clicked on
 - everytime user clicks on different playlist the context is updated with the new uri
 
-### /Hooks
+### Spotify
+
+#### AddPlaylistButton
+- displays a button that prompts a confirmation modal and ultimately sends a post request to the drf api to the playlists/ endpoint
+
+#### SpotifyPlayer
+- This is the Spotify iFrame player
+- https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
+- Uses a Uniform Resource Identifier for each playlist/album/podcast etc from Spotify.
+- The application saves this URI to the database along with other parameters
+
+#### SpotifySearchPage
+- last search is stored in local storage as stringified JSON for better UX
+- handleSearch:
+ - checks for empty search field and throws error alert if so
+ - 
 
 #### useSpotifyAuth
 - Authentication and access token
@@ -211,3 +266,10 @@ used Spotify Developer Web API documentation, more specifically the "Authorizati
 - user can add a playlist from their spotify account to display on the app
 - other users can interact with playlists in the app by rating them
 
+
+NOTES:
+aria-label='screen-reader label' > add this prop to buttons and like components
+
+
+NOTABLE FIXES:
+SpotifySearchPage > leads user to authentication page and back > and async functions threw a warning: Can’t perform a React state update on an unmounted component > which led to abortControllers and cleanup functions. Another issue was axios required CancelToken (which is deprecated as of v0.22.0 (using v0.21.4) didn’t want to upgrade version at this point just in case. Opted to use old cancel request function.
