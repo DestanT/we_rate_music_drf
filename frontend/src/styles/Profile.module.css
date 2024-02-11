@@ -15,8 +15,20 @@
   color: #d8d3cd;
 }
 
+.AvatarContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
 .FontAwesomeIcon {
   filter: drop-shadow(2px 2px 4px black);
+}
+
+.ProfileFontAwesomeIcon {
+  filter: drop-shadow(2px 2px 4px black);
+  position: relative;
+  bottom: 0px;
+  right: 10px;
 }
 
 .StatsContainer {
@@ -25,4 +37,24 @@
   padding: 0.5rem;
   border-radius: 10px;
   box-shadow: 0 0 7px #df604e;
+}
+
+.FollowButton {
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.FollowButton:hover {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.FollowButton:active,
+.FollowButton:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
