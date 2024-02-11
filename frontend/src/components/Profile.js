@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { axiosReq } from '../api/axiosDefaults';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import axios from 'axios';
 
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 
 import Avatar from './Avatar';
 import LoadingSpinner from './LoadingSpinner';
@@ -14,8 +17,10 @@ import styles from '../styles/Profile.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 const Profile = ({ userId }) => {
-  const [profileData, setProfileData] = useState(null);
+  const currentUser = useCurrentUser();
+  const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     // Sends a CancelToken with the request
@@ -28,6 +33,8 @@ const Profile = ({ userId }) => {
           cancelToken: source.token,
         });
         setProfileData(data);
+        console.log('profiledata: ', data);
+        setIsFollowing(data.following_id ? true : false);
         setHasLoaded(true);
       } catch (err) {
         if (axios.isCancel(err)) {
@@ -46,6 +53,43 @@ const Profile = ({ userId }) => {
       source.cancel('Request canceled');
     };
   }, [userId]);
+
+  const handleFollow = async (profile) => {
+    try {
+      const { data } = await axiosRes.post('followers/', {
+        followed: profile.id,
+      });
+      console.log('handleFollow: ', data);
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        followers_count: prevState.followers_count + 1,
+        following_id: data.id,
+      }));
+
+      setIsFollowing(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnfollow = async (profile) => {
+    try {
+      const { data } = await axiosRes.delete(
+        `followers/${profile.following_id}`
+      );
+      console.log('handleUnfollow: ', data);
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        followers_count: prevState.followers_count - 1,
+      }));
+
+      setIsFollowing(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return hasLoaded ? (
     // Profile data loaded
@@ -75,8 +119,38 @@ const Profile = ({ userId }) => {
       {/* Profile picture and stats */}
       <Container className={styles.StatsContainer}>
         <Row>
-          <Col xs={3}>
+          <Col xs={3} className={styles.AvatarContainer}>
             <Avatar src={profileData.image} height={100} />
+
+            {/* Follow button */}
+            {currentUser &&
+              !profileData?.is_owner &&
+              (isFollowing ? (
+                <Button
+                  className={styles.FollowButton}
+                  onClick={() => handleUnfollow(profileData)}
+                >
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    size='xl'
+                    className={styles.ProfileFontAwesomeIcon}
+                  />
+                </Button>
+              ) : (
+                // Unfollow button
+                !isFollowing && (
+                  <Button
+                    className={styles.FollowButton}
+                    onClick={() => handleFollow(profileData)}
+                  >
+                    <FontAwesomeIcon
+                      icon={emptyStar}
+                      size='xl'
+                      className={styles.ProfileFontAwesomeIcon}
+                    />
+                  </Button>
+                )
+              ))}
           </Col>
           <Col xs={9}>
             <Row>
