@@ -1,13 +1,9 @@
 .Container {
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 3px 3px 45px 3px;
 }
 
 .ProfileContainer {
-  padding-top: 30vh;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 30vh 3px 45px 3px;
 }
 
 .Button {
