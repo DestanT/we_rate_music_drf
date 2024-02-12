@@ -11,6 +11,7 @@ import AccordionWindow from './components/AccordionWindow';
 import ProfilePage from './pages/ProfilePage';
 import PlaylistsPage from './pages/PlaylistsPage';
 import PlaylistDetail from './pages/PlaylistDetail';
+import PlaylistEditForm from './forms/PlaylistEditForm';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -33,6 +34,11 @@ function App() {
           )}
         />
         <Route exact path='/playlist/:id' render={() => <PlaylistDetail />} />
+        <Route
+          exact
+          path='/playlist/:id/edit'
+          render={() => <PlaylistEditForm />}
+        />
         <Route
           exact
           path='/feed'
