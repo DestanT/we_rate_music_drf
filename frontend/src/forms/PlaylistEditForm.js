@@ -4,7 +4,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import Profile from '../components/Profile';
 import Playlist from '../components/Playlist';
-import styles from '../styles/PlaylistDetail.module.css';
+import styles from '../styles/EditForms.module.css';
 import btnStyles from '../styles/Button.module.css';
 
 function PlaylistEditForm() {
