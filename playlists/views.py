@@ -40,7 +40,7 @@ class PlaylistList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class PlaylistDetail(generics.RetrieveDestroyAPIView):
+class PlaylistDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PlaylistSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Playlist.objects.annotate(
