@@ -9,6 +9,7 @@ import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 import Playlist from '../components/Playlist';
 import Profile from '../components/Profile';
+import StarRating from '../components/StarRating';
 
 import styles from '../styles/PlaylistDetail.module.css';
 
@@ -78,6 +79,7 @@ const PlaylistDetail = () => {
             </Row>
           </Col>
         </Row>
+        <StarRating playlist={playlist} />
       </Container>
     </>
   );
