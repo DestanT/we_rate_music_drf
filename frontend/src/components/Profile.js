@@ -123,14 +123,20 @@ const Profile = ({ userId }) => {
       <Container className={styles.StatsContainer}>
         <Row>
           <Col xs={3} className={styles.AvatarContainer}>
-            <Avatar src={profileData.image} height={100} />
+            <Button
+              type='link'
+              className={styles.TransparentButton}
+              onClick={() => history.push(`/profile/${profileData.id}`)}
+            >
+              <Avatar src={profileData.image} height={100} />
+            </Button>
 
             {/* Follow button */}
             {currentUser &&
               !profileData?.is_owner &&
               (isFollowing ? (
                 <Button
-                  className={styles.FollowButton}
+                  className={styles.TransparentButton}
                   onClick={() => handleUnfollow(profileData)}
                 >
                   <FontAwesomeIcon
@@ -143,7 +149,7 @@ const Profile = ({ userId }) => {
                 // Unfollow button
                 !isFollowing && (
                   <Button
-                    className={styles.FollowButton}
+                    className={styles.TransparentButton}
                     onClick={() => handleFollow(profileData)}
                   >
                     <FontAwesomeIcon
