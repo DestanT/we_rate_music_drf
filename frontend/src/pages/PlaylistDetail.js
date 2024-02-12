@@ -12,6 +12,7 @@ import Profile from '../components/Profile';
 import StarRating from '../components/StarRating';
 
 import styles from '../styles/PlaylistDetail.module.css';
+import btnStyles from '../styles/Button.module.css';
 
 const PlaylistDetail = () => {
   const { id } = useParams();
@@ -41,6 +42,10 @@ const PlaylistDetail = () => {
 
     fetchPlaylist();
   }, [id]);
+
+  const handleEdit = () => {
+    history.push(`/playlist/${id}/edit`);
+  };
 
   // NOTE: ATTACH THIS LOGIC TO ANOTHER BUTTON
   const updateSpotifyPlayerUri = (uri) => {
@@ -80,6 +85,11 @@ const PlaylistDetail = () => {
           </Col>
         </Row>
         <StarRating playlist={playlist} />
+        {playlist.is_owner && (
+          <Button onClick={handleEdit} className={btnStyles.Button}>
+            Edit Playlist
+          </Button>
+        )}
       </Container>
     </>
   );
