@@ -13,6 +13,7 @@ import PlaylistsPage from './pages/PlaylistsPage';
 import PlaylistDetail from './pages/PlaylistDetail';
 import PlaylistEditForm from './forms/PlaylistEditForm';
 import ProfileEditForm from './forms/ProfileEditForm';
+import '@smastrom/react-rating/style.css';
 
 function App() {
   const currentUser = useCurrentUser();
