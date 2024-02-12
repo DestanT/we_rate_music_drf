@@ -28,7 +28,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
         model = Playlist
         fields = [
             'id', 'spotify_id', 'owner', 'owner_id', 'is_owner',
-            'added_on', 'title', 'image',
+            'added_on', 'title', 'image', 'description',
             'url', 'iframe_uri', 'rating_id',
             'ratings_count', 'average_rating'
         ]
