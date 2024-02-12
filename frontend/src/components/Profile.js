@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import axios from 'axios';
 
@@ -21,6 +22,7 @@ const Profile = ({ userId }) => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     // Sends a CancelToken with the request
@@ -105,6 +107,7 @@ const Profile = ({ userId }) => {
               icon={faBackward}
               size='xl'
               className={styles.FontAwesomeIcon}
+              onClick={() => history.goBack()}
             />
           </Col>
           <Col xs={6}>
