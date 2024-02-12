@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faStar, faPen } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 
 import Avatar from './Avatar';
@@ -160,6 +160,20 @@ const Profile = ({ userId }) => {
                   </Button>
                 )
               ))}
+
+            {/* Edit button, if the current user is the owner of the profile */}
+            {currentUser && profileData?.is_owner && (
+              <Button
+                className={styles.TransparentButton}
+                onClick={() => history.push(`/profile/${userId}/edit`)}
+              >
+                <FontAwesomeIcon
+                  icon={faPen}
+                  size='xl'
+                  className={styles.ProfileFontAwesomeIcon}
+                />
+              </Button>
+            )}
           </Col>
           <Col xs={9}>
             <Row>
