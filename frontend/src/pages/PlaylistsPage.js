@@ -15,6 +15,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import styles from '../styles/PlaylistsPage.module.css';
 import appStyles from '../App.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
+import SearchBar from '../components/SearchBar';
 
 const PlaylistsPage = ({ filter = '', profileView = false }) => {
   const [playlists, setPlaylists] = useState([]);
@@ -28,13 +29,15 @@ const PlaylistsPage = ({ filter = '', profileView = false }) => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
+    console.log('PlaylistsPage rendered');
+
     const fetchPlaylists = async () => {
       try {
         const { data } = await axiosReq.get(`playlists/?${filter}`, {
           cancelToken: source.token,
         });
         setPlaylists(data);
-        console.log(data);
+        console.log('playlist data: ', data);
         setHasLoaded(true);
       } catch (err) {
         if (axios.isCancel(err)) {
@@ -58,6 +61,9 @@ const PlaylistsPage = ({ filter = '', profileView = false }) => {
     <Container
       className={profileView ? styles.ProfileContainer : styles.Container}
     >
+      {/* No SearchBar in pages with Profile.js component */}
+      {!profileView ? <SearchBar liveSearch data={playlists} /> : null}
+
       <InfiniteScroll
         dataLength={playlists.results.length}
         loader={<LoadingSpinner />}
