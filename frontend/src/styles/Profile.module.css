@@ -39,20 +39,20 @@
   box-shadow: 0 0 7px #df604e;
 }
 
-.FollowButton {
+.TransparentButton {
   padding: 0;
   background-color: transparent;
   border-color: transparent;
 }
 
-.FollowButton:hover {
+.TransparentButton:hover {
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
 }
 
-.FollowButton:active,
-.FollowButton:focus {
+.TransparentButton:active,
+.TransparentButton:focus {
   background-color: transparent !important;
   border-color: transparent !important;
   outline: none !important;
