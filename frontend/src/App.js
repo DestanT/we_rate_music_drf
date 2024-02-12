@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import PlaylistsPage from './pages/PlaylistsPage';
 import PlaylistDetail from './pages/PlaylistDetail';
 import PlaylistEditForm from './forms/PlaylistEditForm';
+import ProfileEditForm from './forms/ProfileEditForm';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -26,6 +27,11 @@ function App() {
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
         <Route exact path='/profile/:userId' render={() => <ProfilePage />} />
+        <Route
+          exact
+          path='/profile/:userId/edit'
+          render={() => <ProfileEditForm />}
+        />
         <Route
           exact
           path='/popular'
