@@ -1,6 +1,6 @@
 .AccordionPosition {
   position: fixed;
-  bottom: 69px; /* tuned for minimum "whitespace" */
+  bottom: 67px; /* tuned for minimum "whitespace" */
   width: 100%;
   z-index: 999;
 }
@@ -13,6 +13,8 @@
 
 .Card {
   background-color: #5a5550;
+  border: none;
+  border-radius: 0.25rem 0.25rem 0 0;
 }
 
 .PaddingReset {
