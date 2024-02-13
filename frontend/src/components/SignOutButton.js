@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
@@ -8,7 +8,7 @@ import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 import { removeTokenTimestamp } from '../utils/dataUtils';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/SignOutButton.module.css';
 
@@ -31,20 +31,27 @@ const SignOutButton = () => {
 
   return (
     <>
-      <Button onClick={() => setModalShow(true)} className={styles.Button}>
-        <FontAwesomeIcon
-          className={styles.FontAwesomeIcon}
-          icon={faArrowRightFromBracket}
-          size='xl'
-        />
-      </Button>
+      <OverlayTrigger
+        placement='bottom'
+        overlay={<Tooltip id='sign-out-tooltip'>Sign Out</Tooltip>}
+      >
+        <Button onClick={() => setModalShow(true)} className={styles.Button}>
+          <FontAwesomeIcon
+            className={styles.FontAwesomeIcon}
+            icon={faPowerOff}
+            size='xl'
+          />
+        </Button>
+      </OverlayTrigger>
 
       <ModalWindow
         show={modalShow}
         onHide={() => setModalShow(false)}
         onConfirm={handleSignOut}
         title='Sign out?'
-        body='Are you sure you want to sign out?'
+        body={
+          <p style={{ color: '#d8d3cd' }}>Are you sure you want to sign out?</p>
+        }
       />
     </>
   );
