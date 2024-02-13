@@ -53,7 +53,7 @@ const PlaylistDetail = () => {
     fetchPlaylist();
   }, [id]);
 
-  const handleEdit = () => {
+  const redirectToEdit = () => {
     history.push(`/playlist/${id}/edit`);
   };
 
@@ -130,7 +130,7 @@ const PlaylistDetail = () => {
             <br />
             <Row>
               <Col>
-                <Button onClick={handleEdit} className={btnStyles.Button}>
+                <Button onClick={redirectToEdit} className={btnStyles.Button}>
                   Edit Playlist
                 </Button>
               </Col>
