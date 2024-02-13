@@ -58,7 +58,7 @@ function ProfileEditForm() {
       <Form onSubmit={handleSubmit}>
         <Container className={styles.Container}>
           <Row className='justify-content-center'>
-            <Form.Group>
+            <Form.Group className={styles.FormGroup}>
               <Col>
                 <Form.Label
                   className={btnStyles.Button}
@@ -83,7 +83,7 @@ function ProfileEditForm() {
           ))}
           <br />
           <Row className='justify-content-center'>
-            <Form.Group>
+            <Form.Group className={styles.FormGroup}>
               <Col>
                 <Form.Label
                   className={btnStyles.Button}
@@ -105,7 +105,6 @@ function ProfileEditForm() {
               {message}
             </Alert>
           ))}
-          <br />
           <Button type='submit' className={btnStyles.Button}>
             Save
           </Button>
