@@ -8,9 +8,7 @@ export const useSetSpotifyPlayerUri = () =>
   useContext(SetSpotifyPlayerUriContext);
 
 export const SpotifyPlayerUriProvider = ({ children }) => {
-  const [spotifyPlayerUri, setSpotifyPlayerUri] = useState(
-    'spotify:album:1VrravzsxruIeQf1cuE6zB'
-  );
+  const [spotifyPlayerUri, setSpotifyPlayerUri] = useState('');
 
   return (
     <SpotifyPlayerUriContext.Provider value={spotifyPlayerUri}>
