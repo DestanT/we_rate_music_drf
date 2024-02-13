@@ -53,13 +53,24 @@ const StarRating = ({ playlist }) => {
   };
 
   return (
-    <Rating
-      value={rating}
-      onChange={handleChange}
-      style={{ maxWidth: 250, margin: 'auto' }}
-      itemStyles={myStyles}
-      items={5}
-    />
+    <>
+      <Rating
+        value={rating}
+        onChange={handleChange}
+        style={{ maxWidth: 250, margin: 'auto' }}
+        itemStyles={myStyles}
+        items={5}
+      />
+      {rating ? (
+        <p>
+          <em>Click to edit your rating</em>
+        </p>
+      ) : (
+        <p>
+          <em>Click to add your rating</em>
+        </p>
+      )}
+    </>
   );
 };
 
