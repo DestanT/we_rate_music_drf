@@ -9,6 +9,7 @@ import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 import Playlist from '../components/Playlist';
 import Profile from '../components/Profile';
+import { Rating, StickerStar } from '@smastrom/react-rating';
 import StarRating from '../components/StarRating';
 
 import styles from '../styles/PlaylistDetail.module.css';
@@ -52,43 +53,68 @@ const PlaylistDetail = () => {
     setSpotifyPlayerUri(uri);
   };
 
+  const myStyles = {
+    itemShapes: StickerStar,
+    activeFillColor: '#df604e',
+    inactiveFillColor: '#df5f4e6e',
+  };
+
   return (
     <>
       <Profile userId={playlist.owner_id} />
       <Container className={styles.Container}>
         <Row>
-          <Col xs={4}>
+          <Col>
+            <h2>{playlist.title}</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Rating
+              readOnly={true}
+              value={playlist.average_rating || 0}
+              style={{ maxWidth: 250, margin: 'auto' }}
+              itemStyles={myStyles}
+            />
+            <p>
+              <em>Average Rating: {playlist.average_rating || 0}</em>
+            </p>
+            <p>
+              <em># of Ratings: {playlist.ratings_count}</em>
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <Button
               variant='link'
-              onClick={() => history.goBack()}
+              onClick={() => history.push(`/profile/${playlist.owner_id}`)}
               className={styles.Button}
             >
               <Playlist image={playlist.image} title={playlist.title} />
             </Button>
           </Col>
-          <Col xs={8}>
-            <Row>
-              <Col>
-                <h5>{playlist.title}</h5>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={6}>
-                <h6>Average Rating</h6>
-                <p>{playlist.average_rating || '0'}</p>
-              </Col>
-              <Col xs={6}>
-                <h6># of Ratings</h6>
-                <p>{playlist.ratings_count}</p>
-              </Col>
-            </Row>
+        </Row>
+        <Row>
+          <Col>{playlist.description}</Col>
+        </Row>
+        <Row>
+          <Col>
+            <StarRating playlist={playlist} />
           </Col>
         </Row>
-        <StarRating playlist={playlist} />
+
         {playlist.is_owner && (
-          <Button onClick={handleEdit} className={btnStyles.Button}>
-            Edit Playlist
-          </Button>
+          <>
+            <br />
+            <Row>
+              <Col>
+                <Button onClick={handleEdit} className={btnStyles.Button}>
+                  Edit Playlist
+                </Button>
+              </Col>
+            </Row>
+          </>
         )}
       </Container>
     </>
