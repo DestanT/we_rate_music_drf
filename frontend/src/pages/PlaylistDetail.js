@@ -57,11 +57,11 @@ const PlaylistDetail = () => {
     history.push(`/playlist/${id}/edit`);
   };
 
-  // NOTE: ATTACH THIS LOGIC TO ANOTHER BUTTON
   const updateSpotifyPlayerUri = (uri) => {
     setSpotifyPlayerUri(uri);
   };
 
+  // Custom styles for the <Rating /> component
   const myStyles = {
     itemShapes: StickerStar,
     activeFillColor: '#df604e',
@@ -121,7 +121,7 @@ const PlaylistDetail = () => {
         </Row>
         <Row>
           <Col>
-            <StarRating playlist={playlist} />
+            <StarRating playlist={playlist} setPlaylist={setPlaylist} />
           </Col>
         </Row>
 
