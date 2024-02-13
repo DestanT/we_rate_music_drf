@@ -96,50 +96,64 @@ function PlaylistEditForm() {
       <Form onSubmit={handleSubmit}>
         <Container className={styles.Container}>
           <Row>
-            <Col xs={4}>
-              <Playlist image={image} title={title} />
-            </Col>
-            <Col xs={8}>
-              <Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control
-                      type='text'
-                      name='title'
-                      value={title}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                  {errors?.title?.map((message, idx) => (
-                    <Alert variant='warning' key={idx}>
-                      {message}
-                    </Alert>
-                  ))}
-                </Col>
-              </Row>
-              <Row>
-                <Form.Group>
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    as='textarea'
-                    rows={4}
-                    name='description'
-                    value={description}
-                    onChange={handleChange}
-                  />
-                </Form.Group>
-                {errors?.description?.map((message, idx) => (
-                  <Alert variant='warning' key={idx}>
-                    {message}
-                  </Alert>
-                ))}
-              </Row>
+            <Col>
+              <h4>Edit Playlist</h4>
             </Col>
           </Row>
-          <Button type='submit' className={btnStyles.Button}>
-            SAVE
-          </Button>
+          <Row>
+            <Col>
+              <Form.Group className={styles.FormGroup}>
+                <Form.Label>Title:</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='title'
+                  value={title}
+                  onChange={handleChange}
+                  className={styles.FormControl}
+                />
+              </Form.Group>
+              {errors?.title?.map((message, idx) => (
+                <Alert variant='warning' key={idx}>
+                  {message}
+                </Alert>
+              ))}
+            </Col>
+          </Row>
+          <Row className={styles.Playlist}>
+            <Col>
+              <Playlist image={image} title={title} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group className={styles.FormGroup}>
+                <Form.Label>
+                  If you like, some details about this playlist:
+                </Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows={4}
+                  name='description'
+                  value={description}
+                  placeholder='How does this playlist make you feel? Where do you most enjoy listening to it?...'
+                  onChange={handleChange}
+                  className={styles.FormControl}
+                />
+              </Form.Group>
+              {errors?.description?.map((message, idx) => (
+                <Alert variant='warning' key={idx}>
+                  {message}
+                </Alert>
+              ))}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button type='submit' className={btnStyles.Button}>
+                Save
+              </Button>
+            </Col>
+          </Row>
         </Container>
       </Form>
     </>
