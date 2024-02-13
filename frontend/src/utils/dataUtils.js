@@ -37,3 +37,23 @@ export const shouldRefreshToken = () => {
 export const removeTokenTimestamp = () => {
   localStorage.removeItem('refreshTokenTimestamp');
 };
+
+// Used in StarRating.js to calculate the average rating and update the state
+// Considers the fact that an existing rating is being updated
+export function calculateAverageRatingPUT(prevState, rating, selectedValue) {
+  return (
+    (prevState.average_rating * prevState.ratings_count -
+      rating +
+      selectedValue) /
+    prevState.ratings_count
+  );
+}
+
+// Used in StarRating.js to calculate the average rating and update the state
+// Considers the fact that a new rating is being added
+export function calculateAverageRatingPOST(prevState, selectedValue) {
+  return (
+    (prevState.average_rating * prevState.ratings_count + selectedValue) /
+    (prevState.ratings_count + 1)
+  );
+}
