@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Rating, StickerStar } from '@smastrom/react-rating';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
+import {
+  calculateAverageRatingPUT,
+  calculateAverageRatingPOST,
+} from '../utils/dataUtils';
 
-const StarRating = ({ playlist }) => {
+const StarRating = ({ playlist, setPlaylist }) => {
   const [rating, setRating] = useState(0);
   console.log(playlist);
 
@@ -29,6 +33,14 @@ const StarRating = ({ playlist }) => {
         });
 
         setRating(selectedValue);
+        setPlaylist((prevState) => ({
+          ...prevState,
+          average_rating: calculateAverageRatingPUT(
+            prevState,
+            rating,
+            selectedValue
+          ),
+        }));
       } catch (err) {
         console.log(err);
       }
@@ -40,6 +52,11 @@ const StarRating = ({ playlist }) => {
         });
 
         setRating(selectedValue);
+        setPlaylist((prevState) => ({
+          ...prevState,
+          ratings_count: prevState.ratings_count + 1,
+          average_rating: calculateAverageRatingPOST(prevState, selectedValue),
+        }));
       } catch (err) {
         console.log(err);
       }
