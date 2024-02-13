@@ -1,5 +1,4 @@
 import styles from './App.module.css';
-// import logo from './logo.svg';
 import NavBar from './components/NavBar';
 import { Route, Switch } from 'react-router-dom';
 import './api/axiosDefaults';
@@ -14,6 +13,7 @@ import PlaylistDetail from './pages/PlaylistDetail';
 import PlaylistEditForm from './forms/PlaylistEditForm';
 import ProfileEditForm from './forms/ProfileEditForm';
 import '@smastrom/react-rating/style.css';
+import PageNotFound404 from './pages/PageNotFound404';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -61,7 +61,7 @@ function App() {
           render={() => <SpotifySearchPage />}
         />
         <Route exact path='/placeholder' render={() => <h1>Placeholder</h1>} />
-        <Route render={() => <h1>Page Not Found!</h1>} />
+        <Route render={() => <PageNotFound404 />} />
       </Switch>
     </div>
   );
