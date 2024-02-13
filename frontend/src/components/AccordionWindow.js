@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/AccordionWindow.module.css';
 import { Accordion, Card, Button } from 'react-bootstrap';
 import SpotifyPlayer from '../spotify/SpotifyPlayer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 function AccordionWindow() {
+  const spotifyPlayerUri = useSpotifyPlayerUri();
+  const [activeKey, setActiveKey] = useState('');
+
+  useEffect(() => {
+    if (spotifyPlayerUri) {
+      setActiveKey('0');
+    }
+  }, [spotifyPlayerUri]);
+
+  const handleToggle = () => {
+    if (activeKey === '0') {
+      setActiveKey('');
+    } else {
+      setActiveKey('0');
+    }
+  };
+
   return (
     <Accordion
-      // defaultActiveKey='0'
+      activeKey={activeKey}
+      onSelect={handleToggle}
       className={styles.AccordionPosition}
     >
       <Card className={styles.Card}>
