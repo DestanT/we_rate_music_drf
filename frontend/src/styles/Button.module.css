@@ -10,9 +10,9 @@
   margin-left: 2px;
   margin-right: 2px;
   min-width: 75px;
-  color: #1f1f1f;
-  transition: color ease-in-out 0.3s, font-weight ease-in-out 0.4s,
-    letter-spacing ease-in-out 0.4s;
+  color: #ffffff;
+  transition: color ease-in-out 0.2s, font-weight ease-in-out 0.2s,
+    letter-spacing ease-in-out 0.2s;
 
   /* CREDIT: https://getcssscan.com/css-box-shadow-examples */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -27,8 +27,8 @@
   color: #ffffff;
   border-color: transparent;
   cursor: pointer;
-  transition: color ease-in-out 0.3s, font-weight ease-in-out 0.4s,
-    letter-spacing ease-in-out 0.4s;
+  transition: color ease-in-out 0.2s, font-weight ease-in-out 0.2s,
+    letter-spacing ease-in-out 0.2s;
 }
 
 .Button:hover:active {
