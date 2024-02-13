@@ -18,7 +18,6 @@ import btnStyles from '../styles/Button.module.css';
 const PlaylistDetail = () => {
   const { id } = useParams();
   const [playlist, setPlaylist] = useState([]);
-  const [ratings, setRatings] = useState([]);
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const history = useHistory();
 
@@ -27,15 +26,10 @@ const PlaylistDetail = () => {
   useEffect(() => {
     const fetchPlaylist = async () => {
       try {
-        const [{ data: playlist }, { data: ratings }] = await Promise.all([
-          axiosReq.get(`playlists/${id}`),
-          axiosReq.get(`ratings/?playlist=${id}`),
-        ]);
+        const { data: playlist } = await axiosReq.get(`playlists/${id}`);
 
         setPlaylist(playlist);
-        setRatings(ratings);
         console.log(playlist);
-        console.log(ratings);
       } catch (err) {
         console.log(err);
       }
