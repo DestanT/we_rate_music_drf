@@ -9,10 +9,12 @@ import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 function AccordionWindow() {
   const spotifyPlayerUri = useSpotifyPlayerUri();
   const [activeKey, setActiveKey] = useState('');
+  const [showPlayer, setShowPlayer] = useState(false);
 
   useEffect(() => {
     if (spotifyPlayerUri) {
       setActiveKey('0');
+      setShowPlayer(true);
     }
   }, [spotifyPlayerUri]);
 
@@ -28,7 +30,9 @@ function AccordionWindow() {
     <Accordion
       activeKey={activeKey}
       onSelect={handleToggle}
-      className={styles.AccordionPosition}
+      className={`${styles.AccordionPosition} ${
+        showPlayer ? '' : styles.Hidden
+      }`}
     >
       <Card className={styles.Card}>
         <Card.Header className={styles.Header}>
