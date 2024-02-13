@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  Container,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { useRedirect } from '../hooks/useRedirect';
@@ -12,6 +19,9 @@ import Profile from '../components/Profile';
 import { Rating, StickerStar } from '@smastrom/react-rating';
 import StarRating from '../components/StarRating';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/PlaylistDetail.module.css';
 import btnStyles from '../styles/Button.module.css';
@@ -65,6 +75,18 @@ const PlaylistDetail = () => {
         <Row>
           <Col>
             <h2>{playlist.title}</h2>
+            <OverlayTrigger
+              placement='bottom'
+              overlay={<Tooltip id='back-tooltip'>Play</Tooltip>}
+            >
+              <Button
+                variant='link'
+                onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
+                className={styles.Button}
+              >
+                <FontAwesomeIcon icon={faPlay} size='xl' />
+              </Button>
+            </OverlayTrigger>
           </Col>
         </Row>
         <Row>
