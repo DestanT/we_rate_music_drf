@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Rating, StickerStar } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 
 const StarRating = ({ playlist }) => {
@@ -57,7 +56,7 @@ const StarRating = ({ playlist }) => {
     <Rating
       value={rating}
       onChange={handleChange}
-      style={{ maxWidth: 250 }}
+      style={{ maxWidth: 250, margin: 'auto' }}
       itemStyles={myStyles}
       items={5}
     />
