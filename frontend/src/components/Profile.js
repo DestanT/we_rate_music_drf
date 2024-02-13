@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import axios from 'axios';
@@ -93,6 +100,60 @@ const Profile = ({ userId }) => {
     }
   };
 
+  const followButton = (
+    <OverlayTrigger
+      placement='bottom'
+      overlay={<Tooltip id='follow-tooltip'>Follow</Tooltip>}
+    >
+      <Button
+        className={styles.TransparentButton}
+        onClick={() => handleFollow(profileData)}
+      >
+        <FontAwesomeIcon
+          icon={emptyStar}
+          size='xl'
+          className={styles.ProfileFontAwesomeIcon}
+        />
+      </Button>
+    </OverlayTrigger>
+  );
+
+  const unfollowButton = (
+    <OverlayTrigger
+      placement='bottom'
+      overlay={<Tooltip id='unfollow-tooltip'>Unfollow</Tooltip>}
+    >
+      <Button
+        className={styles.TransparentButton}
+        onClick={() => handleUnfollow(profileData)}
+      >
+        <FontAwesomeIcon
+          icon={faStar}
+          size='xl'
+          className={styles.ProfileFontAwesomeIcon}
+        />
+      </Button>
+    </OverlayTrigger>
+  );
+
+  const editButton = (
+    <OverlayTrigger
+      placement='bottom'
+      overlay={<Tooltip id='edit-tooltip'>Edit</Tooltip>}
+    >
+      <Button
+        className={styles.TransparentButton}
+        onClick={() => history.push(`/profile/${userId}/edit`)}
+      >
+        <FontAwesomeIcon
+          icon={faPen}
+          size='xl'
+          className={styles.ProfileFontAwesomeIcon}
+        />
+      </Button>
+    </OverlayTrigger>
+  );
+
   return hasLoaded ? (
     // Profile data loaded
     <Container
@@ -102,13 +163,19 @@ const Profile = ({ userId }) => {
       {/* Header */}
       <Container>
         <Row>
+          {/* Back button */}
           <Col xs={3}>
-            <FontAwesomeIcon
-              icon={faBackward}
-              size='xl'
-              className={styles.FontAwesomeIcon}
-              onClick={() => history.goBack()}
-            />
+            <OverlayTrigger
+              placement='bottom'
+              overlay={<Tooltip id='back-tooltip'>Back</Tooltip>}
+            >
+              <FontAwesomeIcon
+                icon={faBackward}
+                size='xl'
+                className={styles.FontAwesomeIcon}
+                onClick={() => history.goBack()}
+              />
+            </OverlayTrigger>
           </Col>
           <Col xs={6}>
             <h2>{profileData.owner}</h2>
@@ -131,49 +198,13 @@ const Profile = ({ userId }) => {
               <Avatar src={profileData.image} height={100} />
             </Button>
 
-            {/* Follow button */}
+            {/* Follow/Unfollow button - if the current user is not the owner of the profile */}
             {currentUser &&
               !profileData?.is_owner &&
-              (isFollowing ? (
-                <Button
-                  className={styles.TransparentButton}
-                  onClick={() => handleUnfollow(profileData)}
-                >
-                  <FontAwesomeIcon
-                    icon={faStar}
-                    size='xl'
-                    className={styles.ProfileFontAwesomeIcon}
-                  />
-                </Button>
-              ) : (
-                // Unfollow button
-                !isFollowing && (
-                  <Button
-                    className={styles.TransparentButton}
-                    onClick={() => handleFollow(profileData)}
-                  >
-                    <FontAwesomeIcon
-                      icon={emptyStar}
-                      size='xl'
-                      className={styles.ProfileFontAwesomeIcon}
-                    />
-                  </Button>
-                )
-              ))}
+              (isFollowing ? unfollowButton : !isFollowing && followButton)}
 
-            {/* Edit button, if the current user is the owner of the profile */}
-            {currentUser && profileData?.is_owner && (
-              <Button
-                className={styles.TransparentButton}
-                onClick={() => history.push(`/profile/${userId}/edit`)}
-              >
-                <FontAwesomeIcon
-                  icon={faPen}
-                  size='xl'
-                  className={styles.ProfileFontAwesomeIcon}
-                />
-              </Button>
-            )}
+            {/* Edit button - if the current user is the owner of the profile */}
+            {currentUser && profileData?.is_owner && editButton}
           </Col>
           <Col xs={9}>
             <Row>
