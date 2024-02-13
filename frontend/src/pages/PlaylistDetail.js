@@ -11,13 +11,16 @@ import Playlist from '../components/Playlist';
 import Profile from '../components/Profile';
 import { Rating, StickerStar } from '@smastrom/react-rating';
 import StarRating from '../components/StarRating';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import styles from '../styles/PlaylistDetail.module.css';
 import btnStyles from '../styles/Button.module.css';
+import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 const PlaylistDetail = () => {
   const { id } = useParams();
   const [playlist, setPlaylist] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const history = useHistory();
 
@@ -29,12 +32,14 @@ const PlaylistDetail = () => {
         const { data: playlist } = await axiosReq.get(`playlists/${id}`);
 
         setPlaylist(playlist);
+        setHasLoaded(true);
         console.log(playlist);
       } catch (err) {
         console.log(err);
       }
     };
 
+    setHasLoaded(false);
     fetchPlaylist();
   }, [id]);
 
@@ -53,7 +58,7 @@ const PlaylistDetail = () => {
     inactiveFillColor: '#df5f4e6e',
   };
 
-  return (
+  return hasLoaded ? (
     <>
       <Profile userId={playlist.owner_id} />
       <Container className={styles.Container}>
@@ -112,6 +117,8 @@ const PlaylistDetail = () => {
         )}
       </Container>
     </>
+  ) : (
+    <LoadingSpinner className={loadingStyles.Centered} />
   );
 };
 
