@@ -3,7 +3,7 @@ import styles from '../styles/AccordionWindow.module.css';
 import { Accordion, Card, Button } from 'react-bootstrap';
 import SpotifyPlayer from '../spotify/SpotifyPlayer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 
 function AccordionWindow() {
@@ -38,7 +38,7 @@ function AccordionWindow() {
             eventKey='0'
             className={styles.PaddingReset}
           >
-            <FontAwesomeIcon icon={faCaretUp} />
+            <FontAwesomeIcon icon={activeKey ? faCaretDown : faCaretUp} />
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey='0'>
