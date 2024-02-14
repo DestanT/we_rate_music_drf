@@ -4,6 +4,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import Profile from '../components/Profile';
 import Playlist from '../components/Playlist';
+import ModalWindow from '../components/ModalWindow';
 import styles from '../styles/EditForms.module.css';
 import btnStyles from '../styles/Button.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,8 +25,10 @@ function PlaylistEditForm() {
 
   const { id } = useParams();
   const history = useHistory();
+  const [modalShow, setModalShow] = useState(false);
 
   const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -92,6 +95,21 @@ function PlaylistEditForm() {
     }
   };
 
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    try {
+      await axiosReq.delete(`playlists/${id}`);
+      setModalShow(false);
+      history.push(`/profile/${owner_id}`);
+    } catch (err) {
+      setErrors({
+        message:
+          err.response?.data || 'Something went wrong! Please try again.',
+      });
+      setShowAlert(true);
+    }
+  };
+
   return (
     <>
       <Profile userId={owner_id} />
@@ -153,7 +171,7 @@ function PlaylistEditForm() {
             <Col>
               <Button
                 className={`${btnStyles.TransparentButton} ${btnStyles.MarginLeftRight}`}
-                onClick={() => {}}
+                onClick={() => setModalShow(true)}
               >
                 <FontAwesomeIcon icon={faTrashCan} size='xl' />
               </Button>
@@ -172,8 +190,25 @@ function PlaylistEditForm() {
               </Button>
             </Col>
           </Row>
+          {showAlert && errors?.message && (
+            <Alert
+              variant='warning'
+              onClose={() => setShowAlert(false)}
+              dismissible
+            >
+              {errors.message}
+            </Alert>
+          )}
         </Container>
       </Form>
+
+      <ModalWindow
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onConfirm={handleDelete}
+        title={`Delete ${title}?`}
+        body="Are you sure you want to delete this playlist? There's no going back."
+      />
     </>
   );
 }
