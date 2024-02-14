@@ -90,6 +90,9 @@ const StarRating = ({ playlist, setPlaylist }) => {
 
   return (
     <>
+      <p style={{ marginBottom: '0' }}>
+        <em>Your rating:</em>
+      </p>
       <Rating
         value={rating}
         onChange={handleChange}
