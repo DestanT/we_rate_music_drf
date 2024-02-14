@@ -1,21 +1,3 @@
 .FontAwesomeIcon {
   filter: drop-shadow(2px 2px 4px black);
 }
-
-.Button {
-  padding: 0;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.Button:hover {
-  background-color: transparent;
-  border-color: transparent;
-  cursor: pointer;
-}
-
-.Button:active,
-.Button:focus,
-.Button:focus:active {
-  background-color: transparent;
-}

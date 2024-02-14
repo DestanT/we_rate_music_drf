@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/SignOutButton.module.css';
+import btnStyles from '../styles/Button.module.css';
 
 const SignOutButton = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -35,7 +36,10 @@ const SignOutButton = () => {
         placement='bottom'
         overlay={<Tooltip id='sign-out-tooltip'>Sign Out</Tooltip>}
       >
-        <Button onClick={() => setModalShow(true)} className={styles.Button}>
+        <Button
+          onClick={() => setModalShow(true)}
+          className={btnStyles.TransparentButton}
+        >
           <FontAwesomeIcon
             className={styles.FontAwesomeIcon}
             icon={faPowerOff}
