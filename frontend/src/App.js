@@ -14,6 +14,7 @@ import PlaylistEditForm from './forms/PlaylistEditForm';
 import ProfileEditForm from './forms/ProfileEditForm';
 import '@smastrom/react-rating/style.css';
 import PageNotFound404 from './pages/PageNotFound404';
+import Homepage from './pages/Homepage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -24,7 +25,7 @@ function App() {
       <NavBar />
       <AccordionWindow />
       <Switch>
-        <Route exact path='/' render={() => <h1>Home Page</h1>} />
+        <Route exact path='/' render={() => <Homepage />} />
         <Route exact path='/signin' render={() => <SignInForm />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
         <Route exact path='/profile/:userId' render={() => <ProfilePage />} />
@@ -37,7 +38,7 @@ function App() {
           exact
           path='/popular'
           render={() => (
-            <PlaylistsPage filter={`ratings__owner__profile=${profile_id}`} />
+            <PlaylistsPage filter={`ratings__owner__profile=${profile_id}`} /> //RUBBISH
           )}
         />
         <Route exact path='/playlist/:id' render={() => <PlaylistDetail />} />
@@ -60,7 +61,7 @@ function App() {
           path='/spotify-search'
           render={() => <SpotifySearchPage />}
         />
-        <Route exact path='/placeholder' render={() => <h1>Placeholder</h1>} />
+        <Route exact path='/global' render={() => <PlaylistsPage />} />
         <Route render={() => <PageNotFound404 />} />
       </Switch>
     </div>
