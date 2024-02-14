@@ -67,6 +67,36 @@ const PlaylistDetail = () => {
     setSpotifyPlayerUri(uri);
   };
 
+  const displayOwnerAndRating = (
+    <Row>
+      {/* Empty - to help with alignment */}
+      <Col xs={8}></Col>
+
+      {/* Owners name and own rating */}
+      <Col xs={4} style={{ textAlign: 'center' }}>
+        <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
+        <Rating
+          readOnly={true}
+          value={playlist.owner_rating}
+          style={{ minWidth: 75, maxWidth: 100, margin: 'auto' }}
+          itemStyles={ownerRatingStyles}
+        />
+      </Col>
+    </Row>
+  );
+
+  const displayJustOwner = (
+    <Row>
+      {/* Empty - to help with alignment */}
+      <Col xs={8}></Col>
+
+      {/* Owners name and own rating */}
+      <Col xs={4} style={{ textAlign: 'center' }}>
+        <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
+      </Col>
+    </Row>
+  );
+
   // Custom styles for the <Rating /> component
   const averageRatingStyles = {
     itemShapes: StickerStar,
@@ -153,36 +183,12 @@ const PlaylistDetail = () => {
               </Col>
             </Row>
 
-            {playlist.owner_rating ? (
-              <Row>
-                {/* Empty - to help with alignment */}
-                <Col xs={8}></Col>
-
-                {/* Owners name and own rating */}
-                <Col xs={4} style={{ textAlign: 'center' }}>
-                  <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
-                  <Rating
-                    readOnly={true}
-                    value={playlist.owner_rating}
-                    style={{ minWidth: 75, maxWidth: 100, margin: 'auto' }}
-                    itemStyles={ownerRatingStyles}
-                  />
-                </Col>
-              </Row>
-            ) : (
-              !playlist.owner_rating &&
-              playlist.description && (
-                <Row>
-                  {/* Empty - to help with alignment */}
-                  <Col xs={8}></Col>
-
-                  {/* Owners name and own rating */}
-                  <Col xs={4} style={{ textAlign: 'center' }}>
-                    <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
-                  </Col>
-                </Row>
-              )
-            )}
+            {/* Displays owners name and rating, if rating. If no rating, displays owners name, if description. Else, null */}
+            {playlist.owner_rating
+              ? displayOwnerAndRating
+              : !playlist.owner_rating &&
+                playlist.description &&
+                displayJustOwner}
           </Col>
         </Row>
 
