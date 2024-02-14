@@ -10,7 +10,7 @@ import { axiosRes } from '../api/axiosDefaults';
 import ModalWindow from '../components/ModalWindow';
 import Playlist from '../components/Playlist';
 
-import styles from '../styles/AddPlaylistButton.module.css';
+import btnStyles from '../styles/Button.module.css';
 
 function AddPlaylistButton({ playlistData: playlist }) {
   const currentUser = useCurrentUser();
@@ -44,7 +44,10 @@ function AddPlaylistButton({ playlistData: playlist }) {
 
   return (
     <>
-      <Button onClick={() => setModalShow(true)} className={styles.Button}>
+      <Button
+        onClick={() => setModalShow(true)}
+        className={btnStyles.TransparentButton}
+      >
         <FontAwesomeIcon icon={faSquarePlus} />
       </Button>
 
