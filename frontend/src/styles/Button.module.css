@@ -51,3 +51,29 @@
 .PaddingReset {
   padding: 0;
 }
+
+.MarginLeftRight {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.TransparentButton {
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.TransparentButton:hover {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.TransparentButton:active,
+.TransparentButton:focus,
+.TransparentButton:focus:active {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
