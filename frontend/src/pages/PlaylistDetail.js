@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Button,
   Col,
   Container,
@@ -34,6 +35,9 @@ const PlaylistDetail = () => {
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const history = useHistory();
 
+  const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
+
   useRedirect();
 
   useEffect(() => {
@@ -43,9 +47,11 @@ const PlaylistDetail = () => {
 
         setPlaylist(playlist);
         setHasLoaded(true);
-        console.log(playlist);
       } catch (err) {
-        console.log(err);
+        setErrors({
+          message: 'Error fetching playlist data, please refresh the page',
+        });
+        setShowAlert(true);
       }
     };
 
@@ -134,24 +140,36 @@ const PlaylistDetail = () => {
           <Col xs={8}>
             <Row>
               <Col className={styles.ScreenSizeContidionalPadding}>
-                <p>"{playlist.description}"</p>
+                {playlist.description ? (
+                  <p>"{playlist.description}"</p>
+                ) : (
+                  <p>
+                    <em>
+                      -{playlist.owner} hasn't said anything about this playlist
+                      yet-
+                    </em>
+                  </p>
+                )}
               </Col>
             </Row>
-            <Row>
-              {/* Empty - to help with alignment */}
-              <Col xs={8}></Col>
 
-              {/* Owners name and own rating */}
-              <Col xs={4} style={{ textAlign: 'center' }}>
-                <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
-                <Rating
-                  readOnly={true}
-                  value={playlist.average_rating || 0}
-                  style={{ minWidth: 75, maxWidth: 100, margin: 'auto' }}
-                  itemStyles={ownerRatingStyles}
-                />
-              </Col>
-            </Row>
+            {playlist.owner_rating ? (
+              <Row>
+                {/* Empty - to help with alignment */}
+                <Col xs={8}></Col>
+
+                {/* Owners name and own rating */}
+                <Col xs={4} style={{ textAlign: 'center' }}>
+                  <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
+                  <Rating
+                    readOnly={true}
+                    value={playlist.owner_rating}
+                    style={{ minWidth: 75, maxWidth: 100, margin: 'auto' }}
+                    itemStyles={ownerRatingStyles}
+                  />
+                </Col>
+              </Row>
+            ) : null}
           </Col>
         </Row>
 
@@ -174,6 +192,16 @@ const PlaylistDetail = () => {
           </>
         )}
       </Container>
+
+      {showAlert && errors?.message && (
+        <Alert
+          variant='warning'
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {errors.message}
+        </Alert>
+      )}
     </>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
