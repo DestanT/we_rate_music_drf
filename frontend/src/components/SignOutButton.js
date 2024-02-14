@@ -53,9 +53,7 @@ const SignOutButton = () => {
         onHide={() => setModalShow(false)}
         onConfirm={handleSignOut}
         title='Sign out?'
-        body={
-          <p style={{ color: '#d8d3cd' }}>Are you sure you want to sign out?</p>
-        }
+        body='Are you sure you want to sign out?'
       />
     </>
   );
