@@ -2,6 +2,26 @@
   padding: 32vh 3px 45px 3px;
 }
 
-.Button {
-  padding: 0px;
+.HighlightedContainer {
+  padding: 20px 0px;
+  margin: 15px;
+  background-color: #5a5550a5;
+  color: #d8d3cd;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #df604e;
+  box-shadow: 0 0 7px #df5f4e2a;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.RowPadding {
+  padding: 5px 90px;
+}
+
+@media screen and (max-width: 768px) {
+  .ScreenSizeContidionalPadding {
+    padding-left: 40px;
+  }
+  .RowPadding {
+    padding: 5px 10px;
+  }
 }
