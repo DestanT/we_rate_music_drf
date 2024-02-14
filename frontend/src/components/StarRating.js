@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { Rating, StickerStar } from '@smastrom/react-rating';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import {
@@ -8,7 +9,8 @@ import {
 
 const StarRating = ({ playlist, setPlaylist }) => {
   const [rating, setRating] = useState(0);
-  console.log(playlist);
+  const [errors, setErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const fetchRatingData = async () => {
@@ -16,16 +18,27 @@ const StarRating = ({ playlist, setPlaylist }) => {
         try {
           const { data } = await axiosRes.get(`ratings/${playlist.rating_id}`);
           setRating(data.score);
-          console.log('rating data: ', data);
         } catch (err) {
-          console.log(err);
+          setErrors({
+            message: 'Error fetching rating data',
+          });
         }
+        setShowAlert(true);
       }
     };
     fetchRatingData();
   }, [playlist]);
 
   const handleChange = async (selectedValue) => {
+    // Clear any previous errors
+    setErrors({});
+
+    // If the user clicks the same rating, do nothing
+    // Clicking the same rating defaults selectedValue = 0
+    if (selectedValue === 0) {
+      return;
+    }
+
     if (playlist.rating_id) {
       try {
         await axiosReq.put(`ratings/${playlist.rating_id}`, {
@@ -42,7 +55,10 @@ const StarRating = ({ playlist, setPlaylist }) => {
           ),
         }));
       } catch (err) {
-        console.log(err);
+        setErrors({
+          message: 'Error updating rating, please try again.',
+        });
+        setShowAlert(true);
       }
     } else {
       try {
@@ -58,7 +74,10 @@ const StarRating = ({ playlist, setPlaylist }) => {
           average_rating: calculateAverageRatingPOST(prevState, selectedValue),
         }));
       } catch (err) {
-        console.log(err);
+        setErrors({
+          message: 'Error adding rating, please try again.',
+        });
+        setShowAlert(true);
       }
     }
   };
@@ -78,6 +97,17 @@ const StarRating = ({ playlist, setPlaylist }) => {
         itemStyles={myStyles}
         items={5}
       />
+
+      {showAlert && errors?.message && (
+        <Alert
+          variant='warning'
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {errors.message}
+        </Alert>
+      )}
+
       {rating ? (
         <p>
           <em>Click to edit your rating</em>
