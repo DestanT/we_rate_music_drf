@@ -1,3 +1,26 @@
 .Container {
   padding: 32vh 3px 45px 3px;
 }
+
+.Playlist {
+  padding: 15px 0;
+}
+
+.FormGroup {
+  padding: 0 30px;
+}
+
+.FormControl {
+  text-align: center;
+  background-color: #e8e3dd;
+  border: 1px solid #b8b3ad;
+  box-shadow: #df5f4e3f 1px 1px 10px 0px inset,
+    #df5f4e3f -2px -2px 10px 2px inset;
+  transition: box-shadow ease-in-out 0.2s;
+}
+
+.FormControl:hover {
+  box-shadow: #af3c2d6b 1px 1px 10px 0px inset,
+    #af3c2d6b -2px -2px 10px 2px inset;
+  transition: box-shadow ease-in-out 0.2s;
+}
