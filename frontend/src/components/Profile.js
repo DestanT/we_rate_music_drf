@@ -22,6 +22,7 @@ import LoadingSpinner from './LoadingSpinner';
 import SignOutButton from './SignOutButton';
 
 import styles from '../styles/Profile.module.css';
+import btnStyles from '../styles/Button.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 const Profile = ({ userId }) => {
@@ -106,7 +107,7 @@ const Profile = ({ userId }) => {
       overlay={<Tooltip id='follow-tooltip'>Follow</Tooltip>}
     >
       <Button
-        className={styles.TransparentButton}
+        className={btnStyles.TransparentButton}
         onClick={() => handleFollow(profileData)}
       >
         <FontAwesomeIcon
@@ -124,7 +125,7 @@ const Profile = ({ userId }) => {
       overlay={<Tooltip id='unfollow-tooltip'>Unfollow</Tooltip>}
     >
       <Button
-        className={styles.TransparentButton}
+        className={btnStyles.TransparentButton}
         onClick={() => handleUnfollow(profileData)}
       >
         <FontAwesomeIcon
@@ -142,7 +143,7 @@ const Profile = ({ userId }) => {
       overlay={<Tooltip id='edit-tooltip'>Edit</Tooltip>}
     >
       <Button
-        className={styles.TransparentButton}
+        className={btnStyles.TransparentButton}
         onClick={() => history.push(`/profile/${userId}/edit`)}
       >
         <FontAwesomeIcon
@@ -192,7 +193,7 @@ const Profile = ({ userId }) => {
           <Col xs={3} className={styles.AvatarContainer}>
             <Button
               type='link'
-              className={styles.TransparentButton}
+              className={btnStyles.TransparentButton}
               onClick={() => history.push(`/profile/${profileData.id}`)}
             >
               <Avatar src={profileData.image} height={100} />
