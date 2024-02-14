@@ -64,7 +64,7 @@ const StarRating = ({ playlist, setPlaylist }) => {
       }
     } else {
       try {
-        await axiosReq.post('ratings/', {
+        const { data } = await axiosReq.post('ratings/', {
           playlist: playlist.id,
           score: selectedValue,
         });
@@ -72,6 +72,7 @@ const StarRating = ({ playlist, setPlaylist }) => {
         setRating(selectedValue);
         setPlaylist((prevState) => ({
           ...prevState,
+          rating_id: data.id,
           ratings_count: prevState.ratings_count + 1,
           average_rating: calculateAverageRatingPOST(prevState, selectedValue),
           // If the user is the owner of the playlist, update owner_rating state
