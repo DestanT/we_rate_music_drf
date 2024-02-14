@@ -6,9 +6,9 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import {
   faStar,
   faPeopleGroup,
-  faSquare,
   faUserPlus,
   faRightToBracket,
+  faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
@@ -50,10 +50,10 @@ const NavBar = () => {
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
-          to='/popular'
+          to='/global'
         >
-          {/* Star icon */}
-          <FontAwesomeIcon icon={faStar} size='2xl' />
+          {/* All playlists */}
+          <FontAwesomeIcon icon={faGlobe} size='2xl' />
         </NavLink>
       </Nav>
 
@@ -82,10 +82,10 @@ const NavBar = () => {
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
-          to='/placeholder'
+          to='/popular'
         >
-          {/* Placeholder */}
-          <FontAwesomeIcon icon={faSquare} size='2xl' />
+          {/* Star icon */}
+          <FontAwesomeIcon icon={faStar} size='2xl' />
         </NavLink>
       </Nav>
 
