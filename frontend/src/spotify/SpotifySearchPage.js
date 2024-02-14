@@ -101,30 +101,37 @@ const SpotifySearchPage = () => {
         <Button onClick={handleAuthentication}>Authenticate</Button>
         <Container>
           <Row>
-            {searchResults?.map((result) => (
-              <Col
-                className={styles.PaddingReset}
-                key={result.id}
-                xs={4}
-                md={3}
-              >
-                <Button
-                  variant='link'
-                  onClick={() => updateSpotifyPlayerUri(result.uri)}
+            {searchResults?.length ? (
+              searchResults?.map((result) => (
+                <Col
                   className={styles.PaddingReset}
+                  key={result.id}
+                  xs={4}
+                  md={3}
                 >
-                  <Playlist image={result.images[0]?.url} title={result.name} />
-                </Button>
-                <Row>
-                  <Col>
-                    <span>{result.name} </span>
-                    <span>
-                      <AddPlaylistButton playlistData={result} />
-                    </span>
-                  </Col>
-                </Row>
-              </Col>
-            ))}
+                  <Button
+                    variant='link'
+                    onClick={() => updateSpotifyPlayerUri(result.uri)}
+                    className={styles.PaddingReset}
+                  >
+                    <Playlist
+                      image={result.images[0]?.url}
+                      title={result.name}
+                    />
+                  </Button>
+                  <Row>
+                    <Col>
+                      <span>{result.name} </span>
+                      <span>
+                        <AddPlaylistButton playlistData={result} />
+                      </span>
+                    </Col>
+                  </Row>
+                </Col>
+              ))
+            ) : (
+              <p>No search stored in your history...</p>
+            )}
           </Row>
         </Container>
       </Container>
