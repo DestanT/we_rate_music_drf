@@ -32,7 +32,11 @@
 }
 
 .StatsContainer {
-  margin-top: 3rem;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  width: auto;
   background-color: #5a5550a5;
   padding: 0.5rem;
   border-radius: 10px;
