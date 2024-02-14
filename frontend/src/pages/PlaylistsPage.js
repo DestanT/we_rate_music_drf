@@ -60,13 +60,13 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
   const displayWhyNoPlaylistsMessage = () => {
     switch (pageName) {
       case 'All Playlists':
-        return <h3>No playlists found!</h3>;
+        return <p>No playlists found!</p>;
       case 'Followed Users':
-        return <h3>You aren't following any users yet...</h3>;
+        return <p>You aren't following any users yet...</p>;
       case 'Your Rated Playlists':
-        return <h3>You haven't rated any playlists yet...</h3>;
+        return <p>You haven't rated any playlists yet...</p>;
       default:
-        return <h3>No playlists found!</h3>;
+        return <p>No playlists found!</p>;
     }
   };
 
