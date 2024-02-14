@@ -6,6 +6,8 @@ import Profile from '../components/Profile';
 import Playlist from '../components/Playlist';
 import styles from '../styles/EditForms.module.css';
 import btnStyles from '../styles/Button.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 function PlaylistEditForm() {
   const [playlistData, setPlaylistData] = useState({
@@ -149,7 +151,23 @@ function PlaylistEditForm() {
           </Row>
           <Row>
             <Col>
-              <Button type='submit' className={btnStyles.Button}>
+              <Button
+                className={`${btnStyles.TransparentButton} ${btnStyles.MarginLeftRight}`}
+                onClick={() => {}}
+              >
+                <FontAwesomeIcon icon={faTrashCan} size='xl' />
+              </Button>
+              <Button
+                type='button'
+                className={`${btnStyles.Button} ${btnStyles.MarginLeftRight}`}
+                onClick={() => history.push(`/playlist/${id}`)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type='submit'
+                className={`${btnStyles.Button} ${btnStyles.MarginLeftRight}`}
+              >
                 Save
               </Button>
             </Col>
