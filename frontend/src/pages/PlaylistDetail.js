@@ -21,7 +21,7 @@ import StarRating from '../components/StarRating';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 import styles from '../styles/PlaylistDetail.module.css';
 import btnStyles from '../styles/Button.module.css';
@@ -62,10 +62,18 @@ const PlaylistDetail = () => {
   };
 
   // Custom styles for the <Rating /> component
-  const myStyles = {
+  const averageRatingStyles = {
     itemShapes: StickerStar,
     activeFillColor: '#df604e',
     inactiveFillColor: '#df5f4e6e',
+  };
+  const ownerRatingStyles = {
+    itemShapes: StickerStar,
+    itemStrokeWidth: 2,
+    activeFillColor: '#d14e3d',
+    activeStrokeColor: '#5a5550',
+    inactiveFillColor: '#df5f4e2a',
+    inactiveStrokeColor: '#5a5550',
   };
 
   return hasLoaded ? (
@@ -75,6 +83,24 @@ const PlaylistDetail = () => {
         <Row>
           <Col>
             <h2>{playlist.title}</h2>
+          </Col>
+        </Row>
+        <Row className={styles.RowPadding}>
+          {/* Average rating information */}
+          <Col xs={6}>
+            <em>Average Rating: {playlist.average_rating || 0}</em>
+            <Rating
+              readOnly={true}
+              value={playlist.average_rating || 0}
+              style={{ maxWidth: 180, margin: 'auto' }}
+              itemStyles={averageRatingStyles}
+            />
+            <em>Rated: {playlist.ratings_count} time(s)</em>
+          </Col>
+
+          {/* Play button */}
+          <Col xs={6}>
+            <p style={{ marginBottom: '0' }}>click here..</p>
             <OverlayTrigger
               placement='bottom'
               overlay={<Tooltip id='back-tooltip'>Play</Tooltip>}
@@ -82,31 +108,21 @@ const PlaylistDetail = () => {
               <Button
                 variant='link'
                 onClick={() => updateSpotifyPlayerUri(playlist.iframe_uri)}
-                className={styles.Button}
               >
-                <FontAwesomeIcon icon={faPlay} size='xl' />
+                <FontAwesomeIcon
+                  icon={faSpotify}
+                  style={{ color: '#1db954' }}
+                  size='2xl'
+                />
               </Button>
             </OverlayTrigger>
+            <p style={{ marginBottom: '0' }}>..have a listen!</p>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Rating
-              readOnly={true}
-              value={playlist.average_rating || 0}
-              style={{ maxWidth: 250, margin: 'auto' }}
-              itemStyles={myStyles}
-            />
-            <p>
-              <em>Average Rating: {playlist.average_rating || 0}</em>
-            </p>
-            <p>
-              <em># of Ratings: {playlist.ratings_count}</em>
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+
+        {/* Playlist's image and description */}
+        <Row className={styles.HighlightedContainer}>
+          <Col xs={4}>
             <Button
               variant='link'
               onClick={() => history.push(`/profile/${playlist.owner_id}`)}
@@ -115,19 +131,39 @@ const PlaylistDetail = () => {
               <Playlist image={playlist.image} title={playlist.title} />
             </Button>
           </Col>
+          <Col xs={8}>
+            <Row>
+              <Col className={styles.ScreenSizeContidionalPadding}>
+                <p>"{playlist.description}"</p>
+              </Col>
+            </Row>
+            <Row>
+              {/* Empty - to help with alignment */}
+              <Col xs={8}></Col>
+
+              {/* Owners name and own rating */}
+              <Col xs={4} style={{ textAlign: 'center' }}>
+                <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
+                <Rating
+                  readOnly={true}
+                  value={playlist.average_rating || 0}
+                  style={{ minWidth: 75, maxWidth: 100, margin: 'auto' }}
+                  itemStyles={ownerRatingStyles}
+                />
+              </Col>
+            </Row>
+          </Col>
         </Row>
-        <Row>
-          <Col>{playlist.description}</Col>
-        </Row>
+
+        {/* StarRating component - lets user/owner add/edit rating objects */}
         <Row>
           <Col>
             <StarRating playlist={playlist} setPlaylist={setPlaylist} />
           </Col>
         </Row>
-
+        {/* Edit playlist for playlist owner */}
         {playlist.is_owner && (
           <>
-            <br />
             <Row>
               <Col>
                 <Button onClick={redirectToEdit} className={btnStyles.Button}>
