@@ -17,7 +17,7 @@ import appStyles from '../App.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
 import SearchBar from '../components/SearchBar';
 
-const PlaylistsPage = ({ filter = '', profileView = false }) => {
+const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
   const [playlists, setPlaylists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
@@ -57,39 +57,65 @@ const PlaylistsPage = ({ filter = '', profileView = false }) => {
     };
   }, [filter]);
 
+  const displayWhyNoPlaylistsMessage = () => {
+    switch (pageName) {
+      case 'All Playlists':
+        return <h3>No playlists found!</h3>;
+      case 'Followed Users':
+        return <h3>You aren't following any users yet...</h3>;
+      case 'Your Rated Playlists':
+        return <h3>You haven't rated any playlists yet...</h3>;
+      default:
+        return <h3>No playlists found!</h3>;
+    }
+  };
+
   return hasLoaded ? (
     <Container
       className={profileView ? styles.ProfileContainer : styles.Container}
     >
       {/* No SearchBar in pages with Profile.js component */}
-      {!profileView ? <SearchBar liveSearch data={playlists} /> : null}
-
-      <InfiniteScroll
-        dataLength={playlists.results.length}
-        loader={<LoadingSpinner />}
-        hasMore={!!playlists.next}
-        next={() => fetchMoreData(playlists, setPlaylists)}
-        className={styles.InfiniteScroll}
-      >
-        <Row>
-          {playlists.results.map((playlist) => (
-            <Col
-              className={appStyles.PaddingReset}
-              key={playlist.id}
-              xs={4}
-              md={3}
-            >
-              <Button
-                variant='link'
-                onClick={() => history.push(`/playlist/${playlist.id}`)}
-                className={styles.Button}
-              >
-                <Playlist image={playlist.image} title={playlist.title} />
-              </Button>
+      {!profileView ? (
+        <>
+          <Row className={styles.HighlightedContainer}>
+            <Col>
+              <h2>{pageName}</h2>
             </Col>
-          ))}
-        </Row>
-      </InfiniteScroll>
+          </Row>
+          <SearchBar liveSearch data={playlists} />
+        </>
+      ) : null}
+
+      {playlists.results.length ? (
+        <InfiniteScroll
+          dataLength={playlists.results.length}
+          loader={<LoadingSpinner />}
+          hasMore={!!playlists.next}
+          next={() => fetchMoreData(playlists, setPlaylists)}
+          className={styles.InfiniteScroll}
+        >
+          <Row>
+            {playlists.results.map((playlist) => (
+              <Col
+                className={appStyles.PaddingReset}
+                key={playlist.id}
+                xs={4}
+                md={3}
+              >
+                <Button
+                  variant='link'
+                  onClick={() => history.push(`/playlist/${playlist.id}`)}
+                  className={styles.Button}
+                >
+                  <Playlist image={playlist.image} title={playlist.title} />
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </InfiniteScroll>
+      ) : (
+        displayWhyNoPlaylistsMessage()
+      )}
     </Container>
   ) : (
     <LoadingSpinner className={loadingStyles.Centered} />
