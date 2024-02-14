@@ -53,6 +53,8 @@ const StarRating = ({ playlist, setPlaylist }) => {
             rating,
             selectedValue
           ),
+          // If the user is the owner of the playlist, update owner_rating state
+          ...(playlist.is_owner ? { owner_rating: selectedValue } : {}),
         }));
       } catch (err) {
         setErrors({
@@ -72,6 +74,8 @@ const StarRating = ({ playlist, setPlaylist }) => {
           ...prevState,
           ratings_count: prevState.ratings_count + 1,
           average_rating: calculateAverageRatingPOST(prevState, selectedValue),
+          // If the user is the owner of the playlist, update owner_rating state
+          ...(playlist.is_owner ? { owner_rating: selectedValue } : {}),
         }));
       } catch (err) {
         setErrors({
