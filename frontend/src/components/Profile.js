@@ -207,21 +207,17 @@ const Profile = ({ userId }) => {
             {/* Edit button - if the current user is the owner of the profile */}
             {currentUser && profileData?.is_owner && editButton}
           </Col>
-          <Col xs={9}>
-            <Row>
-              <Col xs={4}>
-                <h3>{profileData.followers_count}</h3>
-                <p>Followers</p>
-              </Col>
-              <Col xs={4}>
-                <h3>{profileData.following_count}</h3>
-                <p>Following</p>
-              </Col>
-              <Col xs={4}>
-                <h3>{profileData.playlists_count}</h3>
-                <p>Playlists</p>
-              </Col>
-            </Row>
+          <Col xs={3}>
+            <h3>{profileData.followers_count}</h3>
+            <p>Followers</p>
+          </Col>
+          <Col xs={3}>
+            <h3>{profileData.following_count}</h3>
+            <p>Following</p>
+          </Col>
+          <Col xs={3}>
+            <h3>{profileData.playlists_count}</h3>
+            <p>Playlists</p>
           </Col>
         </Row>
       </Container>
