@@ -67,6 +67,21 @@ const PlaylistDetail = () => {
     setSpotifyPlayerUri(uri);
   };
 
+  // Custom styles for the <Rating /> component
+  const averageRatingStyles = {
+    itemShapes: StickerStar,
+    activeFillColor: '#df604e',
+    inactiveFillColor: '#df5f4e6e',
+  };
+  const ownerRatingStyles = {
+    itemShapes: StickerStar,
+    itemStrokeWidth: 2,
+    activeFillColor: '#d14e3d',
+    activeStrokeColor: '#5a5550',
+    inactiveFillColor: '#df5f4e2a',
+    inactiveStrokeColor: '#5a5550',
+  };
+
   const displayOwnerAndRating = (
     <Row>
       {/* Empty - to help with alignment */}
@@ -96,21 +111,6 @@ const PlaylistDetail = () => {
       </Col>
     </Row>
   );
-
-  // Custom styles for the <Rating /> component
-  const averageRatingStyles = {
-    itemShapes: StickerStar,
-    activeFillColor: '#df604e',
-    inactiveFillColor: '#df5f4e6e',
-  };
-  const ownerRatingStyles = {
-    itemShapes: StickerStar,
-    itemStrokeWidth: 2,
-    activeFillColor: '#d14e3d',
-    activeStrokeColor: '#5a5550',
-    inactiveFillColor: '#df5f4e2a',
-    inactiveStrokeColor: '#5a5550',
-  };
 
   return hasLoaded ? (
     <>
