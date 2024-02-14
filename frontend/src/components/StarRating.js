@@ -109,12 +109,12 @@ const StarRating = ({ playlist, setPlaylist }) => {
       )}
 
       {rating ? (
-        <p>
-          <em>Click to edit your rating</em>
+        <p style={{ fontSize: '0.9rem' }}>
+          <em>(Click to edit your rating)</em>
         </p>
       ) : (
-        <p>
-          <em>Click to add your rating</em>
+        <p style={{ fontSize: '0.9rem' }}>
+          <em>(Click to add your rating)</em>
         </p>
       )}
     </>
