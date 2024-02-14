@@ -10,7 +10,7 @@ class Playlist(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, max_length=300)
     image = models.URLField(max_length=255)
     url = models.URLField(max_length=255)
     iframe_uri = models.CharField(max_length=255)
