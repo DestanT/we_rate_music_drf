@@ -48,16 +48,20 @@ const PlaylistDetail = () => {
         setPlaylist(playlist);
         setHasLoaded(true);
       } catch (err) {
-        setErrors({
-          message: 'Error fetching playlist data, please refresh the page',
-        });
-        setShowAlert(true);
+        if (err.response?.status === 404) {
+          history.push('/404-error-page');
+        } else {
+          setErrors({
+            message: 'Error fetching playlist data, please refresh the page',
+          });
+          setShowAlert(true);
+        }
       }
     };
 
     setHasLoaded(false);
     fetchPlaylist();
-  }, [id]);
+  }, [id, history]);
 
   const redirectToEdit = () => {
     history.push(`/playlist/${id}/edit`);
