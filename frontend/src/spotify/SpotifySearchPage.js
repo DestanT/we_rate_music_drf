@@ -12,6 +12,7 @@ import Playlist from '../components/Playlist';
 import AddPlaylistButton from './AddPlaylistButton';
 
 import styles from '../styles/SpotifySearchPage.module.css';
+import ModalWindow from '../components/ModalWindow';
 
 const SpotifySearchPage = () => {
   const { handleAuthentication } = useSpotifyAuth();
@@ -20,17 +21,34 @@ const SpotifySearchPage = () => {
   const [searchResults, setSearchResults] = useState();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useRedirect();
 
-  // Loads the last search from local storage, if it exists
   useEffect(() => {
+    setModalShow(false);
+    // Loads the last search from local storage, if it exists
     const lastSearch = localStorage.getItem('lastSearch');
     console.log(lastSearch);
     if (lastSearch) {
       setSearchResults(JSON.parse(lastSearch));
       console.log(JSON.parse(lastSearch));
     }
+
+    // Delay - to allow useSpotityAuth the time to set access_token to localStorage (Blunt force fix)
+    const delay = setTimeout(() => {
+      // Checks if the user has access_token in local storage
+      const access_token = localStorage.getItem('access_token');
+      console.log(access_token);
+      if (!access_token) {
+        setModalShow(true);
+      }
+    }, 1000);
+
+    // Cleanup
+    return () => {
+      clearTimeout(delay);
+    };
   }, []);
 
   const handleSearch = async (searchQuery) => {
@@ -98,7 +116,6 @@ const SpotifySearchPage = () => {
             {errors.message}
           </Alert>
         )}
-        <Button onClick={handleAuthentication}>Authenticate</Button>
         <Container>
           <Row>
             {searchResults?.length ? (
@@ -135,6 +152,14 @@ const SpotifySearchPage = () => {
           </Row>
         </Container>
       </Container>
+
+      <ModalWindow
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onConfirm={handleAuthentication}
+        title={'You will be redirected to Spotify'}
+        body='Please authenticate this app with your Spotify account to take full advantage of its features. Once you are authenticated, you will be redirected back to the app. Thank you!'
+      />
     </>
   );
 };
