@@ -1,9 +1,11 @@
 .Container {
   padding: 3px 3px 45px 3px;
+  margin-bottom: 76px;
 }
 
 .ProfileContainer {
   padding: 30vh 3px 45px 3px;
+  margin-bottom: 76px;
 }
 
 .HighlightedContainer {
