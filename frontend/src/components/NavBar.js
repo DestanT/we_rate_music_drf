@@ -21,7 +21,7 @@ const NavBar = () => {
     <>
       <Nav className='ml-auto flex-row'>
         <NavLink
-          className={styles.NavLink}
+          className={styles.SignUpIn}
           activeClassName={styles.Active}
           to='/signin'
         >
@@ -34,7 +34,7 @@ const NavBar = () => {
           Login
         </NavLink>
         <NavLink
-          className={styles.NavLink}
+          className={styles.SignUpIn}
           activeClassName={styles.Active}
           to='/signup'
         >
@@ -52,52 +52,39 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <Nav className='mr-auto'>
-        <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to='/global'
-        >
+        <NavLink activeClassName={styles.Active} to='/global'>
           {/* All playlists */}
           <FontAwesomeIcon icon={faGlobe} size='2xl' />
         </NavLink>
       </Nav>
 
       <Nav className='mr-auto'>
-        <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to='/feed'
-        >
-          {/* Group/Follow icon */}
+        <NavLink activeClassName={styles.Active} to='/feed'>
+          {/* Followed user playlists */}
           <FontAwesomeIcon icon={faPeopleGroup} size='2xl' />
         </NavLink>
       </Nav>
 
       <Nav>
         <NavLink
-          className={styles.NavLink}
           activeClassName={styles.ProfileActive}
           to={`/profile/${currentUser?.profile_id}`}
         >
-          {/* Profile image */}
+          {/* User's profile */}
           <Avatar src={currentUser?.profile_image} height={40} />
         </NavLink>
       </Nav>
 
       <Nav className='ml-auto'>
-        <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
-          to='/rated-playlists'
-        >
-          {/* Star icon */}
+        <NavLink activeClassName={styles.Active} to='/rated-playlists'>
+          {/* User's rated playlists */}
           <FontAwesomeIcon icon={faStar} size='2xl' />
         </NavLink>
       </Nav>
 
       <Nav className='ml-auto'>
-        <NavLink className={styles.NavLink} to='/spotify-search'>
-          {/* Spotify link */}
+        <NavLink to='/spotify-search'>
+          {/* Spotify search page */}
           <FontAwesomeIcon
             icon={faSpotify}
             style={{ color: '#1db954' }}
@@ -111,11 +98,7 @@ const NavBar = () => {
   const navBarPosition = currentUser ? 'bottom' : 'top';
 
   return (
-    <Navbar
-      className={styles.CustomBackground}
-      expand='md'
-      fixed={navBarPosition}
-    >
+    <Navbar className={styles.NavBar} expand='md' fixed={navBarPosition}>
       <Container>{currentUser ? loggedInIcons : loggedOutIcons}</Container>
     </Navbar>
   );

@@ -1,19 +1,21 @@
-.CustomBackground {
+.NavBar {
   background-color: #5a5550;
+  padding: 18px 1rem; /* tuned for minimum "whitespace" */
 }
 
 .MarginRight {
   margin-right: 5px;
+  margin-left: 10px;
 }
 
-.NavLink {
-  padding: 10px;
+.SignUpIn {
+  padding: 0 10px;
   color: #d8d3cd;
 }
 
-.NavLink:active,
-.NavLink:hover,
-.NavLink:focus {
+.SignUpIn:active,
+.SignUpIn:hover,
+.SignUpIn:focus {
   color: #d8d3cd;
   text-decoration: underline;
 }
@@ -27,7 +29,6 @@
 }
 
 .ProfileActive {
-  padding: 0;
   border-radius: 50%;
   box-shadow: 0 0 15px 5px #df604e;
 }
