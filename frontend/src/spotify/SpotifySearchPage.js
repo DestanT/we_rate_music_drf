@@ -79,6 +79,7 @@ const SpotifySearchPage = () => {
         }
       );
       const data = await response.json();
+      console.log('response:', response);
       console.log(data);
 
       // Combine the items from albums, playlists, and artists
