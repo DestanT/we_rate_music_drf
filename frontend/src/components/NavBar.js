@@ -19,7 +19,7 @@ const NavBar = () => {
 
   const loggedOutIcons = (
     <>
-      <Nav className='ml-auto'>
+      <Nav className='ml-auto flex-row'>
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
