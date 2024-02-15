@@ -5,6 +5,7 @@ import { useSpotifyAuth } from './useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { useRedirect } from '../hooks/useRedirect';
+import { getRefreshToken } from '../utils/spotifyAuthUtils';
 
 import Profile from '../components/Profile';
 import SearchBar from '../components/SearchBar';
@@ -52,6 +53,7 @@ const SpotifySearchPage = () => {
   }, []);
 
   const handleSearch = async (searchQuery) => {
+    setErrors({});
     // Empty search field
     if (!searchQuery) {
       setErrors({ message: 'Search field is empty' });
@@ -63,6 +65,10 @@ const SpotifySearchPage = () => {
     const signal = controller.signal;
 
     try {
+      // Refreshes the access token before every search
+      const refreshTokenResponse = await getRefreshToken();
+      console.log('refresh token response:', refreshTokenResponse);
+
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist&limit=50`,
         {
