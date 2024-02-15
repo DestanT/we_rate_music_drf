@@ -38,3 +38,27 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   redirectUri =
     'https://we-rate-music-drf-1626129441d6.herokuapp.com/spotify-search';
 }
+
+// Refreshing the access token
+export const getRefreshToken = async () => {
+  // refresh token that has been previously stored
+  const refreshToken = localStorage.getItem('refresh_token');
+  const url = 'https://accounts.spotify.com/api/token';
+
+  const payload = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+      client_id: clientId,
+    }),
+  };
+  const body = await fetch(url, payload);
+  const response = await body.json();
+
+  localStorage.setItem('access_token', response.access_token);
+  localStorage.setItem('refresh_token', response.refresh_token);
+};
