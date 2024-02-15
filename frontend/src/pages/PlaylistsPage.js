@@ -42,6 +42,8 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
       } catch (err) {
         if (axios.isCancel(err)) {
           console.log('Request canceled', err.message);
+        } else if (err.response?.status === 404) {
+          history.push('/404-error-page');
         } else {
           console.log(err);
         }
@@ -55,7 +57,7 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
     return () => {
       source.cancel('Request canceled');
     };
-  }, [filter]);
+  }, [filter, history]);
 
   const displayWhyNoPlaylistsMessage = () => {
     switch (pageName) {
