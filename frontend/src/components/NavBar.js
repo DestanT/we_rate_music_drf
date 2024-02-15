@@ -19,28 +19,33 @@ const NavBar = () => {
 
   const loggedOutIcons = (
     <>
-      <Nav className='m-auto'>
+      <Nav className='ml-auto'>
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
           to='/signin'
         >
           {/* Signin icon */}
-          <FontAwesomeIcon icon={faRightToBracket} size='2xl' />
+          <FontAwesomeIcon
+            className={styles.MarginRight}
+            icon={faRightToBracket}
+            size='2xl'
+          />
+          Login
         </NavLink>
-        Login
-      </Nav>
-
-      <Nav className='m-auto'>
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
           to='/signup'
         >
           {/* Signup icon */}
-          <FontAwesomeIcon icon={faUserPlus} size='2xl' />
+          <FontAwesomeIcon
+            className={styles.MarginRight}
+            icon={faUserPlus}
+            size='2xl'
+          />
+          Sign Up!
         </NavLink>
-        Sign Up!
       </Nav>
     </>
   );

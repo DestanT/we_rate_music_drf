@@ -2,8 +2,24 @@
   background-color: #5a5550;
 }
 
+.MarginRight {
+  margin-right: 5px;
+}
+
 .NavLink {
   padding: 10px;
+  color: #d8d3cd;
+}
+
+.NavLink:active,
+.NavLink:hover,
+.NavLink:focus {
+  color: #d8d3cd;
+  text-decoration: underline;
+}
+
+.Active {
+  text-decoration: underline;
 }
 
 .Active svg {
