@@ -11,7 +11,7 @@
 
 .TitleContainer {
   height: 100vh;
-  padding-top: 100px;
+  padding-top: 150px;
   text-align: left;
   background-color: #d8d3cd;
 }
@@ -22,8 +22,8 @@
 
 .IntroContainer {
   position: absolute;
-  top: 40%;
-  max-width: 220px;
+  top: 50%;
+  max-width: 250px;
   text-align: left;
 }
 
