@@ -64,7 +64,7 @@ const Profile = ({ userId }) => {
     return () => {
       source.cancel('Request canceled');
     };
-  }, [userId]);
+  }, [userId, history]);
 
   const handleFollow = async (profile) => {
     try {
