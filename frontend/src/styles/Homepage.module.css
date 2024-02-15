@@ -1,0 +1,23 @@
+.Container {
+  height: 100vh;
+  max-width: 100%;
+  /* CREDIT: https://www.geeksforgeeks.org/gradient-borders/ */
+  background-image: radial-gradient(circle at center, transparent, #d8d3cd 80%),
+    url('../assets/homepage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.TitleContainer {
+  height: 100vh;
+  padding-top: 100px;
+  text-align: left;
+  background-color: #d8d3cd;
+}
+
+@media screen and (max-width: 991px) {
+  .Container {
+    background-image: url('../assets/homepage.png');
+  }
+}
