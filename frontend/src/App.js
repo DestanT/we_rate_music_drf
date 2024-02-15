@@ -36,7 +36,7 @@ function App() {
         />
         <Route
           exact
-          path='/popular'
+          path='/rated-playlists'
           render={() => (
             <PlaylistsPage
               pageName='Your Rated Playlists'

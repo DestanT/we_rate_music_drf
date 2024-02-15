@@ -82,7 +82,7 @@ const NavBar = () => {
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
-          to='/popular'
+          to='/rated-playlists'
         >
           {/* Star icon */}
           <FontAwesomeIcon icon={faStar} size='2xl' />
