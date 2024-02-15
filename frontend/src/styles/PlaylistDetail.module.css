@@ -17,6 +17,10 @@
   padding: 5px 90px;
 }
 
+.WordBreak {
+  word-break: break-word;
+}
+
 @media screen and (max-width: 768px) {
   .ScreenSizeContidionalPadding {
     padding-left: 40px;

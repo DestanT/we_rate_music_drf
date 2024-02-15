@@ -89,10 +89,10 @@ const PlaylistDetail = () => {
   const displayOwnerAndRating = (
     <Row>
       {/* Empty - to help with alignment */}
-      <Col xs={8}></Col>
+      <Col xs={6}></Col>
 
       {/* Owners name and own rating */}
-      <Col xs={4} style={{ textAlign: 'center' }}>
+      <Col xs={6} style={{ textAlign: 'center' }}>
         <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
         <Rating
           readOnly={true}
@@ -107,10 +107,10 @@ const PlaylistDetail = () => {
   const displayJustOwner = (
     <Row>
       {/* Empty - to help with alignment */}
-      <Col xs={8}></Col>
+      <Col xs={6}></Col>
 
       {/* Owners name and own rating */}
-      <Col xs={4} style={{ textAlign: 'center' }}>
+      <Col xs={6} style={{ textAlign: 'center' }}>
         <p style={{ marginBottom: '0' }}>-{playlist.owner}</p>
       </Col>
     </Row>
@@ -175,7 +175,7 @@ const PlaylistDetail = () => {
             <Row>
               <Col className={styles.ScreenSizeContidionalPadding}>
                 {playlist.description ? (
-                  <p>"{playlist.description}"</p>
+                  <p className={styles.WordBreak}>"{playlist.description}"</p>
                 ) : (
                   <p>
                     <em>
