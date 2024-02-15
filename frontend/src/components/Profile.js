@@ -49,6 +49,8 @@ const Profile = ({ userId }) => {
       } catch (err) {
         if (axios.isCancel(err)) {
           console.log('Request canceled', err.message);
+        } else if (err.response?.status === 404) {
+          history.push('/404-error-page');
         } else {
           console.log(err);
         }
