@@ -9,7 +9,6 @@ import {
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import axios from 'axios';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
@@ -33,23 +32,15 @@ const Profile = ({ userId }) => {
   const history = useHistory();
 
   useEffect(() => {
-    // Sends a CancelToken with the request
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
     const fetchProfileData = async () => {
       try {
-        const { data } = await axiosReq.get(`profiles/${userId}`, {
-          cancelToken: source.token,
-        });
+        const { data } = await axiosReq.get(`profiles/${userId}`);
         setProfileData(data);
         console.log('profiledata: ', data);
         setIsFollowing(data.following_id ? true : false);
         setHasLoaded(true);
       } catch (err) {
-        if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
-        } else if (err.response?.status === 404) {
+        if (err.response?.status === 404) {
           history.push('/404-error-page');
         } else {
           console.log(err);
@@ -59,11 +50,6 @@ const Profile = ({ userId }) => {
 
     setHasLoaded(false);
     fetchProfileData();
-
-    // Cleanup
-    return () => {
-      source.cancel('Request canceled');
-    };
   }, [userId, history]);
 
   const handleFollow = async (profile) => {
