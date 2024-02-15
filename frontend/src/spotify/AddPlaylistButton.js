@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 
@@ -44,11 +41,8 @@ function AddPlaylistButton({ playlistData: playlist }) {
 
   return (
     <>
-      <Button
-        onClick={() => setModalShow(true)}
-        className={btnStyles.TransparentButton}
-      >
-        <FontAwesomeIcon icon={faSquarePlus} />
+      <Button onClick={() => setModalShow(true)} className={btnStyles.Button}>
+        Add
       </Button>
 
       {showAlert && errors?.message && (
