@@ -55,7 +55,7 @@ function App() {
           path='/feed'
           render={() => (
             <PlaylistsPage
-              pageName='Followed Users'
+              pageName='Playlists from users you follow'
               filter={`owner__followed_by__owner__profile=${profile_id}`}
             />
           )}
