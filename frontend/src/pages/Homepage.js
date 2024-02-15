@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import BackgroundImage from '../assets/homepage.png';
 import styles from '../styles/Homepage.module.css';
 
 const Homepage = () => {
@@ -10,6 +9,16 @@ const Homepage = () => {
         <Col xs={7}></Col>
         <Col xs={5} className={styles.TitleContainer}>
           <h1>We Rate Music</h1>
+          <hr className={styles.Line} />
+          <hr className={styles.SecondLine} />
+          <Row className={styles.PaddingTop}>
+            <Col>
+              <p>
+                Welcome to We Rate Music! The place to rate and review your
+                favorite music.
+              </p>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>

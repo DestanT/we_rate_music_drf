@@ -16,8 +16,34 @@
   background-color: #d8d3cd;
 }
 
+.Line {
+  width: 40%;
+  height: 5px;
+  margin: 3px 0;
+  border-radius: 80% 80% 30% 30%;
+  background-color: #df604e;
+}
+
+.SecondLine {
+  width: 20%;
+  height: 5px;
+  margin: 3px 15px;
+  border-radius: 30% 30% 80% 80%;
+  background-color: #df604e;
+}
+
+.PaddingTop {
+  padding-top: 100px;
+}
+
 @media screen and (max-width: 991px) {
   .Container {
     background-image: url('../assets/homepage.png');
+  }
+  .Line {
+    width: 80%;
+  }
+  .SecondLine {
+    width: 40%;
   }
 }
