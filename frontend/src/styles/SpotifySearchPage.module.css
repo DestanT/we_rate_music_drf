@@ -6,3 +6,11 @@
 .PaddingReset {
   padding: 0;
 }
+
+.Margin {
+  margin: 2px;
+}
+
+.MarginBottom {
+  margin-bottom: 5px;
+}

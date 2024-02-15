@@ -147,11 +147,9 @@ const SpotifySearchPage = () => {
                     />
                   </Button>
                   <Row>
-                    <Col>
-                      <span>{result.name} </span>
-                      <span>
-                        <AddPlaylistButton playlistData={result} />
-                      </span>
+                    <Col className={styles.MarginBottom}>
+                      <p className={styles.Margin}>{result.name}</p>
+                      <AddPlaylistButton playlistData={result} />
                     </Col>
                   </Row>
                 </Col>
