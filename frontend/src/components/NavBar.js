@@ -102,8 +102,14 @@ const NavBar = () => {
     </>
   );
 
+  const navBarPosition = currentUser ? 'bottom' : 'top';
+
   return (
-    <Navbar className={styles.CustomBackground} expand='md' fixed='bottom'>
+    <Navbar
+      className={styles.CustomBackground}
+      expand='md'
+      fixed={navBarPosition}
+    >
       <Container>{currentUser ? loggedInIcons : loggedOutIcons}</Container>
     </Navbar>
   );
