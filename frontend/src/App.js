@@ -38,7 +38,10 @@ function App() {
           exact
           path='/popular'
           render={() => (
-            <PlaylistsPage filter={`ratings__owner__profile=${profile_id}`} /> //RUBBISH
+            <PlaylistsPage
+              pageName='Your Rated Playlists'
+              filter={`ratings__owner__profile=${profile_id}`}
+            />
           )}
         />
         <Route exact path='/playlist/:id' render={() => <PlaylistDetail />} />
@@ -52,6 +55,7 @@ function App() {
           path='/feed'
           render={() => (
             <PlaylistsPage
+              pageName='Followed Users'
               filter={`owner__followed_by__owner__profile=${profile_id}`}
             />
           )}
@@ -61,7 +65,11 @@ function App() {
           path='/spotify-search'
           render={() => <SpotifySearchPage />}
         />
-        <Route exact path='/global' render={() => <PlaylistsPage />} />
+        <Route
+          exact
+          path='/global'
+          render={() => <PlaylistsPage pageName='All Playlists' />}
+        />
         <Route render={() => <PageNotFound404 />} />
       </Switch>
     </div>
