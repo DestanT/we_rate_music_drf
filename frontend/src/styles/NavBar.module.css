@@ -25,3 +25,9 @@
 .Active svg {
   color: #af3c2d;
 }
+
+.ProfileActive {
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 5px #df604e;
+}
