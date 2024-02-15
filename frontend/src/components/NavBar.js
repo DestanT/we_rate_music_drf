@@ -23,24 +23,24 @@ const NavBar = () => {
         <NavLink
           className={styles.NavLink}
           activeClassName={styles.Active}
-          to='/signup'
-        >
-          {/* Signup icon */}
-          <FontAwesomeIcon icon={faUserPlus} size='2xl' />
-        </NavLink>
-        Sign Up!
-      </Nav>
-
-      <Nav className='m-auto'>
-        <NavLink
-          className={styles.NavLink}
-          activeClassName={styles.Active}
           to='/signin'
         >
           {/* Signin icon */}
           <FontAwesomeIcon icon={faRightToBracket} size='2xl' />
         </NavLink>
         Login
+      </Nav>
+
+      <Nav className='m-auto'>
+        <NavLink
+          className={styles.NavLink}
+          activeClassName={styles.Active}
+          to='/signup'
+        >
+          {/* Signup icon */}
+          <FontAwesomeIcon icon={faUserPlus} size='2xl' />
+        </NavLink>
+        Sign Up!
       </Nav>
     </>
   );
