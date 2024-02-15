@@ -73,6 +73,7 @@ const SpotifySearchPage = () => {
         }
       );
       const data = await response.json();
+      console.log(data);
 
       // Combine the items from albums, playlists, and artists
       const combinedData = [
@@ -84,7 +85,9 @@ const SpotifySearchPage = () => {
       setSearchResults(combinedData);
       console.log(combinedData);
       // Saves the search results to local storage for later use
-      localStorage.setItem('lastSearch', JSON.stringify(combinedData));
+      if (combinedData.length) {
+        localStorage.setItem('lastSearch', JSON.stringify(combinedData));
+      }
     } catch (error) {
       setErrors({
         message: error.response?.data || 'An error occurred in fetching',
@@ -147,7 +150,7 @@ const SpotifySearchPage = () => {
                 </Col>
               ))
             ) : (
-              <p>No search stored in your history...</p>
+              <p>No search stored results...</p>
             )}
           </Row>
         </Container>
