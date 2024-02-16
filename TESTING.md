@@ -137,16 +137,16 @@ All following tests were performed on the NavBar component in "src/components/Na
 <summary>Screenshots</summary>
 
 Display for Logged Out Users:\
-![test-display-for-logged-out-users](docs/testing/NavBar/test-navbar-logged-out-users.PNG)
+![test-display-for-logged-out-users](docs/testing/navbar/test-navbar-logged-out-users.PNG)
 
 Display for Logged In Users/Profile Image Display:\
-![test-display-for-logged-in-users](docs/testing/NavBar/test-display-for-logged-in-users.PNG)
+![test-display-for-logged-in-users](docs/testing/navbar/test-display-for-logged-in-users.PNG)
 
 Clicked Icon Visual Feedback:\
-![test-clicked-icon-visual-feedback](docs/testing/NavBar/test-icon-visual-feedback.PNG)
+![test-clicked-icon-visual-feedback](docs/testing/navbar/test-icon-visual-feedback.PNG)
 
 Clicked Icon Visual Feedback - Profile Glow:\
-![test-clicked-icon-visual-feedback](docs/testing/NavBar/test-icon-visual-feedback-profile.PNG)
+![test-clicked-icon-visual-feedback](docs/testing/navbar/test-icon-visual-feedback-profile.PNG)
 
 </details>
 
@@ -168,26 +168,26 @@ Clicked Icon Visual Feedback - Profile Glow:\
 
 Tooltips:\
 Back\
-![test-tooltip-back](docs/testing/Profile/test-tooltip-back.PNG)
+![test-tooltip-back](docs/testing/profile/test-tooltip-back.PNG)
 
 Edit - if user is profile owner\
-![test-tooltip-edit](docs/testing/Profile/test-tooltip-edit.PNG)
+![test-tooltip-edit](docs/testing/profile/test-tooltip-edit.PNG)
 
 Follow/Unfollow - if user is not profile owner\
-![test-tooltip-follow](docs/testing/Profile/test-tooltip-follow.PNG)
-![test-tooltip-unfollow](docs/testing/Profile/test-tooltip-unfollow.PNG)
+![test-tooltip-follow](docs/testing/profile/test-tooltip-follow.PNG)
+![test-tooltip-unfollow](docs/testing/profile/test-tooltip-unfollow.PNG)
 
 Sign Out\
-![test-tooltip-signout](docs/testing/Profile/test-tooltip-signout.PNG)
+![test-tooltip-signout](docs/testing/profile/test-tooltip-signout.PNG)
 
 Follow/Unfollow Functionality:\
-![test-follow-unfollow-functionality](docs/testing/Profile/test-follow-unfollow-functionality.PNG)
+![test-follow-unfollow-functionality](docs/testing/profile/test-follow-unfollow-functionality.PNG)
 
 Edit Profile and Navigation:\
-![test-edit-profile-visibility-and-navigation](docs/testing/Profile/test-edit-profile-and-navigation.PNG)
+![test-edit-profile-visibility-and-navigation](docs/testing/profile/test-edit-profile-and-navigation.PNG)
 
 Back Navigation:\
-![test-back-navigation](docs/testing/Profile/test-back-navigation.PNG)
+![test-back-navigation](docs/testing/profile/test-back-navigation.PNG)
 
 </details>
 
