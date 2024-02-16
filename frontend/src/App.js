@@ -15,6 +15,7 @@ import ProfileEditForm from './forms/ProfileEditForm';
 import '@smastrom/react-rating/style.css';
 import PageNotFound404 from './pages/PageNotFound404';
 import Homepage from './pages/Homepage';
+import FeedbackCreateForm from './forms/FeedbackCreateForm';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -69,6 +70,11 @@ function App() {
           exact
           path='/global'
           render={() => <PlaylistsPage pageName='All Playlists' />}
+        />
+        <Route
+          exact
+          path='/feedback/create'
+          render={() => <FeedbackCreateForm />}
         />
         <Route render={() => <PageNotFound404 />} />
       </Switch>
