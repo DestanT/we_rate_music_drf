@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import styles from '../styles/EditForms.module.css';
+import styles from '../styles/EditCreateForms.module.css';
 import btnStyles from '../styles/Button.module.css';
 import Profile from '../components/Profile';
 

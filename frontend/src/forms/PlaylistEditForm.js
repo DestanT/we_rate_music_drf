@@ -5,7 +5,7 @@ import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import Profile from '../components/Profile';
 import Playlist from '../components/Playlist';
 import ModalWindow from '../components/ModalWindow';
-import styles from '../styles/EditForms.module.css';
+import styles from '../styles/EditCreateForms.module.css';
 import btnStyles from '../styles/Button.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
