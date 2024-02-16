@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     'playlists',
     'ratings',
     'followers',
+    'feedback',
 ]
 
 SITE_ID = 1
