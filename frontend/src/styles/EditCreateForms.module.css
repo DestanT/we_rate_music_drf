@@ -25,3 +25,7 @@
     #af3c2d6b -2px -2px 10px 2px inset;
   transition: box-shadow ease-in-out 0.2s;
 }
+
+.TextAlignLast input {
+  text-align-last: center;
+}
