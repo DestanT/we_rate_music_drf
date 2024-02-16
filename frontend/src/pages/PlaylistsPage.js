@@ -89,32 +89,34 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
       ) : null}
 
       {playlists.results.length ? (
-        <InfiniteScroll
-          dataLength={playlists.results.length}
-          loader={<LoadingSpinner />}
-          hasMore={!!playlists.next}
-          next={() => fetchMoreData(playlists, setPlaylists)}
-          className={styles.InfiniteScroll}
-        >
-          <Row>
-            {playlists.results.map((playlist) => (
-              <Col
-                className={appStyles.PaddingReset}
-                key={playlist.id}
-                xs={4}
-                md={3}
-              >
-                <Button
-                  variant='link'
-                  onClick={() => history.push(`/playlist/${playlist.id}`)}
-                  className={styles.Button}
+        <Container>
+          <InfiniteScroll
+            dataLength={playlists.results.length}
+            loader={<LoadingSpinner />}
+            hasMore={!!playlists.next}
+            next={() => fetchMoreData(playlists, setPlaylists)}
+            className={styles.InfiniteScroll}
+          >
+            <Row>
+              {playlists.results.map((playlist) => (
+                <Col
+                  className={appStyles.PaddingReset}
+                  key={playlist.id}
+                  xs={4}
+                  md={3}
                 >
-                  <Playlist image={playlist.image} title={playlist.title} />
-                </Button>
-              </Col>
-            ))}
-          </Row>
-        </InfiniteScroll>
+                  <Button
+                    variant='link'
+                    onClick={() => history.push(`/playlist/${playlist.id}`)}
+                    className={styles.Button}
+                  >
+                    <Playlist image={playlist.image} title={playlist.title} />
+                  </Button>
+                </Col>
+              ))}
+            </Row>
+          </InfiniteScroll>
+        </Container>
       ) : (
         displayWhyNoPlaylistsMessage()
       )}
