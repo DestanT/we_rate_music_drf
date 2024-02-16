@@ -68,7 +68,7 @@ function ProfileEditForm() {
                 </Form.Label>
 
                 <Form.File
-                  className='align-self-center'
+                  className={styles.TextAlignLast}
                   id='profile-image-upload'
                   accept='image/*'
                   ref={profileImageInput}
@@ -93,6 +93,7 @@ function ProfileEditForm() {
                 </Form.Label>
 
                 <Form.File
+                  className={styles.TextAlignLast}
                   id='background-image-upload'
                   accept='image/*'
                   ref={backgroundImageInput}
