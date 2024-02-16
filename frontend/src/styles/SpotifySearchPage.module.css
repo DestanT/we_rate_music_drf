@@ -1,6 +1,7 @@
 .Container {
   padding: 32vh 3px 45px 3px;
   margin-bottom: 76px;
+  overflow-x: hidden;
 }
 
 .PaddingReset {

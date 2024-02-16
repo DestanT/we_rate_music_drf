@@ -108,7 +108,7 @@ function FeedbackCreateForm() {
   );
 
   return (
-    <>
+    <Container className={styles.OverflowHidden}>
       <Container>{warmWelcome}</Container>
       <Form
         onSubmit={handleSubmit}
@@ -168,7 +168,7 @@ function FeedbackCreateForm() {
           </Container>
         )}
       </Form>
-    </>
+    </Container>
   );
 }
 
