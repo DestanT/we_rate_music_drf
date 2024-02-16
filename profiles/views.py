@@ -21,6 +21,7 @@ class ProfileList(generics.ListAPIView):
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
+        filters.SearchFilter,
         DjangoFilterBackend
     ]
     ordering_fields = [
@@ -29,6 +30,9 @@ class ProfileList(generics.ListAPIView):
         'following_count',
         'owner__followed_by__created_at',
         'owner__following__created_at'
+    ]
+    search_fields = [
+        'owner__username'
     ]
     filterset_fields = [
         # Profiles of other users following owner
