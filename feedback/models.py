@@ -16,6 +16,7 @@ class Feedback(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name_plural = 'Feedback'
 
     def __str__(self):
         return f"{self.user}'s feedback, titled: {self.title}"
