@@ -16,6 +16,8 @@ import styles from '../styles/SpotifySearchPage.module.css';
 import ModalWindow from '../components/ModalWindow';
 
 const SpotifySearchPage = () => {
+  useRedirect();
+
   const { handleAuthentication } = useSpotifyAuth();
   const setSpotifyPlayerUri = useSetSpotifyPlayerUri();
   const currentUser = useCurrentUser();
@@ -23,8 +25,6 @@ const SpotifySearchPage = () => {
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-
-  useRedirect();
 
   useEffect(() => {
     setModalShow(false);
