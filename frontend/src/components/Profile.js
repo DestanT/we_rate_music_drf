@@ -13,7 +13,12 @@ import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackward, faStar, faPen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBackward,
+  faStar,
+  faPen,
+  faCommentDots,
+} from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 
 import Avatar from './Avatar';
@@ -101,7 +106,7 @@ const Profile = ({ userId }) => {
         <FontAwesomeIcon
           icon={emptyStar}
           size='xl'
-          className={styles.ProfileFontAwesomeIcon}
+          className={styles.ProfileBottomRightIcon}
         />
       </Button>
     </OverlayTrigger>
@@ -119,7 +124,7 @@ const Profile = ({ userId }) => {
         <FontAwesomeIcon
           icon={faStar}
           size='xl'
-          className={styles.ProfileFontAwesomeIcon}
+          className={styles.ProfileBottomRightIcon}
         />
       </Button>
     </OverlayTrigger>
@@ -137,7 +142,25 @@ const Profile = ({ userId }) => {
         <FontAwesomeIcon
           icon={faPen}
           size='xl'
-          className={styles.ProfileFontAwesomeIcon}
+          className={styles.ProfileBottomRightIcon}
+        />
+      </Button>
+    </OverlayTrigger>
+  );
+
+  const feedbackButton = (
+    <OverlayTrigger
+      placement='bottom'
+      overlay={<Tooltip id='feedback-tooltip'>Help us improve!</Tooltip>}
+    >
+      <Button
+        onClick={() => history.push('/feedback/create')}
+        className={btnStyles.TransparentButton}
+      >
+        <FontAwesomeIcon
+          icon={faCommentDots}
+          size='xl'
+          className={styles.ProfileTopRightIcon}
         />
       </Button>
     </OverlayTrigger>
@@ -197,6 +220,9 @@ const Profile = ({ userId }) => {
 
             {/* Edit button - if the current user is the owner of the profile */}
             {currentUser && profileData?.is_owner && editButton}
+
+            {/* Feedback button - if the current user is the owner of the profile */}
+            {currentUser && profileData?.is_owner && feedbackButton}
           </Col>
           <Col xs={3}>
             <h3>{profileData.followers_count}</h3>
