@@ -24,11 +24,18 @@
   filter: drop-shadow(2px 2px 4px black);
 }
 
-.ProfileFontAwesomeIcon {
+.ProfileBottomRightIcon {
   filter: drop-shadow(2px 2px 4px black);
   position: relative;
   bottom: 0px;
   right: 10px;
+}
+
+.ProfileTopRightIcon {
+  filter: drop-shadow(2px 2px 4px black);
+  position: relative;
+  bottom: 80px;
+  right: 35px;
 }
 
 .StatsContainer {
