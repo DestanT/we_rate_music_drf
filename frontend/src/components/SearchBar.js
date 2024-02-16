@@ -1,17 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, InputGroup, Dropdown, Row, Col } from 'react-bootstrap';
+
+import LoadingSpinner from './LoadingSpinner';
 
 import styles from '../styles/SearchBar.module.css';
 import btnStyles from '../styles/Button.module.css';
+import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { axiosReq } from '../api/axiosDefaults';
 
-function SearchBar({ onSearch, liveSearch = false, data = null }) {
+function SearchBar({ onSearch, liveSearch = false }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [items, setItems] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
+  useEffect(() => {
+    if (liveSearch) {
+      const fetchedItems = async () => {
+        try {
+          const { data } = await axiosReq.get(
+            `profiles/?search=${searchQuery}`
+          );
+          setItems(data.results);
+          console.log(data.results);
+          setShowDropdown(data.results.length > 0);
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      setHasLoaded(false);
+      fetchedItems();
+    }
+  }, [liveSearch, searchQuery]);
+
+  // This is function is disabled in the <Button> element, if liveSearch is truthy
   const handleSubmit = async (e) => {
     e.preventDefault();
     onSearch(searchQuery);
@@ -26,39 +52,33 @@ function SearchBar({ onSearch, liveSearch = false, data = null }) {
       setShowDropdown(false);
       return;
     }
-
-    console.log(e.target.value);
-    if (liveSearch) {
-      const filteredItems = data.results.filter(
-        (item) =>
-          item.title.toLowerCase().includes(currentQuery.toLowerCase()) ||
-          item.owner.toLowerCase().includes(currentQuery.toLowerCase())
-      );
-      setFilteredResults(filteredItems);
-      setShowDropdown(filteredItems.length > 0);
-    }
   };
 
   const dropdownResults = (
     <Dropdown show={showDropdown}>
       <Dropdown.Menu className={styles.DropdownMenu}>
-        {filteredResults.map((item) => (
-          <Dropdown.Item key={item.id} className={styles.DropdownItem}>
+        {items?.length ? (
+          items.map((profile) => (
+            <Dropdown.Item key={profile.id} className={styles.DropdownItem}>
+              <Row>
+                <Col xs={3}>
+                  <img
+                    src={profile.image}
+                    alt={`${profile.owner}`}
+                    className={styles.SearchResultImage}
+                  />
+                </Col>
+                <Col xs={6}>{profile.owner}</Col>
+              </Row>
+            </Dropdown.Item>
+          ))
+        ) : (
+          <Dropdown.Item className={styles.DropdownItem}>
             <Row>
-              <Col xs={3}>
-                <img
-                  src={item.image}
-                  alt={`${item.title}'s Cover Art`}
-                  className={styles.SearchResultImage}
-                />
-              </Col>
-              <Col xs={6}>{item.title}</Col>
-              <Col xs={3}>
-                <em>({item.owner}'s playlist)</em>
-              </Col>
+              <Col xs={12}>No results found</Col>
             </Row>
           </Dropdown.Item>
-        ))}
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -70,8 +90,11 @@ function SearchBar({ onSearch, liveSearch = false, data = null }) {
           <InputGroup>
             <Form.Control
               type='text'
-              placeholder='Search Spotify'
+              placeholder={
+                liveSearch ? 'Search for other users' : 'Search Spotify'
+              }
               onChange={handleInputChange}
+              value={searchQuery}
             />
             <InputGroup.Append>
               {liveSearch ? (
@@ -95,7 +118,11 @@ function SearchBar({ onSearch, liveSearch = false, data = null }) {
           </InputGroup>
         </Form.Group>
       </Form>
-      {liveSearch ? dropdownResults : null}
+      {liveSearch && hasLoaded ? (
+        dropdownResults
+      ) : (
+        <LoadingSpinner className={loadingStyles.Centered} />
+      )}
     </>
   );
 }
