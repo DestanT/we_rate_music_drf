@@ -57,7 +57,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
     }
   };
 
-  const dropdownResults = (
+  const dropdownResults = hasLoaded ? (
     <Container className={styles.DropdownMenu}>
       {items?.length ? (
         items.map((profile) => (
@@ -73,10 +73,16 @@ function SearchBar({ onSearch, liveSearch = false }) {
           </Row>
         ))
       ) : (
-        <Row className={styles.DropdownItem}>
-          <Col xs={12}>No results found</Col>
-        </Row>
+        <Container className={styles.DropdownMenu}>
+          <Row className={styles.DropdownItem}>
+            <Col xs={12}>No results found</Col>
+          </Row>
+        </Container>
       )}
+    </Container>
+  ) : (
+    <Container className={styles.DropdownMenu}>
+      <LoadingSpinner className={loadingStyles.Centered} />
     </Container>
   );
 
@@ -87,22 +93,12 @@ function SearchBar({ onSearch, liveSearch = false }) {
           <InputGroup>
             <Form.Control
               type='text'
-              placeholder={
-                liveSearch ? 'Search for other users' : 'Search Spotify'
-              }
+              placeholder={liveSearch ? 'Search for users' : 'Search Spotify'}
               onChange={handleInputChange}
               value={searchQuery}
             />
             <InputGroup.Append>
-              {liveSearch ? (
-                <Button disabled className={btnStyles.Button}>
-                  <FontAwesomeIcon
-                    icon={faMagnifyingGlass}
-                    style={{ color: '#3d3d3d' }}
-                    size='lg'
-                  />
-                </Button>
-              ) : (
+              {liveSearch ? null : (
                 <Button type='submit' className={btnStyles.Button}>
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
@@ -115,7 +111,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
           </InputGroup>
         </Form.Group>
       </Form>
-      {liveSearch && showDropdown && hasLoaded ? (
+      {liveSearch && showDropdown ? (
         dropdownResults
       ) : (
         <LoadingSpinner className={loadingStyles.Centered} />
