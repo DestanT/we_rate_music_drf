@@ -111,11 +111,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
           </InputGroup>
         </Form.Group>
       </Form>
-      {liveSearch && showDropdown ? (
-        dropdownResults
-      ) : (
-        <LoadingSpinner className={loadingStyles.Centered} />
-      )}
+      {liveSearch && showDropdown && dropdownResults}
     </>
   );
 }
