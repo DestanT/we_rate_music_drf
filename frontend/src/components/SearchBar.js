@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button, InputGroup, Row, Col, Container } from 'react-bootstrap';
 
@@ -20,25 +20,17 @@ function SearchBar({ onSearch, liveSearch = false }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
 
-  useEffect(() => {
-    if (liveSearch) {
-      const fetchedItems = async () => {
-        try {
-          const { data } = await axiosReq.get(
-            `profiles/?search=${searchQuery}`
-          );
-          setItems(data.results);
-          console.log(data.results);
-          setShowDropdown(data.results.length > 0);
-          setHasLoaded(true);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      setHasLoaded(false);
-      fetchedItems();
+  const fetchItems = async () => {
+    try {
+      const { data } = await axiosReq.get(`profiles/?search=${searchQuery}`);
+      setItems(data.results);
+      console.log(data.results);
+      setShowDropdown(true);
+      setHasLoaded(true);
+    } catch (err) {
+      console.log(err);
     }
-  }, [liveSearch, searchQuery]);
+  };
 
   // This is function is disabled in the <Button> element, if liveSearch is truthy
   const handleSubmit = async (e) => {
@@ -46,7 +38,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
     onSearch(searchQuery);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const currentQuery = e.target.value;
     setSearchQuery(currentQuery);
     console.log(currentQuery);
@@ -54,6 +46,10 @@ function SearchBar({ onSearch, liveSearch = false }) {
     if (currentQuery === '') {
       setShowDropdown(false);
       return;
+    }
+
+    if (liveSearch) {
+      await fetchItems();
     }
   };
 
@@ -73,11 +69,9 @@ function SearchBar({ onSearch, liveSearch = false }) {
           </Row>
         ))
       ) : (
-        <Container className={styles.DropdownMenu}>
-          <Row className={styles.DropdownItem}>
-            <Col xs={12}>No results found</Col>
-          </Row>
-        </Container>
+        <Row className={styles.DropdownItem}>
+          <Col>No results found</Col>
+        </Row>
       )}
     </Container>
   ) : (
