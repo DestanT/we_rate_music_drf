@@ -1,24 +1,40 @@
 .DropdownMenu {
-  opacity: 0.85 !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2rem;
   width: 100%;
   z-index: 999;
-  background-color: #5a5550;
+  border-radius: 5px 5px 2px 2px;
+  background-color: #5a5550e5;
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.DropdownMenu::-webkit-scrollbar {
+  display: none;
 }
 
 .DropdownItem {
+  height: 10vh;
   color: #d8d3cd;
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #d8d3cd;
+  margin-bottom: 15px;
+  padding: 0 1rem;
+  text-align: left;
+  align-items: center;
 }
 
-.SearchResultImage {
-  padding: 0.25rem;
-  max-height: 10vh;
+.DropdownItem:hover {
+  background-color: #5a5550d5; /* Intentionally a bit lighter */
+  box-shadow: 0 0 7px #df604e;
 }
 
 @media screen and (min-width: 992px) {
-  .SearchResultImage {
-    max-height: 15vh;
+  .DropdownItem {
+    text-align: left;
+    align-items: center;
   }
 }
