@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Button, InputGroup, Dropdown, Row, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { Form, Button, InputGroup, Row, Col, Container } from 'react-bootstrap';
 
+import Avatar from './Avatar';
 import LoadingSpinner from './LoadingSpinner';
 
 import styles from '../styles/SearchBar.module.css';
@@ -16,6 +18,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
   const [items, setItems] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (liveSearch) {
@@ -55,38 +58,32 @@ function SearchBar({ onSearch, liveSearch = false }) {
   };
 
   const dropdownResults = (
-    <Dropdown show={showDropdown}>
-      <Dropdown.Menu className={styles.DropdownMenu}>
-        {items?.length ? (
-          items.map((profile) => (
-            <Dropdown.Item key={profile.id} className={styles.DropdownItem}>
-              <Row>
-                <Col xs={3}>
-                  <img
-                    src={profile.image}
-                    alt={`${profile.owner}`}
-                    className={styles.SearchResultImage}
-                  />
-                </Col>
-                <Col xs={6}>{profile.owner}</Col>
-              </Row>
-            </Dropdown.Item>
-          ))
-        ) : (
-          <Dropdown.Item className={styles.DropdownItem}>
-            <Row>
-              <Col xs={12}>No results found</Col>
-            </Row>
-          </Dropdown.Item>
-        )}
-      </Dropdown.Menu>
-    </Dropdown>
+    <Container className={styles.DropdownMenu}>
+      {items?.length ? (
+        items.map((profile) => (
+          <Row
+            key={profile.id}
+            className={styles.DropdownItem}
+            onClick={() => {
+              history.push(`/profile/${profile.id}`);
+            }}
+          >
+            <Avatar src={profile.image} height={75} />
+            <Col>{profile.owner}</Col>
+          </Row>
+        ))
+      ) : (
+        <Row className={styles.DropdownItem}>
+          <Col xs={12}>No results found</Col>
+        </Row>
+      )}
+    </Container>
   );
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId='searchForm'>
+        <Form.Group controlId='searchForm' style={{ marginBottom: '0' }}>
           <InputGroup>
             <Form.Control
               type='text'
@@ -118,7 +115,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
           </InputGroup>
         </Form.Group>
       </Form>
-      {liveSearch && hasLoaded ? (
+      {liveSearch && showDropdown && hasLoaded ? (
         dropdownResults
       ) : (
         <LoadingSpinner className={loadingStyles.Centered} />
