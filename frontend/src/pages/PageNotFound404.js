@@ -7,7 +7,7 @@ import waveform from '../assets/waveform.png';
 
 const PageNotFound404 = () => {
   return (
-    <Container style={{ padding: '150px 0' }}>
+    <Container style={{ padding: '150px 0', overflow: 'hidden' }}>
       <Row>
         <Col>
           <h1>
