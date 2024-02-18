@@ -23,7 +23,7 @@ function AddPlaylistButton({ playlistData: playlist }) {
       image: playlist.images[0]?.url,
       url: playlist.external_urls.spotify,
       iframe_uri: playlist.uri,
-      owner: currentUser.id,
+      owner: currentUser.profile_id,
     };
 
     try {
