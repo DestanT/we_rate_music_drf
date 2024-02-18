@@ -11,6 +11,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     playlists_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
+    number_of_ratings = serializers.ReadOnlyField()
     average_rating = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
@@ -61,5 +62,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'image', 'background',
             'is_owner', 'following_id', 'playlists_count',
-            'followers_count', 'following_count', 'average_rating'
+            'followers_count', 'following_count',
+            'average_rating', 'number_of_ratings',
         ]
