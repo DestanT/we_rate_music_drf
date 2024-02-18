@@ -20,6 +20,28 @@
   align-items: flex-end;
 }
 
+.AvatarStatsContainer {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  width: auto;
+  background-color: #5a5550cc;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #df604e;
+}
+
+.StatsRow {
+  justify-content: center;
+  margin-right: 1.5rem;
+}
+
+.StatsItem {
+  margin: 0rem;
+  font-size: 1rem;
+}
+
 .FontAwesomeIcon {
   filter: drop-shadow(2px 2px 4px black);
 }
@@ -38,19 +60,22 @@
   right: 35px;
 }
 
-.StatsContainer {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  width: auto;
-  background-color: #5a5550a5;
-  padding: 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0 0 7px #df604e;
-}
-
 .SmallText {
   font-size: 0.8rem;
   color: #d8d3cd;
+}
+
+.AlignItemsCenter {
+  align-items: center;
+}
+
+@media screen and (max-width: 575px) {
+  .StatsRow {
+    justify-content: right;
+    margin-right: 1rem;
+  }
+  .StatsItem {
+    margin: 0rem;
+    font-size: 1rem;
+  }
 }
