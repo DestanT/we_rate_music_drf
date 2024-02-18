@@ -32,6 +32,16 @@
   box-shadow: 0 0 7px #df604e;
 }
 
+.InfiniteScroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: visible !important;
+}
+
+.InfiniteScroll::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (min-width: 992px) {
   .DropdownItem {
     text-align: left;

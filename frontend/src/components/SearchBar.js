@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button, InputGroup, Row, Col, Container } from 'react-bootstrap';
 
+import { axiosReq } from '../api/axiosDefaults';
+import { fetchMoreData } from '../utils/dataUtils';
+
 import Avatar from './Avatar';
 import LoadingSpinner from './LoadingSpinner';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import styles from '../styles/SearchBar.module.css';
 import btnStyles from '../styles/Button.module.css';
-import loadingStyles from '../styles/LoadingSpinner.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { axiosReq } from '../api/axiosDefaults';
 
 function SearchBar({ onSearch, liveSearch = false }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,8 +25,8 @@ function SearchBar({ onSearch, liveSearch = false }) {
   const fetchItems = async () => {
     try {
       const { data } = await axiosReq.get(`profiles/?search=${searchQuery}`);
-      setItems(data.results);
-      console.log(data.results);
+      setItems(data);
+      console.log(data);
       setShowDropdown(true);
       setHasLoaded(true);
     } catch (err) {
@@ -55,19 +57,27 @@ function SearchBar({ onSearch, liveSearch = false }) {
 
   const dropdownResults = hasLoaded ? (
     <Container className={styles.DropdownMenu}>
-      {items?.length ? (
-        items.map((profile) => (
-          <Row
-            key={profile.id}
-            className={styles.DropdownItem}
-            onClick={() => {
-              history.push(`/profile/${profile.id}`);
-            }}
-          >
-            <Avatar src={profile.image} height={75} />
-            <Col>{profile.owner}</Col>
-          </Row>
-        ))
+      {items?.results.length ? (
+        <InfiniteScroll
+          dataLength={items.results.length}
+          loader={<LoadingSpinner />}
+          hasMore={!!items.next}
+          next={() => fetchMoreData(items, setItems)}
+          className={styles.InfiniteScroll}
+        >
+          {items.results.map((profile) => (
+            <Row
+              key={profile.id}
+              className={styles.DropdownItem}
+              onClick={() => {
+                history.push(`/profile/${profile.id}`);
+              }}
+            >
+              <Avatar src={profile.image} height={75} />
+              <Col>{profile.owner}</Col>
+            </Row>
+          ))}
+        </InfiniteScroll>
       ) : (
         <Row className={styles.DropdownItem}>
           <Col>No results found</Col>
@@ -76,7 +86,7 @@ function SearchBar({ onSearch, liveSearch = false }) {
     </Container>
   ) : (
     <Container className={styles.DropdownMenu}>
-      <LoadingSpinner className={loadingStyles.Centered} />
+      <LoadingSpinner />
     </Container>
   );
 
