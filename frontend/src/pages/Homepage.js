@@ -1,8 +1,10 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import styles from '../styles/Homepage.module.css';
+import { useRedirect } from '../hooks/useRedirect';
 
 const Homepage = () => {
+  useRedirect();
   return (
     <Container className={styles.Container}>
       <Row>
