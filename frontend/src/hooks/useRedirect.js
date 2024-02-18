@@ -11,11 +11,12 @@ export const useRedirect = () => {
   const currentUser = useCurrentUser();
   const userAuthStatus = currentUser ? 'loggedIn' : 'loggedOut';
   const authPages = ['/signin', '/signup'].includes(history.location.pathname);
+  const homepage = ['/'].includes(history.location.pathname);
 
   useEffect(() => {
     const handleMount = async () => {
       // if user is logged in and on signin/signup page, redirect to profile page
-      if (authPages) {
+      if (authPages || homepage) {
         if (userAuthStatus === 'loggedIn') {
           history.push(`/profile/${currentUser.pk}`);
           return;
@@ -39,5 +40,5 @@ export const useRedirect = () => {
     };
 
     handleMount();
-  }, [history, userAuthStatus, currentUser, authPages]);
+  }, [history, userAuthStatus, currentUser, authPages, homepage]);
 };
