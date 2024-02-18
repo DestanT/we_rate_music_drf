@@ -189,16 +189,6 @@ const Profile = ({ userId }) => {
       </Row>
       <Row className={styles.StatsRow}>
         <p className={styles.StatsItem}>
-          Rated Playlists: {profileData.number_of_ratings}
-        </p>
-      </Row>
-      <Row className={styles.StatsRow}>
-        <p className={styles.StatsItem}>
-          Avg Rating Given: {profileData.average_rating}
-        </p>
-      </Row>
-      <Row className={styles.StatsRow}>
-        <p className={styles.StatsItem}>
           Followers: {profileData.followers_count}
         </p>
       </Row>
@@ -215,16 +205,12 @@ const Profile = ({ userId }) => {
       <Col md={4} className='align-self-center'>
         <h4 className='mb-0'>{profileData.playlists_count}</h4>
         <p className={styles.StatsItem}>Playlists</p>
-        <h4 className='mb-0'>{profileData.number_of_ratings}</h4>
-        <p className={styles.StatsItem}>Rated Playlists</p>
-      </Col>
-      <Col md={4} className='align-self-center'>
-        <h4 className='mb-0'>{profileData.average_rating}</h4>
-        <p className={styles.StatsItem}>Avg Rating Given</p>
       </Col>
       <Col md={4} className='align-self-center'>
         <h4 className='mb-0'>{profileData.followers_count}</h4>
         <p className={styles.StatsItem}>Followers</p>
+      </Col>
+      <Col md={4} className='align-self-center'>
         <h4 className='mb-0'>{profileData.following_count}</h4>
         <p className={styles.StatsItem}>Following</p>
       </Col>
