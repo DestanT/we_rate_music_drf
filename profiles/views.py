@@ -17,7 +17,8 @@ class ProfileList(generics.ListAPIView):
         playlists_count = Count('owner__playlist', distinct=True),
         followers_count = Count('owner__followed_by', distinct=True),
         following_count = Count('owner__following', distinct=True),
-        average_rating = Avg('owner__rating__score')
+        number_of_ratings = Count('owner__rating', distinct=True),
+        average_rating = Avg('owner__rating__score', distinct=True)
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
@@ -28,6 +29,8 @@ class ProfileList(generics.ListAPIView):
         'playlists_count',
         'followers_count',
         'following_count',
+        'number_of_ratings',
+        'average_rating',
         'owner__followed_by__created_at',
         'owner__following__created_at'
     ]
@@ -52,5 +55,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.annotate(
         playlists_count = Count('owner__playlist', distinct=True),
         followers_count = Count('owner__followed_by', distinct=True),
-        following_count = Count('owner__following', distinct=True)
+        following_count = Count('owner__following', distinct=True),
+        number_of_ratings = Count('owner__rating', distinct=True),
+        average_rating = Avg('owner__rating__score', distinct=True)
     )
