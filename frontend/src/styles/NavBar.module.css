@@ -46,6 +46,10 @@
   box-shadow: 0 0 15px 5px #df604e;
 }
 
+.ProfileActive:hover {
+  box-shadow: 0 0 15px 5px #af3c2d;
+}
+
 @media screen and (max-width: 491px) {
   .Brand {
     font-size: 1.5rem;
