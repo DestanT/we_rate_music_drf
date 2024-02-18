@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { removeTokenTimestamp, shouldRefreshToken } from '../utils/dataUtils';
 
 export const CurrentUserContext = createContext();
@@ -15,29 +15,6 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
-  const handleMount = async () => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    try {
-      const { data } = await axiosRes.get('dj-rest-auth/user/', {
-        cancelToken: source.token,
-      });
-      setCurrentUser(data);
-    } catch (err) {
-      if (axios.isCancel(err)) {
-        console.log('Request canceled', err.message);
-      } else {
-        console.log(err);
-      }
-    }
-
-    // Cleanup
-    return () => {
-      source.cancel('Request canceled');
-    };
-  };
-
   useEffect(() => {
     handleMount();
   }, []);
@@ -49,6 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
           try {
             await axios.post('/dj-rest-auth/token/refresh/');
           } catch (err) {
+            console.log(err.request);
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push('/signin');
@@ -69,7 +47,7 @@ export const CurrentUserProvider = ({ children }) => {
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
-        if (err.response?.status === 401) {
+        if (err?.response?.status === 401) {
           try {
             await axios.post('/dj-rest-auth/token/refresh/');
           } catch (err) {
@@ -87,6 +65,15 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
   }, [history]);
+
+  const handleMount = async () => {
+    try {
+      const { data } = await axiosRes.get('dj-rest-auth/user/');
+      setCurrentUser(data);
+    } catch (err) {
+      console.log(err.request);
+    }
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
