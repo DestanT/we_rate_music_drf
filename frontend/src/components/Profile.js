@@ -34,7 +34,21 @@ const Profile = ({ userId }) => {
   const [profileData, setProfileData] = useState({});
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [smallScreen, setSmallScreen] = useState(window.innerWidth < 768);
   const history = useHistory();
+
+  console.log('profile rendered');
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -166,6 +180,57 @@ const Profile = ({ userId }) => {
     </OverlayTrigger>
   );
 
+  const smallScreenStatsContainer = (
+    <>
+      <Row className={styles.StatsRow}>
+        <p className={styles.StatsItem}>
+          Playlists: {profileData.playlists_count}
+        </p>
+      </Row>
+      <Row className={styles.StatsRow}>
+        <p className={styles.StatsItem}>
+          Rated Playlists: {profileData.number_of_ratings}
+        </p>
+      </Row>
+      <Row className={styles.StatsRow}>
+        <p className={styles.StatsItem}>
+          Avg Rating Given: {profileData.average_rating}
+        </p>
+      </Row>
+      <Row className={styles.StatsRow}>
+        <p className={styles.StatsItem}>
+          Followers: {profileData.followers_count}
+        </p>
+      </Row>
+      <Row className={styles.StatsRow}>
+        <p className={styles.StatsItem}>
+          Following: {profileData.following_count}
+        </p>
+      </Row>
+    </>
+  );
+
+  const largeScreenStatsContainer = (
+    <Row className={styles.StatsRow}>
+      <Col md={4} className='align-self-center'>
+        <h4 className='mb-0'>{profileData.playlists_count}</h4>
+        <p className={styles.StatsItem}>Playlists</p>
+        <h4 className='mb-0'>{profileData.number_of_ratings}</h4>
+        <p className={styles.StatsItem}>Rated Playlists</p>
+      </Col>
+      <Col md={4} className='align-self-center'>
+        <h4 className='mb-0'>{profileData.average_rating}</h4>
+        <p className={styles.StatsItem}>Avg Rating Given</p>
+      </Col>
+      <Col md={4} className='align-self-center'>
+        <h4 className='mb-0'>{profileData.followers_count}</h4>
+        <p className={styles.StatsItem}>Followers</p>
+        <h4 className='mb-0'>{profileData.following_count}</h4>
+        <p className={styles.StatsItem}>Following</p>
+      </Col>
+    </Row>
+  );
+
   return hasLoaded ? (
     // Profile data loaded
     <Container
@@ -202,8 +267,8 @@ const Profile = ({ userId }) => {
       </Container>
 
       {/* Profile picture and stats */}
-      <Container className={styles.StatsContainer}>
-        <Row>
+      <Container className={styles.AvatarStatsContainer}>
+        <Row className={styles.AlignItemsCenter}>
           <Col xs={3} className={styles.AvatarContainer}>
             <Button
               type='link'
@@ -224,17 +289,10 @@ const Profile = ({ userId }) => {
             {/* Feedback button - if the current user is the owner of the profile */}
             {currentUser && profileData?.is_owner && feedbackButton}
           </Col>
-          <Col xs={3}>
-            <h3>{profileData.followers_count}</h3>
-            <p>Followers</p>
-          </Col>
-          <Col xs={3}>
-            <h3>{profileData.following_count}</h3>
-            <p>Following</p>
-          </Col>
-          <Col xs={3}>
-            <h3>{profileData.playlists_count}</h3>
-            <p>Playlists</p>
+          <Col xs={9}>
+            {smallScreen
+              ? smallScreenStatsContainer
+              : largeScreenStatsContainer}
           </Col>
         </Row>
       </Container>
@@ -247,7 +305,7 @@ const Profile = ({ userId }) => {
         <Container>
           <LoadingSpinner className={loadingStyles.Centered} />
         </Container>
-        <Container className={styles.StatsContainer}>
+        <Container className={styles.AvatarStatsContainer}>
           <LoadingSpinner className={loadingStyles.Centered} />
         </Container>
       </Container>
