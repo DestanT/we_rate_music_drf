@@ -18,7 +18,7 @@ export const useRedirect = () => {
       // if user is logged in and on signin/signup page, redirect to profile page
       if (authPages || homepage) {
         if (userAuthStatus === 'loggedIn') {
-          history.push(`/profile/${currentUser.pk}`);
+          history.push(`/profile/${currentUser.profile_id}`);
           return;
         }
         if (userAuthStatus === 'loggedOut') {

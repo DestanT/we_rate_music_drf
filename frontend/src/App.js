@@ -19,7 +19,7 @@ import FeedbackCreateForm from './forms/FeedbackCreateForm';
 
 function App() {
   const currentUser = useCurrentUser();
-  const profile_id = currentUser?.pk || '';
+  const profile_id = currentUser?.profile_id || '';
 
   return (
     <div className={styles.App}>
