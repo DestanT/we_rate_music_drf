@@ -3,6 +3,19 @@
   padding: 18px 1rem; /* tuned for minimum "whitespace" */
 }
 
+.Brand {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d8d3cd !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.SignInOut {
+  margin-left: auto !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+}
+
 .MarginRight {
   margin-right: 5px;
   margin-left: 10px;
@@ -31,4 +44,14 @@
 .ProfileActive {
   border-radius: 50%;
   box-shadow: 0 0 15px 5px #df604e;
+}
+
+@media screen and (max-width: 491px) {
+  .Brand {
+    font-size: 1.5rem;
+    margin: auto;
+  }
+  .SignInOut {
+    margin: auto;
+  }
 }

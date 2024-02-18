@@ -19,7 +19,10 @@ const NavBar = () => {
 
   const loggedOutIcons = (
     <>
-      <Nav className='ml-auto flex-row'>
+      <Navbar.Brand className={styles.Brand} href='/'>
+        We -R- Music
+      </Navbar.Brand>
+      <Nav className={styles.SignInOut}>
         <NavLink
           className={styles.SignUpIn}
           activeClassName={styles.Active}
