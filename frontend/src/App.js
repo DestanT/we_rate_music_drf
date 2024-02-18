@@ -40,7 +40,7 @@ function App() {
           path='/rated-playlists'
           render={() => (
             <PlaylistsPage
-              pageName='Your Rated Playlists'
+              pageName='All Playlists You Have Rated'
               filter={`ratings__owner__profile=${profile_id}`}
             />
           )}
@@ -56,7 +56,7 @@ function App() {
           path='/feed'
           render={() => (
             <PlaylistsPage
-              pageName='Playlists from users you follow'
+              pageName='Playlists of Followed Users'
               filter={`owner__followed_by__owner__profile=${profile_id}`}
             />
           )}
