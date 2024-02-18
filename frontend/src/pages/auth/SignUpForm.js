@@ -44,7 +44,7 @@ const SignUpForm = () => {
   return (
     <Container>
       <Row className={styles.Row}>
-        <Col className='my-auto py-2 p-md-2' md={12}>
+        <Col className='my-auto py-2 p-md-2'>
           <Container className={`${appStyles.Content} p-4 `}>
             <h1 className={styles.Header}>sign up</h1>
 
