@@ -114,7 +114,7 @@ const SpotifySearchPage = () => {
 
   return (
     <>
-      {currentUser?.pk && <Profile userId={currentUser?.pk} />}
+      {currentUser?.profile_id && <Profile userId={currentUser?.profile_id} />}
       <Container className={styles.Container}>
         <SearchBar onSearch={handleSearch} />
         {showAlert && errors?.message && (
