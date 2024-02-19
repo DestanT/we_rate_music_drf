@@ -31,9 +31,10 @@ function SignInForm() {
 
     try {
       const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+      console.log(data);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      history.push(`/profile/${data.user.pk}`);
+      history.push(`/profile/${data.user.profile_id}`);
     } catch (err) {
       setErrors(err.response?.data);
     }
