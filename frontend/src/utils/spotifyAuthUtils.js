@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   redirectUri = 'http://localhost:3000/spotify-search';
 } else {
   redirectUri =
-    'https://we-rate-music-drf-1626129441d6.herokuapp.com/spotify-search';
+    'https://we-rate-music-react-f931068bb6db.herokuapp.com/spotify-search';
 }
 
 // Refreshing the access token
