@@ -6,15 +6,15 @@
 - Bringing users together
 - Intentions for the future
 
-[HEROKU LINK](https://we-rate-music-drf-1626129441d6.herokuapp.com/)
+[HEROKU LINK](https://we-rate-music-react-f931068bb6db.herokuapp.com/)
 
 {IMAGE HERE}
 
 ## Table of Contents
 
 1. [Planning](#planning)
-
 - [User Stories](#user-stories)
+- [Site Owner Stories](#site-owner-stories)
 - [Wireframes](#wireframes)
 - [Database Modeling](#database-modeling)
 - [Agile Development](#agile-development)
@@ -51,8 +51,9 @@
   </ul>
 </details>
 
-2. [Future Features/Roadmap](#future-featuresroadmap)
-3. [Testing](#testing)
+2. [React Components](#react-components)
+3. [Future Features/Roadmap](#future-featuresroadmap)
+4. [Testing](#testing)
    - [Lighthouse Testing](#lighthouse-testing)
    - [W3C Markup Validation](#w3c-markup-validation)
    - [W3C CSS Validation](#w3c-css-validation)
@@ -60,8 +61,8 @@
    - [Pylint-Django](#pylint-django)
    - [Automated Testing](#automated-testing)
    - [Manual Testing](#manual-testing)
-4. [Challenges & Bugs](#challenges—bugs)
-5. [Technologies Used](#technologies-used)
+5. [Challenges & Bugs](#challenges—bugs)
+6. [Technologies Used](#technologies-used)
 
 - [Frameworks, libraries, and dependencies](#frameworks—libraries—and-dependencies)
 
@@ -117,18 +118,11 @@ The seria
 
 ### API Endpoints
 
-## Frontend React Application
+## React Components
 
 ### /API
 
-#### /spotifyApi
-
-##### searchForItem
-
-- search query
-- search type
-
-#### Axios
+#### AxiosDefaults
 
 - talk about /api/axiosDefaults.js file
 - Credit to CI moments walkthrough
@@ -188,6 +182,8 @@ The seria
 - allows users to sign out of the application
 - ModalWindow component incorporated
 
+#### StarRating
+
 ### /Contexts
 
 #### CurrentUserContext
@@ -195,36 +191,23 @@ The seria
 - Credit: CI walkthrough project
 - will store the current user's information and provide it to the rest off the App.
 
-#### SpotifyIframeContext
+#### SpotifyPlayerUriContext
 
 - stores spotify playlists' uri, which is used in the iFrame player
 - the reason it is used as a global context is so that the user can be anywhere in the app and still continue listening to the playlist they had originally clicked on
 - everytime user clicks on different playlist the context is updated with the new uri
 
-### Spotify
+### /Forms
 
-#### AddPlaylistButton
+#### FeedbackCreateForm
 
-- displays a button that prompts a confirmation modal and ultimately sends a post request to the drf api to the playlists/ endpoint
+#### PlaylistEditForm
 
-#### SpotifyPlayer
+#### ProfileEditForm
 
-- This is the Spotify iFrame player
-- https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
-- Uses a Uniform Resource Identifier for each playlist/album/podcast etc from Spotify.
-- The application saves this URI to the database along with other parameters
+### /Hooks
 
-#### SpotifySearchPage
-
-- last search is stored in local storage as stringified JSON for better UX
-- handleSearch:
-- checks for empty search field and throws error alert if so
--
-
-#### useSpotifyAuth
-
-- Authentication and access token
-- refresh token logic
+#### useRedirect
 
 ### /Pages
 
@@ -251,24 +234,49 @@ The seria
   - talk about errors.non_field_errors
   - redirected to sign in page after successful signup.
 
-#### /Playlists
+#### Homepage
 
-##### PlaylistsPage
+#### PageNotFound404
+
+#### PlaylistDetail
+
+#### PlaylistsPage
 
 - logic to display playlist components
 - is used in feed, profile view, and spotify search page
 
-##### SpotifySearchPage
+#### ProfilePage
 
+### /Spotify
+
+#### AddPlaylistButton
+
+- displays a button that prompts a confirmation modal and ultimately sends a post request to the drf api to the playlists/ endpoint
+
+#### SpotifyPlayer
+
+- This is the Spotify iFrame player
+- https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
+- Uses a Uniform Resource Identifier for each playlist/album/podcast etc from Spotify.
+- The application saves this URI to the database along with other parameters
+
+#### SpotifySearchPage
+
+- last search is stored in local storage as stringified JSON for better UX
+- handleSearch:
+- checks for empty search field and throws error alert if so
 - used in spotify search page
 - displays playlist components
   NOTE: consider possible merge with PlaylistsPage!
 
-### /Styles
+#### useSpotifyAuth
 
-- all the module.css files for custom css
+- Authentication and access token
+- refresh token logic
 
 ### /Utils
+
+#### dataUtils
 
 #### spotifyAuthUtils
 
