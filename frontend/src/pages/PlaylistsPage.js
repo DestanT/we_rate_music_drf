@@ -84,7 +84,9 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
               <h2>{pageName}</h2>
             </Col>
           </Row>
-          <SearchBar liveSearch />
+
+          {/* only show search bar in '/global' route */}
+          {!filter && <SearchBar liveSearch />}
         </>
       ) : null}
 
