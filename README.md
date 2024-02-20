@@ -19,7 +19,6 @@
 1. [Planning](#planning)
 
 - [User Stories](#user-stories)
-- [Site Owner Stories](#site-owner-stories)
 - [Wireframes](#wireframes)
 - [Database Modeling](#database-modeling)
 - [Agile Development](#agile-development)
@@ -35,6 +34,8 @@
 - [API Endpoints](#api-endpoints)
 
 3. [Frontend React Application](#frontend-react-application)
+
+- [Workflows](#workflows)
 
 - [API](#api)
 
@@ -121,23 +122,31 @@
 
 ### Database Modeling
 
+Lucidchart was used to create the database model for the project. The database is made up of five custom models: Profile, Playlist, Rating, Follower, and Feedback:
+
+<center>
+
+![Database Table](./docs/readme/database-table.png)
+
+</center>
+
 ### Agile Development
+
+The project was developed using the Agile methodology. The project was broken down into epics, with each epic lasting roughly a week. The project was developed in 6 epics.
+
+You can view the projects Kanban board [here](https://github.com/users/DestanT/projects/5/views/2)
+You can view the projects Milestones and Epics board [here](https://github.com/users/DestanT/projects/5/views/4)
+You can view the projects Monthly Roadmap view [here](https://github.com/users/DestanT/projects/5/views/1)
 
 ## Django Rest Framework
 
-Django Rest Framework API serves as the backend to the React frontend application. The API endpoints were designed with the user stories for the whole project in mind, which can be found [here](LINK). PostgreSQL manages the databases and serves the data.
+Django Rest Framework API serves as the backend to the React frontend application. The API endpoints were designed with the user stories for the whole project in mind, which can be found [here](#user-stories). PostgreSQL manages the databases and serves the data.
 
-### Database Modeling
-
-The database for this project is a PostgreSQL database. The database is made up of five models: User and Profile.
+### The Database
 
 #### User Model
 
 The user model is a default model provided by Django all-auth. It includes the following fields:
-
-- username
-- password
-- email
 
 #### Profile Model
 
@@ -148,26 +157,127 @@ The profile model is a custom model that extends the default user model. It incl
 - ‘image’: ImageField to store the user’s profile picture to Cloudinary
 - ‘background’: ImageField to store the user’s profile background to Cloudinary
 
-##### Profile Serializer
-
-The seria
-
 #### Playlist Model
+
+The playlist model is a custom model that includes the following fields:
+
+- ‘spotify_id’: CharField
+- ‘owner’: ForeignKey with the Profile model
+- ‘added_on’: Automatically generated DateTimeField
+- ‘title’: CharField
+- ‘description’: TextField
+- ‘image’: ImageField to store the playlist’s cover art to Cloudinary
+- ‘url’: URLField
+- ‘iframe_uri’: CharField
 
 #### Rating Model
 
+The rating model is a custom model that includes the following fields:
+
+- ‘owner’: ForeignKey with the Profile model
+- ‘playlist’: ForeignKey with the Playlist model
+- ‘score’: PositiveSmallIntegerField, with a range of 1-10 (although the frontend only allows for 1-5 currently)
+- ‘created_at’: Automatically generated DateTimeField
+- ‘updated_at’: Automatically generated DateTimeField
+
 #### Follower Model
+
+The follower model is a custom model that includes the following fields:
+
+- ‘owner’: ForeignKey with the Profile model
+- ‘followed’: ForeignKey with the Profile model
+- ‘created_at’: Automatically generated DateTimeField
+
+#### Feedback Model
+
+The feedback model is a custom model that includes the following fields:
+
+- ‘user’: ForeignKey with the User model
+- ‘title’: CharField
+- ‘feedback’: TextField
+- ‘image’: ImageField to store the user’s feedback image to Cloudinary
+- ‘created_at’: Automatically generated DateTimeField
 
 ### API Endpoints
 
+The following API endpoints were created to serve the React frontend application:
+
+- '' - The root endpoint, which redirects to index.html/homepage.
+- 'admin/' - The Django admin panel.
+- 'api/api-auth/' - The Django Rest Framework authentication endpoint.
+- 'api/dj-rest-auth/logout/' - Custom logout endpoint (known issue with dj-rest-auth own logout endpoint).
+- 'api/dj-rest-auth/' - The Django Rest Framework authentication endpoint.
+- 'api/dj-rest-auth/registration/' - The Django Rest Framework registration endpoint.
+- 'api/profiles/' - The Profile model endpoint.
+- 'api/profiles/:pk' - The Profile model's detail view endpoint.
+- 'api/playlists/' - The Playlist model endpoint.
+- 'api/playlists/:pk' - The Playlist model's detail view endpoint.
+- 'api/ratings/' - The Rating model endpoint.
+- 'api/ratings/:pk' - The Rating model's detail view endpoint.
+- 'api/followers/' - The Follower model endpoint.
+- 'api/followers/:pk' - The Follower model's detail view endpoint.
+- 'api/feedback/' - The Feedback model endpoint.
+- 'api/feedback/:pk' - The Feedback model's detail view endpoint.
+
 ## Frontend React Application
+
+### Workflows
+
+The following workflows were created to serve the user stories for the React frontend application:
+
+- User Authentication: The user can sign up, sign in, and sign out of the application.
+
+<center>
+
+![User Authentication Workflow](./docs/workflows/auth-flow.png)
+
+</center>
+
+- Searching for and Following Other Users: The user can search for other users and follow them.
+
+<center>
+
+![Searching for and Following Other Users Workflow](./docs/workflows/other-user-flow.png)
+
+</center>
+
+- Playlist Detail and Rating: The user can view and rate playlists.
+
+<center>
+
+![Playlist Detail and Rating Workflow](./docs/workflows/playlist-detail-flow.png)
+
+</center>
+
+- Editing Profile image and background: The user can edit their profile image and background.
+
+<center>
+
+![Editing Profile Image and Background Workflow](./docs/workflows/profile-edit-flow.png)
+
+</center>
+
+- Spotify Authentication and Adding Playlists: The user can authenticate their Spotify account and add playlists to their in-app profile.
+
+<center>
+
+![Spotify Authentication and Adding Playlists Workflow](./docs/workflows/spotify-auth-flow.png)
+
+</center>
+
+- Using the Spotify Player: The user can use the Spotify player to listen to music while browsing the app.
+
+<center>
+
+![Using the Spotify Player Workflow](./docs/workflows/spotify-player-flow.png)
+
+</center>
 
 ### API
 
 #### AxiosDefaults
 
-- talk about /api/axiosDefaults.js file
-- Credit to CI moments walkthrough
+This file sets up Axios, a tool for HTTP requests in web apps, with '/api' as the base URL for simplicity. Two Axios instances are exported for request and response handling.
 
 ### /Components
 
