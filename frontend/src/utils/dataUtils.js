@@ -34,8 +34,12 @@ export const shouldRefreshToken = () => {
   return !!localStorage.getItem('refreshTokenTimestamp');
 };
 
-export const removeTokenTimestamp = () => {
+export const removeLocalStorageItems = () => {
   localStorage.removeItem('refreshTokenTimestamp');
+  localStorage.removeItem('code');
+  localStorage.removeItem('code_verifier');
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
 };
 
 // Used in StarRating.js to calculate the average rating and update the state
