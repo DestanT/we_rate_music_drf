@@ -8,15 +8,13 @@ import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { SpotifyPlayerUriProvider } from './contexts/SpotifyPlayerUriContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <CurrentUserProvider>
       <SpotifyPlayerUriProvider>
-        <Router>
-          <App />
-        </Router>
+        <App />
       </SpotifyPlayerUriProvider>
     </CurrentUserProvider>
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
