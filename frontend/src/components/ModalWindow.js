@@ -16,20 +16,20 @@ import btnStyles from '../styles/Button.module.css';
  * - title: string
  * - body: JSX
  */
-function ModalWindow(props) {
+function ModalWindow({ title, body, onHide, onConfirm, ...show }) {
   return (
-    <Modal {...props} size='sm' aria-labelledby='confirmation modal' centered>
+    <Modal {...show} size='sm' aria-labelledby='confirmation modal' centered>
       <Modal.Header className={styles.Header} closeButton>
         <Modal.Title id='confirmation modal' className={styles.Color}>
-          {props.title}
+          {title}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className={styles.Body}>{props.body}</Modal.Body>
+      <Modal.Body className={styles.Body}>{body}</Modal.Body>
       <Modal.Footer className={styles.Footer}>
-        <Button onClick={props.onHide} className={btnStyles.Button}>
+        <Button onClick={onHide} className={btnStyles.Button}>
           Close
         </Button>
-        <Button onClick={props.onConfirm} className={btnStyles.Button}>
+        <Button onClick={onConfirm} className={btnStyles.Button}>
           Confirm
         </Button>
       </Modal.Footer>
