@@ -2,9 +2,7 @@
 
 ## Project Goals
 
-- Talk about combining both DRF and React
-- Bringing users together
-- Intentions for the future
+The primary goal of this project is to create a dynamic and user-friendly web application that integrates seamlessly with Spotify, offering users a unique platform to explore, rate, and review music playlists by other users. By leveraging Spotify's OAuth 2.0 authentication and Web API, the application aims to enhance the music discovery experience, allowing users to share their musical tastes and find new favorites. The project emphasizes robust functionality including playlist management, search capabilities, and interactive rating systems, all within a secure and aesthetically pleasing interface. Through this application, we strive to build a community of music enthusiasts who can contribute to a rich database of curated playlists, fostering a shared appreciation for music while utilizing modern web development technologies and practices.
 
 [HEROKU LINK](https://we-rate-music-react-f931068bb6db.herokuapp.com/)
 
