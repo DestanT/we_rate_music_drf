@@ -92,14 +92,6 @@
 
 5. [Testing](#testing)
 
-- [Lighthouse Testing](#lighthouse-testing)
-- [W3C Markup Validation](#w3c-markup-validation)
-- [W3C CSS Validation](#w3c-css-validation)
-- [JS Hint](#js-hint)
-- [Pylint-Django](#pylint-django)
-- [Automated Testing](#automated-testing)
-- [Manual Testing](#manual-testing)
-
 6. [Challenges & Bugs](#challenges—bugs)
 
 7. [Technologies Used](#technologies-used)
@@ -154,9 +146,13 @@
 34. As a user, I can send feedback to the site owner, so that I can share with them my experiences with the app and hopefully use my input to improve my experiences further.
 35. As a site owner, I can view the feedback and suggestions submitted by my users so that I can improve the user experience further, and pick up on bugs faster.
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ### Wireframes, Fonts & Colours
 
-The wireframe for the Profile page was created using Procreate on an iPad. This wireframe was used just used as a rough guide for the initial designs of the app.
+The wireframe for the Profile page was created using Procreate on an iPad. This wireframe was used just as a rough guide for the initial designs of the app.
 
 <center>
 
@@ -180,6 +176,10 @@ The colour scheme for the app was chosen using [colormind.io](http://colormind.i
 
 </center>
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ### Database Modeling
 
 Lucidchart was used to create the database model for the project. The database is made up of five custom models: Profile, Playlist, Rating, Follower, and Feedback:
@@ -194,9 +194,13 @@ Lucidchart was used to create the database model for the project. The database i
 
 The project was developed using the Agile methodology. The project was broken down into epics, with each epic lasting roughly a week. The project was developed in 6 epics.
 
-You can view the projects Kanban board [here](https://github.com/users/DestanT/projects/5/views/2)
-You can view the projects Milestones and Epics board [here](https://github.com/users/DestanT/projects/5/views/4)
-You can view the projects Monthly Roadmap view [here](https://github.com/users/DestanT/projects/5/views/1)
+You can view the project's Kanban board [here](https://github.com/users/DestanT/projects/5/views/2)
+You can view the project's Milestones and Epics board [here](https://github.com/users/DestanT/projects/5/views/4)
+You can view the project's Monthly Roadmap view [here](https://github.com/users/DestanT/projects/5/views/1)
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ## Django Rest Framework
 
@@ -279,6 +283,10 @@ The following API endpoints were created to serve the React frontend application
 - 'api/feedback/' - The Feedback model endpoint.
 - 'api/feedback/:pk' - The Feedback model's detail view endpoint.
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ## Frontend React Application
 
 ### Workflows
@@ -333,11 +341,19 @@ The following workflows were created to serve the user stories for the React fro
 
 </center>
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ### API
 
 #### AxiosDefaults
 
 This file sets up Axios, a tool for HTTP requests in web apps, with '/api' as the base URL for simplicity. Two Axios instances are exported for request and response handling.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ### /Components
 
@@ -386,13 +402,13 @@ This component doesn’t need any specific props to function.
 #### ModalWindow
 
 **Overview**
-The ModalWindow component acts as a pop-up confirmation window that appears when triggered. It used throughout the app to confirm more crucial actions, such as deleting a playlist or being redirected to the Spotify authentication page. Just in case it was a misclick by the user.
+The ModalWindow component acts as a pop-up confirmation window that appears when triggered. It is used throughout the app to confirm more crucial actions, such as deleting a playlist or being redirected to the Spotify authentication page. Just in case it was a misclick by the user.
 
 **Props**
 It is recommended to use the following props to make use of the ModalWindow component, and parent components using this component should also manage the showModal and setShowModal states:
 
-- title (string): The text title displayed at the top of the modal.
-- body (any): The main content of the modal, which can be text, an image or JSX.
+- title (string): The text title is displayed at the top of the modal.
+- body (any): The main content of the modal, which can be text, an image, or JSX.
 - onHide: The function to close the modal, by making a function call to setModalShow(false) from its parent component.
 - onConfirm: A function that is passed from the parent component, typically used to confirm the users' action.
 
@@ -404,7 +420,7 @@ It is recommended to use the following props to make use of the ModalWindow comp
 #### NavBar
 
 **Overview**
-The NavBar component is the main navigation method for the user to move around the applications various features. It is displayed right from the start of the users' experience with the app.
+The NavBar component is the main navigation method for the user to move around the application's various features. It is displayed right from the start of the users' experience with the app.
 
 **Props**
 This component doesn’t need any specific props to function.
@@ -430,11 +446,11 @@ The Playlist component shows the cover art for playlists. As well as being very 
 #### Profile
 
 **Overview**
-The Profile component is designed to be an interactive hub for users to view information about their own and other users' profiles. It currently handles the logic for other crucial fetaures such as following and unfollowing other users, and checking the screen size the user is currently using to display the correct layout.
+The Profile component is designed to be an interactive hub for users to view information about their own and other users' profiles. It currently handles the logic for other crucial features such as following and unfollowing other users and checking the screen size the user is currently using to display the correct layout.
 
 **Props**
 
-- userId (string): Fetches the profile data from the backend using the users ID.
+- userId (string): Fetches the profile data from the backend using the user ID.
 
 **Key Features**
 
@@ -456,32 +472,32 @@ The SearchBar component is a versatile React element designed for implementing s
 
 **Props**
 
-- onSearch: Custom function pass to the component that is executed when the user submits a search query. Currently only used in the SpotifySearchPage component.
+- onSearch: Custom function passes to the component that is executed when the user submits a search query. Currently only used in the SpotifySearchPage component.
 - liveSearch: Defaults to false.
 
 **Key Features**
 
-- Live Search: Allows for users to search for and dynamically display results as they type in their query.
+- Live Search: Allows users to search for and dynamically display results as they type in their query.
 - Infinite Scroll: Integrates the InfiniteScroll component within the dropdown results, enhancing user experience by loading more results only as needed.
 
 #### SignOutButton
 
 **Overview**
-The SignOutButton component is a button that sends a post request to the "dj-rest-auth/logout" endpoint, and logs the user out of the application. It is currently used in the Profile component.
+The SignOutButton component is a button that sends a post request to the "dj-rest-auth/logout" endpoint and logs the user out of the application. It is currently used in the Profile component.
 
 **Props**
 This component doesn’t need any specific props to function.
 
 **Key Features**
 
-- Confirmation Modal: Incorporates a ModalWindow component to display a confirmation modal, confirming the user's intention to sign out.
+- Confirmation Modal: Incorporates a ModalWindow component to display a confirmation modal, confirming the user's intention to signing out.
 - Redirect on Sign-Out: Navigates users back to the homepage after successfully signout.
 - Local Storage: Removes potentially sensitive data from local storage when the user signs out.
 
 #### StarRating
 
 **Overview**
-The StarRating component allows user to rate their own and other users' playlists. It is currently only used in the PlaylistDetail component. It is meant as a way to express the users' opinion on playlists, that they or others have added to the app.
+The StarRating component allows users to rate their own and other users' playlists. It is currently only used in the PlaylistDetail component. It is meant as a way to express the users' opinions on playlists, that they or others have added to the app.
 
 **Props**
 
@@ -490,14 +506,18 @@ The StarRating component allows user to rate their own and other users' playlist
 
 **Key Features**
 
-- Dynamic Rating Updates: Users get an immediate visual feedback when assigning their ratings. The average rating and the number of ratings are updated in real time.
+- Dynamic Rating Updates: Users get immediate visual feedback when assigning their ratings. The average rating and the number of ratings are updated in real-time.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ### /Contexts
 
 #### CurrentUserContext
 
 **Overview**
-The CurrentUserContext serves as a context provider for the currently logged in user's data. It is currently wrapped around App.js in the index.js file.
+The CurrentUserContext serves as a context provider for the currently logged-in user's data. It is currently wrapped around App.js in the index.js file.
 
 **Key Features**
 
@@ -511,14 +531,18 @@ The SpotifyPlayerUriContext is the context provider designed to hold and update 
 
 **Key Features**
 
-- Seemless Playback: Allows for the user to continue listening to the same playlist across the app, and activate the Spotify player in various parts of the app.
+- Seemless Playback: Allows the user to continue listening to the same playlist across the app, and activate the Spotify player in various parts of the app.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ### /Forms
 
 #### FeedbackCreateForm
 
 **Overview**
-FeedbackCreateForm page allows the user to submit feedback to the site owners. It is designed to be a direct channel between users and the site owners, for faster development and improvement of the app. Django Rest Framework's admin panel can be used to view the feedback. Future implementations should involve a better managing system for the feedback as the app grows.
+FeedbackCreateForm page allows the user to submit feedback to the site owners. It is designed to be a direct channel between users and the site owners, for faster development and improvement of the app. Django Rest Framework's admin panel can be used to view the feedback. Future implementations should involve a better management system for feedback as the app grows.
 
 #### PlaylistEditForm
 
@@ -539,12 +563,20 @@ ProfileEditForm page allows users to update their profile and background images.
 - Owner Checking: Ensures that only the owner of the playlist can make edits.
 - Upload Sizes: Limits of 4096px by 4096px and 2mb, set by the backend.
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ### /Hooks
 
 #### useRedirect
 
 **Overview**
 useRedirect is a custom React hook designed to redirect users based on their authentication status. As the app is designed to be only used by authenticated users, this hook is used across the app to ensure that users are always redirected if not properly authenticated.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ### /Pages
 
@@ -558,7 +590,7 @@ The SignInForm page provides a user interface for signing into the web applicati
 ##### SignUpForm
 
 **Overview**
-The SignUpForm page provides a user an interface for creating an account. Upon successful account creation, the user is redirected to the sign-in page.
+The SignUpForm page provides a user with an interface for creating an account. Upon successful account creation, the user is redirected to the sign-in page.
 
 #### Homepage
 
@@ -573,13 +605,13 @@ The PageNotFound404 component displays a custom 404 error page, indicating that 
 #### PlaylistDetail
 
 **Overview**
-The PlaylistDetail component is dedicated to handling all the logic of individual playlists. It displays the playlist's title, average rating, the owner's rating and description, and the number of times it has been rated in total. It also includes the Spotify logo, which allows users update the Spotify player URI and activate the Spotify player.
+The PlaylistDetail component is dedicated to handling all the logic of individual playlists. It displays the playlist's title, average rating, the owner's rating and description, and the number of times it has been rated in total. It also includes the Spotify logo, which allows users to update the Spotify player URI and activate the Spotify player.
 
 **Key Features**
 
 - Data Fetching: Retrieves the data about the playlist based on the ID from the URL.
 - Ratings / Dynamic Updates: Allows users to rate the playlist and dynamic updates that calculate the average rating.
-- Dynamic Description Box: Displays a default text if the playlist owner has not added a description, will display the description if the owner has added one with the owners name as the author, and finally will also display the owners own rating of the playlist, if they have rated it.
+- Dynamic Description Box: Displays a default text if the playlist owner has not added a description, will display the description if the owner has added one with the owner's name as the author, and finally will also display the owner's own rating of the playlist, if they have rated it.
 - Edit Button: Appears if the user is also the owner of the playlist.
 
 #### PlaylistsPage
@@ -595,13 +627,17 @@ The PlaylistsPage is designed to display a collection of playlists based on its 
 **Key Features**
 
 - Data Fetching: Fetches playlists based on the filter property.
-- Dyanmic No Data Message: Displays a message if no playlists are found based on the filter property.
+- Dynamic No Data Message: Displays a message if no playlists are found based on the filter property.
 - Infinite Scroll: Utilises the InfiniteScroll component to load more playlists as the user scrolls down the page.
 
 #### ProfilePage
 
 **Overview**
-The ProfilePage's current only purpose is to use the get the user's profile ID from the URL and pass it on to the Profile and PlaylistsPage components to dynamically display the viewed user's profile and playlists.
+The ProfilePage's current only purpose is to get the user's profile ID from the URL and pass it on to the Profile and PlaylistsPage components to dynamically display the viewed user's profile and playlists.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
 ### /Spotify
 
@@ -650,6 +686,10 @@ The useSpotifyAuth is a custom React hook that facilitates the authentication pr
 
 More details and the source for the code can be found in the [Spotify Web Developer](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow) documentation.
 
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
 ### /Utils
 
 #### dataUtils
@@ -661,7 +701,7 @@ This is a collection of utility functions that are used across the app to manage
 
 **fetchMoreData**
 
-This functions is used in the InfiniteScroll component to fetch more data as the user scrolls down a page.
+This function is used in the InfiniteScroll component to fetch more data as the user scrolls down a page.
 
 **setTokenTimestamp, shouldRefreshToken, and removeLocalStorageItems**
 
@@ -678,33 +718,170 @@ This is a collection of utility functions provided by Spotify to facilitate user
 
 More details and the source for the code can be found in the [Spotify Web Developer](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow) documentation.
 
-## Development
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
-Installation of DRF:
+## Future Features/Roadmap
 
-- 'git clone <my-project-url>'
-- cd 'my-project'
-- 'pip install -r requirements.txt'
-- 'python manage.py runserver'
-- 'nvm install 16 && use 16'
-- 'npm start'
+- **Private Messaging**: Allow users to send private messages to other users.
+- **Expanded Profile Statistics**: Display more detailed statistics in profiles, such as the number of playlists a user has rated and what a user's average given rating is.
+- **Improved Feedback System**: Allow site owners to reply to feedback and suggestions and sort feedback by a variety of different filters.
+- **Improved Spotify API Functionality**: More data, means more features. Users should be able to feel confident that they can follow a user based on their music taste, and not just their playlists. So the addition of genres and average rating given per genre would be a great addition.
+- **Improved Performance**: As the app grows its user base, optimisations will be needed to keep the app running smoothly.
+- **Smaller Components**: Currently some components handle too much logic on their own, splitting the component logic into smaller chunks will make the app easier to maintain and improve.
 
-## Frontend React Application
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
 
-### Spotify API
+## Testing
 
-used Spotify Developer Web API documentation, more specifically the "Authorization Code with PKCE Flow" found [here](!https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow) was used.
+Please click [here](https://github.com/DestanT/we_rate_music_react_drf/blob/main/TESTING.md) to see all the testing that was done for this project.
 
-- users login to their spotify accounts and authorize the application
-- the application requires the user to accept:
-  - scope vars
-  - scope vars
-  - scope vars
-- user can add a playlist from their spotify account to display on the app
-- other users can interact with playlists in the app by rating them
+## Challenges & Bugs
 
-NOTES:
-aria-label='screen-reader label' > add this prop to buttons and like components
+- **Spotify API**: The Spotify API was a challenge to work with due to the need for user authentication and the complexity of the API itself, it didn't help that the documentation had a couple of typos in it!
+- **Spotify Authentication and Redirecting back to the app**: One issue seemed to be components being unmounted and while Spotify was redirecting the user back to the app, the app would throw an error. This was solved by using an AbortController and a cleanup function.
+- **Spotify Player**: Strangely the Spotify player is very temperamental. During development, it would work seamlessly, but when it came to testing it on different devices, it would sometimes not work at all. Some devices had more issues than others. This is in fact still an ongoing issue and a solution to this problem is still being sought after.
+- **SpotifyPlayer Component**: Currently as it stands the SpotifyPlayer component works as intended, however, one minor issue is when the player is minimised and the user clicks on the same playlist again, the player will not maximise again. This seems to be a minor issue and a fix will be implemented as soon as possible. It is more of a quality-of-life issue than a bug.
+- **Profile Edit Form**: When the user is updating their profile image and or background image, the form will not update the image until the user refreshes the page. This was a bigger issue to try and fix than first thought, and the problem was ignored for the time being. In hindsight, a data context provider should have been used, and will most probably be implemented in the next big update.
 
-NOTABLE FIXES:
-SpotifySearchPage > leads user to authentication page and back > and async functions threw a warning: Can’t perform a React state update on an unmounted component > which led to abortControllers and cleanup functions. Another issue was axios required CancelToken (which is deprecated as of v0.22.0 (using v0.21.4) didn’t want to upgrade version at this point just in case. Opted to use old cancel request function.
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+## Technologies Used
+
+- Python 3.12.1
+- Django 3.2.23
+- Django Rest Framework 3.14.0
+- React 17.0.2
+
+### Frameworks, libraries, and dependencies
+
+- React (react, react-dom): Used to build the frontend application, providing a component-based architecture for building user interfaces.
+- React Router DOM (react-router-dom): DOM bindings for React Router, enabling dynamic routing in a web app, allowing you to create navigable components in your React application.
+- Axios (axios): A promise-based HTTP client for the browser and Node.js, making it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations.
+- Bootstrap (bootstrap): An open-source toolkit for developing with HTML, CSS, and JS, providing design templates for typography, forms, buttons, navigation, and other interface components.
+- React Bootstrap (react-bootstrap): Integrates Bootstrap with React, replacing Bootstrap's JavaScript with React components without relying on jQuery.
+- JWT Decode (jwt-decode): A library to decode JSON Web Tokens (JWT) in client-side applications, useful for extracting user details or other payload information from tokens.
+- React Infinite Scroll Component (react-infinite-scroll-component): A component to easily implement infinite scrolling in React applications, enhancing performance and user experience in long lists or feeds.
+- Font Awesome Icons (@fortawesome): Provides scalable vector icons that can be customized with the power of CSS for React applications, including free brands, and regular, and solid icons.
+- React Rating (@smastrom/react-rating): A customizable rating component for React, allowing users to provide ratings in applications, such as product reviews or feedback systems.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+## Deployment
+
+You can view the application on Heroku by clicking [here](https://we-rate-music-react-f931068bb6db.herokuapp.com/).
+
+**Creating the Heroku app**
+Before creating the Heroku app, and within your project:
+
+1. Make sure you have a file named “requirements.txt” in your main project folder.
+2. Open the command line and navigate to your project folder.
+3. Run the command “pip3 freeze > requirements.txt”.
+   - This will create a list of dependencies used in the project for Heroku to set up the environment later.
+4. Create a "Procfile" in the project's main directory with "release: python manage.py makemigrations && python manage.py migrate" on one line and "web: gunicorn we_rate_music_drf.wsgi" in the second line - this allows Heroku to properly configure to a gunicorn web app.
+5. In the project's settings.py file configure the ALLOWED_HOSTS list to include 'your_app_name123.herokuapp.com'.
+6. Push these latest changes, including the requirements.txt file, to your GitHub repository (or any other preferred Git service).
+
+**Spotify for Developers:**
+
+1. Login to your Spotify account on [Spotify for Developers](https://developer.spotify.com/) or create a free account first.
+2. Go to your Dashboard.
+3. Click on "Create app".
+4. Give the app a name, description, and a redirect URI of your local host.
+5. For "Which API/SDKs are you planning to use?" - select Web API.
+6. Agree to the terms and conditions (preferably read them first!).
+7. Back on your Dashboard; select the app you just made and click "Settings".
+8. Take note of your Client ID and Client Secret (do not share this!). Client ID will be used in the frontend.
+
+**Cloudinary:**
+
+1. Create a free account on [Cloudinary](https://www.cloudimage.io/en/home).
+2. Find the "Settings" tab.
+3. From here, click "Access Keys".
+4. Take note of your API Key and API Secret (again, do not share!).
+
+**ElephantSQL:**
+
+As Django's internal database system would reset every time Heroku refreshes your app while idle, it is best to use a service like [ElephantSQL](https://www.elephantsql.com/).
+
+1. Create a free account.
+2. From the "Instances" dashboard - Create a New Instance.
+3. Name your app, and choose your tier (free is okay for now).
+4. Select the closest server to your region.
+5. Click "Create instance".
+6. Back on your Dashboard - select the newly created instance
+7. Under "Details" copy the URL field (not to be shared!)
+
+**Now, you can proceed with creating the Heroku app:**
+
+1. Sign in to your Heroku account (if you don’t already have one, create a free account on [Heroku](https://www.heroku.com/) first).
+2. Once logged in, click on the “Create new app” button on your Heroku dashboard and follow the subsequent steps.
+3. From within your newly created app, click the “Settings” tab.
+4. Scroll down to the section labeled “Config Vars” and click on “Reveal Config Vars”.
+5. Configure the following key-value pairs:
+   - ALLOWED_HOST: your_app_name123.herokuapp.com - (no https:// or / at the end)
+   - CLIENT_ORIGIN: https://your_app_name123.herokuapp.com - (with https:// and no / at the end)
+   - CLOUDINARY_URL: The format of this URL is as follows - 'cloudinary://{Your API KEY}:{Your API Secret}'
+   - DATABASE_URL: This is your ElephantSQL URL
+   - SECRET_KEY: This is your Django project's secret key
+   - DISABLE_COLLECTSTATIC: 1
+6. Navigate to the “Deploy” tab at the top of the page.
+7. Choose your preferred deployment method (GitHub, for example) and connect it to your app.
+8. Search for the repository name in the dropdown menu and select it.
+9. Click “Connect”.
+10. Then, either select “Enable Automatic Deploys” or “Deploy Branch”; the difference is that one automatically deploys the app every time a change is pushed to GitHub and the other needs to be redeployed manually every time.
+11. You should now have a working Heroku app on your dashboard.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+## **Development**
+
+If you would like to contribute to this project, please follow the following steps:
+
+From GitHub:
+
+1. Create a separate branch for your development work
+2. Make any necessary modifications and improvements to the project on your branch.
+3. Create a pull request with a clear and detailed description of the changes you have made.
+4. I will review your changes and provide feedback if needed.
+5. If everything looks good, I will merge the changes into the main branch of the project.
+
+If you wish to use any parts of the project for your project, you are welcome to do so. However, please give credit to me by linking my GitHub profile.
+
+Thank you for your interest in the project, and I look forward to any contributions or acknowledgments!
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+## **Credits**
+
+- A lot of initial code inspiration came from Code Institute's "Moments" walkthrough project and this is credited directly in the code.
+- [Cosden Solutions - Youtube](https://www.youtube.com/@cosdensolutions)
+
+### **Content**
+
+- [Django Rest Framework Documentation](https://www.django-rest-framework.org/)
+- [React Bootstrap Documentation](https://react-bootstrap-v4.netlify.app/)
+- [React Router Documentation](https://reactrouter.com/en/main)
+- [Bootstrap 4 Documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- [Spotify API Documentation](https://developer.spotify.com/documentation/web-api)
+- [Stack Overflow](https://stackoverflow.com/) - general enquiries/syntax
+- [W3Schools](https://www.w3schools.com/) - general enquiries/syntax
+- [Star Rating Component](https://www.npmjs.com/package/@smastrom/react-rating/v/1.3.1?activeTab=readme)
+- [Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component)
+- [JWT Decode](https://www.npmjs.com/package/jwt-decode)
+- [Font Awesome Icons](https://fontawesome.com/)
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
