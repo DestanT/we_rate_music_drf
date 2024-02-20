@@ -2,7 +2,7 @@
   background-color: #5a5550;
 }
 
-.Header :global(.close) {
+.Header > button > span {
   color: #df604e;
   text-shadow: 0 2px 0 #af3c2d;
 }

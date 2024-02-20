@@ -10,8 +10,8 @@ class PlaylistList(generics.ListCreateAPIView):
     serializer_class = PlaylistSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Playlist.objects.annotate(
-        ratings_count = Count('ratings', distinct=True),
-        average_rating = Avg('ratings__score')
+        ratings_count=Count('ratings', distinct=True),
+        average_rating=Avg('ratings__score')
     ).order_by('-added_on')
     filter_backends = [
         filters.OrderingFilter,
@@ -44,6 +44,6 @@ class PlaylistDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PlaylistSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Playlist.objects.annotate(
-        ratings_count = Count('ratings', distinct=True),
-        average_rating = Avg('ratings__score')
+        ratings_count=Count('ratings', distinct=True),
+        average_rating=Avg('ratings__score')
     )

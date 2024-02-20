@@ -17,7 +17,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-    
+
     def get_following_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
@@ -26,7 +26,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             ).first()
             return following.id if following else None
         return None
-    
+
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
             raise serializers.ValidationError(
@@ -41,7 +41,7 @@ class ProfileSerializer(serializers.ModelSerializer):
                 'Image height larger than 4096px'
             )
         return value
-    
+
     def validate_background(self, value):
         if value.size > 1024 * 1024 * 2:
             raise serializers.ValidationError(
