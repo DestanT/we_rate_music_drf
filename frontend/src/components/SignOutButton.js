@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
-import { removeTokenTimestamp } from '../utils/dataUtils';
+import { removeLocalStorageItems } from '../utils/dataUtils';
 
 import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 import ModalWindow from './ModalWindow';
@@ -26,7 +26,7 @@ const SignOutButton = () => {
     try {
       await axios.post('/dj-rest-auth/logout/');
       setCurrentUser(null);
-      removeTokenTimestamp();
+      removeLocalStorageItems();
       setModalShow(false);
       history.push('/');
     } catch (err) {

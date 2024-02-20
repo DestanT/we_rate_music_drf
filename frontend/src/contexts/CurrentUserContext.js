@@ -4,7 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import { removeTokenTimestamp, shouldRefreshToken } from '../utils/dataUtils';
+import {
+  removeLocalStorageItems,
+  shouldRefreshToken,
+} from '../utils/dataUtils';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -34,7 +37,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp();
+            removeLocalStorageItems();
             return config;
           }
         }
@@ -58,7 +61,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp();
+            removeLocalStorageItems();
           }
           return axios(err.config);
         }
