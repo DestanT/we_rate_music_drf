@@ -32,7 +32,7 @@ function ProfileEditForm() {
           history.push(`/profile/${userId}`);
         }
       } catch (err) {
-        console.log(err);
+        // console.log(err.response?.data);
       }
     };
     handleMount();
@@ -53,10 +53,10 @@ function ProfileEditForm() {
       await axiosReq.put(`profiles/${userId}`, formData);
       history.push(`/profile/${userId}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      // console.log(err.response?.data);
     }
   };
 

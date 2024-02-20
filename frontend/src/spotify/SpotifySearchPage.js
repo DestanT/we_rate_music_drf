@@ -35,17 +35,14 @@ const SpotifySearchPage = () => {
     setModalShow(false);
     // Loads the last search from local storage, if it exists
     const lastSearch = localStorage.getItem('lastSearch');
-    console.log(lastSearch);
     if (lastSearch) {
       setSearchResults(JSON.parse(lastSearch));
-      console.log(JSON.parse(lastSearch));
     }
 
     // Delay - to allow useSpotityAuth the time to set access_token to localStorage (Blunt force fix)
     const delay = setTimeout(() => {
       // Checks if the user has access_token in local storage
       const access_token = localStorage.getItem('access_token');
-      console.log(access_token);
       if (!access_token) {
         setModalShow(true);
       }
@@ -71,8 +68,7 @@ const SpotifySearchPage = () => {
 
     try {
       // Refreshes the access token before every search
-      const refreshTokenResponse = await getRefreshToken();
-      console.log('refresh token response:', refreshTokenResponse);
+      await getRefreshToken();
 
       const response = await fetch(
         `https://api.spotify.com/v1/search?q=${searchQuery}&type=album%2Cplaylist%2Cartist&limit=50`,
@@ -84,8 +80,6 @@ const SpotifySearchPage = () => {
         }
       );
       const data = await response.json();
-      console.log('response:', response);
-      console.log(data);
 
       // Combine the items from albums, playlists, and artists
       const combinedData = [
@@ -95,7 +89,7 @@ const SpotifySearchPage = () => {
       ];
 
       setSearchResults(combinedData);
-      console.log(combinedData);
+
       // Saves the search results to local storage for later use
       if (combinedData.length) {
         localStorage.setItem('lastSearch', JSON.stringify(combinedData));

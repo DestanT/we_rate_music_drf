@@ -56,7 +56,7 @@ export const useSpotifyAuth = () => {
       localStorage.setItem('access_token', response.access_token);
       localStorage.setItem('refresh_token', response.refresh_token);
     } else {
-      console.log('Error: ', response);
+      // console.log('Error: ', response);
     }
   };
 

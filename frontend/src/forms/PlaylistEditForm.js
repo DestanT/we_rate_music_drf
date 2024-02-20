@@ -44,7 +44,6 @@ function PlaylistEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`playlists/${id}`);
-        console.log(data);
         const {
           is_owner,
           owner_id,
@@ -68,7 +67,7 @@ function PlaylistEditForm() {
             })
           : history.push(`/playlist/${id}`);
       } catch (err) {
-        console.log(err);
+        // console.log(err.response?.data);
       }
     };
     handleMount();
@@ -98,10 +97,10 @@ function PlaylistEditForm() {
       await axiosReq.put(`playlists/${id}`, formData);
       history.push(`/playlist/${id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      // console.log(err.response?.data);
     }
   };
 

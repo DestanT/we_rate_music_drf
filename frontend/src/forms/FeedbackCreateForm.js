@@ -41,7 +41,6 @@ function FeedbackCreateForm() {
       await axiosReq.post('feedback/', formData);
       setShowSuccess(true);
       setTimeout(() => {
-        console.log('feedback submitted');
         history.push('/');
       }, 4000);
     } catch (err) {

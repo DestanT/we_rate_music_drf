@@ -30,7 +30,7 @@ const SignOutButton = () => {
       setModalShow(false);
       history.push('/');
     } catch (err) {
-      console.log(err);
+      // console.log(err.response?.data);
     }
   };
 

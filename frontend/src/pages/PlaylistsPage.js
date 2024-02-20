@@ -32,23 +32,20 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
-    console.log('PlaylistsPage rendered');
-
     const fetchPlaylists = async () => {
       try {
         const { data } = await axiosReq.get(`playlists/?${filter}`, {
           cancelToken: source.token,
         });
         setPlaylists(data);
-        console.log('playlist data: ', data);
         setHasLoaded(true);
       } catch (err) {
         if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
+          // console.log('Request canceled', err.message);
         } else if (err.response?.status === 404) {
           history.push('/404-error-page');
         } else {
-          console.log(err);
+          // console.log(err.response?.data);
         }
       }
     };

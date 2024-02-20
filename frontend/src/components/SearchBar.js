@@ -32,11 +32,10 @@ function SearchBar({ onSearch, liveSearch = false }) {
     try {
       const { data } = await axiosReq.get(`profiles/?search=${searchQuery}`);
       setItems(data);
-      console.log(data);
       setShowDropdown(true);
       setHasLoaded(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err.response?.data);
     }
   };
 
@@ -49,7 +48,6 @@ function SearchBar({ onSearch, liveSearch = false }) {
   const handleInputChange = async (e) => {
     const currentQuery = e.target.value;
     setSearchQuery(currentQuery);
-    console.log(currentQuery);
 
     if (currentQuery === '') {
       setShowDropdown(false);

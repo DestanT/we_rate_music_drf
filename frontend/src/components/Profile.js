@@ -36,7 +36,6 @@ const Profile = ({ userId }) => {
   const [smallScreen, setSmallScreen] = useState(window.innerWidth < 768);
   const history = useHistory();
 
-  console.log('profile rendered');
   useEffect(() => {
     const checkScreenSize = () => {
       setSmallScreen(window.innerWidth < 768);
@@ -54,14 +53,13 @@ const Profile = ({ userId }) => {
       try {
         const { data } = await axiosReq.get(`profiles/${userId}`);
         setProfileData(data);
-        console.log('profiledata: ', data);
         setIsFollowing(data.following_id ? true : false);
         setHasLoaded(true);
       } catch (err) {
         if (err.response?.status === 404) {
           history.push('/404-error-page');
         } else {
-          console.log(err);
+          // console.log(err.response.data);
         }
       }
     };
@@ -75,7 +73,6 @@ const Profile = ({ userId }) => {
       const { data } = await axiosRes.post('followers/', {
         followed: profile.id,
       });
-      console.log('handleFollow: ', data);
 
       setProfileData((prevState) => ({
         ...prevState,
@@ -85,16 +82,13 @@ const Profile = ({ userId }) => {
 
       setIsFollowing(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err.response.data);
     }
   };
 
   const handleUnfollow = async (profile) => {
     try {
-      const { data } = await axiosRes.delete(
-        `followers/${profile.following_id}`
-      );
-      console.log('handleUnfollow: ', data);
+      await axiosRes.delete(`followers/${profile.following_id}`);
 
       setProfileData((prevState) => ({
         ...prevState,
@@ -103,7 +97,7 @@ const Profile = ({ userId }) => {
 
       setIsFollowing(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err.response.data);
     }
   };
 

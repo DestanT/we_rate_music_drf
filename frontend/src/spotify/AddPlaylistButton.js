@@ -29,8 +29,7 @@ function AddPlaylistButton({ playlistData: playlist }) {
     };
 
     try {
-      const response = await axiosRes.post('playlists/', data);
-      console.log(response);
+      await axiosRes.post('playlists/', data);
       setModalShow(false);
     } catch (error) {
       setErrors({
