@@ -19,13 +19,13 @@
 1. [Planning](#planning)
 
 - [User Stories](#user-stories)
-- [Wireframes](#wireframes)
+- [Wireframes, Fonts & Colours](#wireframes-fonts--colours)
 - [Database Modeling](#database-modeling)
 - [Agile Development](#agile-development)
 
 2. [Django Rest Framework](#django-rest-framework)
 
-- [Database Modeling](#database-modeling)
+- [The Database](#the-database)
 - [Feedback](#feedback)
 - [Profile](#profile)
 - [Playlist](#playlist)
@@ -118,7 +118,67 @@
 
 ### User Stories
 
-### Wireframes
+1. As a user I can navigate the app using a “social media style navbar” so that I can easily navigate between pages.
+2. As a user I can navigate through pages quickly and seamlessly without the annoying page refresh.
+3. As a user I can create a new account so that I can access all features for signup up users.
+4. As a user I can sign in to the app so that I can access functionality for logged in users.
+5. As a logged out user I see different navigation elements to when I’m logged in for a better user experience.
+6. As a user I can remain logged in until I choose to log out so my experience on the app isn’t cut short unnecessarily.
+7. As a user I can view user’s avatars so that I can easily identify users of the application and see my own avatar in the profile tab.
+8. As a user I can authorise the application to use my Spotify credentials so that I can benefit from using all the extra features the app provides.
+9. As a user I can search for playlists/albums and artists on Spotify without leaving the application.
+10. As a user I can listen to the playlists/albums that are returned from my search, so that I can decide if I like them or not, plus the added convenience of not leaving the application.
+11. After searching for playlists on Spotify, as a user, I can decide to add certain playlists/albums to my profile so that other users can view my personalised selection of playlists and rate them.
+12. As a user I can edit my playlists from within the app, such as the name and album artwork, and have the app update my Spotify account for me so that the change is reflected on Spotify too.
+13. As a user I can minimise the Spotify player, continue listening to music while still enjoying browsing other playlists.
+14. As a user I can continue browsing the entire app while listening to playlists uninterrupted.
+15. As a user I can view my profile so that I can view all the playlists I’ve added in one place.
+16. As a user I can click on a playlist to view its details, so that I may see its average rating for example.
+17. As a user I can view playlists I have already rated, so that I can update them and more importantly have a section of the app dedicated to playlists I have likely enjoyed.
+18. As a user I can view other users’ profiles so that I can see their collection of playlists and listen to them.
+19. As a user I can follow other users so that I can more easily keep track of playlists they add.
+20. As a user I get notified when I have a new follower, so that I am aware and can potentially follow them back.
+21. As a user I can send private message to other users I follow, so that I can stay in touch with other users and comment privately to them.
+22. As a user I can view all the most recent playlist submissions by other users so that I can stay up to date with the newest content.
+23. As user I can keep scrolling through playlists without the need to click the next page, this would be far better for my user experience.
+24. As a user I can sort the rated playlist view in order of score given to ratings, so that my higher rated playlists appear higher up in the view.
+25. As a user I want to be able to rate my own and other users' playlists, so that I can express my opinion on them.
+26. As a user I can update my already existing ratings so that I can change my mind at a later time and increase or decrease a playlists score.
+27. As a user I can delete a rating I have submitted in the past, so that it doesn't appear in my '/rated-playlists' feed.
+28. As a user, I'd like to be able to update playlists in my profile so that I can change their name and add a small description about them. That way I can express why I chose to add the playlist and say a little about what occasions the playlists are best for.
+29. As a user, I can view some basic statistics in profiles, such as the number of playlists belonging to the profile, the number of users the profile is following and the number of users following the profile.
+30. As a user, I can edit my profile image and the background image, so that I can personalise my profile view for myself and others to see.
+31. As a user I'd like to be able to search for other user so that I can view their profiles and potentially follow them.
+32. As a user, I'd like to have a smoother experience when using the search bar to search for users, so that I have a better experience using the app more generally.
+33. As a user, I'd like to be able to sign out of the application so that my is secure when I am away from my computer.
+34. As a user, I can send feedback to the site owner, so that I can share with them my experiences with the app and hopefully use my input to improve my experiences further.
+35. As a site owner, I can view the feedback and suggestions submitted by my users so that I can improve the user experience further, and pick up on bugs faster.
+
+### Wireframes, Fonts & Colours
+
+The wireframe for the Profile page was created using Procreate on an iPad. This wireframe was used just used as a rough guide for the initial designs of the app.
+
+<center>
+
+![Profile Wireframe](./docs/readme/wireframe-profile-page.jpg)
+
+</center>
+
+The font used in this app is "Anta" (default font: sans-serif). Downloaded from Google Fonts.
+
+<center>
+
+![Google Font](./docs/readme/anta-font.PNG)
+
+</center>
+
+The colour scheme for the app was chosen using [colormind.io](http://colormind.io/). The brown and red colours were chosen to give the app a warm and inviting feel, with the light beige colour being primarily used for the background of the app.
+
+<center>
+
+![Colours](./docs/readme/colour-choices.PNG)
+
+</center>
 
 ### Database Modeling
 

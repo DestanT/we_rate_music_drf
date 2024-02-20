@@ -93,17 +93,33 @@ All following tests were performed on the SignUpForm component in "src/pages/aut
 <details>
 <summary>Screenshots</summary>
 
+<center>
+
 Empty Field Inputs:\
 ![test-empty-field-inputs](docs/testing/signupform/test-empty-field-inputs.PNG)
+
+</center>
+
+<center>
 
 Non-matching Password Inputs:\
 ![test-non-matching-password-inputs](docs/testing/signupform/test-non-matching-password-inputs.PNG)
 
+</center>
+
+<center>
+
 Password Complexity:\
 ![test-password-complexity](docs/testing/signupform/test-password-complexity.PNG)
 
+</center>
+
+<center>
+
 Existing Username:\
 ![test-existing-username](docs/testing/signupform/test-existing-username.PNG)
+
+</center>
 
 </details>
 
@@ -126,11 +142,19 @@ All following tests were performed on the SignInForm component in "src/pages/aut
 <details>
 <summary>Screenshots</summary>
 
+<center>
+
 Empty Field Inputs:\
 ![test-empty-field-inputs](docs/testing/signinform/test-empty-field-inputs.PNG)
 
+</center>
+
+<center>
+
 Invalid Credentials, Username Field Validation:\
 ![test-invalid-credentials](docs/testing/signinform/test-invalid-credentials.PNG)
+
+</center>
 
 </details>
 
@@ -166,26 +190,54 @@ All following tests were performed on the SpotifySearchPage component in "src/sp
 <details>
 <summary>Screenshots</summary>
 
+<center>
+
 Spotify Authentication Modal:\
 ![test-spotify-authentication-modal](docs/testing/spotifysearchpage/test-spotify-authentication-modal.PNG)
+
+</center>
+
+<center>
 
 Search:\
 ![test-search-functionality](docs/testing/spotifysearchpage/test-search-functionality.PNG)
 
+</center>
+
+<center>
+
 Empty Search Field:\
 ![test-empty-search-field](docs/testing/spotifysearchpage/test-empty-search-field.PNG)
+
+</center>
+
+<center>
 
 Spotify Player:\
 ![test-spotify-player-spotify-search-page](docs/testing/spotifysearchpage/test-spotify-player-spotify-search-page.PNG)
 
+</center>
+
+<center>
+
 Re-open Spotify Player:\
 ![test-accordion-window-expand](docs/testing/spotifysearchpage/test-accordion-window-expand.PNG)
+
+</center>
+
+<center>
 
 Add Playlist Button/Confirmation Modal:\
 ![test-add-playlist-confirmation-modal](docs/testing/spotifysearchpage/test-add-playlist-confirmation-modal.PNG)
 
+</center>
+
+<center>
+
 Successful Playlist Addition:\
 ![test-successful-playlist-addition](docs/testing/spotifysearchpage/test-successful-playlist-addition.PNG)
+
+</center>
 
 </details>
 
@@ -208,17 +260,33 @@ All following tests were performed on the NavBar component in "src/components/Na
 <details>
 <summary>Screenshots</summary>
 
+<center>
+
 Display for Logged Out Users:\
 ![test-display-for-logged-out-users](docs/testing/navbar/test-navbar-logged-out-users.PNG)
+
+</center>
+
+<center>
 
 Display for Logged In Users/Profile Image Display:\
 ![test-display-for-logged-in-users](docs/testing/navbar/test-display-for-logged-in-users.PNG)
 
+</center>
+
+<center>
+
 Clicked Icon Visual Feedback:\
 ![test-clicked-icon-visual-feedback](docs/testing/navbar/test-icon-visual-feedback.PNG)
 
+</center>
+
+<center>
+
 Clicked Icon Visual Feedback - Profile Glow:\
 ![test-clicked-icon-visual-feedback](docs/testing/navbar/test-icon-visual-feedback-profile.PNG)
+
+</center>
 
 </details>
 
@@ -245,28 +313,56 @@ All following tests were performed on the Profile component in "src/components/P
 <details>
 <summary>Screenshots</summary>
 
+<center>
+
 Tooltips:\
 Back\
 ![test-tooltip-back](docs/testing/profile/test-tooltip-back.PNG)
 
+</center>
+
+<center>
+
 Edit - if user is profile owner:\
 ![test-tooltip-edit](docs/testing/profile/test-tooltip-edit.PNG)
+
+</center>
+
+<center>
 
 Follow/Unfollow - if user is not profile owner:\
 ![test-tooltip-follow](docs/testing/profile/test-tooltip-follow.PNG)
 ![test-tooltip-unfollow](docs/testing/profile/test-tooltip-unfollow.PNG)
 
+</center>
+
+<center>
+
 Sign Out:\
 ![test-tooltip-signout](docs/testing/profile/test-tooltip-signout.PNG)
+
+</center>
+
+<center>
 
 Follow/Unfollow Functionality:\
 ![test-follow-unfollow-functionality](docs/testing/profile/test-follow-unfollow-functionality.PNG)
 
+</center>
+
+<center>
+
 Edit Profile and Navigation:\
 ![test-edit-profile-visibility-and-navigation](docs/testing/profile/test-edit-profile-and-navigation.PNG)
 
+</center>
+
+<center>
+
 Back Navigation:\
 ![test-back-navigation](docs/testing/profile/test-back-navigation.PNG)
+
+</center>
 
 </details>
 
@@ -381,6 +477,38 @@ All following tests were performed on the FeedbackCreateForm component in "src/f
 - SpotifySearchPage.module.css: &#10003;
 
 All .css are validated as CSS level 3 + SVG.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+### JavaScript Validation
+
+[ESLint](https://eslint.org/) was used to validate the JavaScript of the app. The command 'npx eslint "src/\*_/_.js"' was used to check all JavaScript files in the src directory. No errors were found.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+### Python Validation
+
+[flake8](https://flake8.pycqa.org/en/latest/) was used to validate the Python of the app. The command 'flake8' was used to check all Python files in the root directory. Only errors relating to node modules and migrations were found. Errors in the project's settings.py file were safely ignored. No significant errors were found.
+
+<p align="right">
+  <a href="#">Back to the top</a>
+</p>
+
+### Lighthouse Testing
+
+Lighthouse testing was performed on the deployed app to check for performance, accessibility, best practices, and SEO. The results are as follows:
+
+<center>
+
+![lighthouse-results](docs/testing/lighthouse-testing.PNG)
+
+</center>
+
+The results seen here are for the Profile page. The results for the other pages are similar, although the performance score is slightly lower for this particular component. The performance score is likely lower due to the large number of images being loaded on the page.
 
 <p align="right">
   <a href="#">Back to the top</a>
