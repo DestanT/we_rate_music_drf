@@ -299,13 +299,14 @@ The SearchBar component is a versatile React element designed for implementing s
 **Overview**
 The SignOutButton component is a button that sends a post request to the "dj-rest-auth/logout" endpoint, and logs the user out of the application. It is currently used in the Profile component.
 
+**Props**
+This component doesn’t need any specific props to function.
+
 **Key Features**
 
 - Confirmation Modal: Incorporates a ModalWindow component to display a confirmation modal, confirming the user's intention to sign out.
 - Redirect on Sign-Out: Navigates users back to the homepage after successfully signout.
-
-**Props**
-This component doesn’t need any specific props to function.
+- Local Storage: Removes potentially sensitive data from local storage when the user signs out.
 
 #### StarRating
 
@@ -492,9 +493,9 @@ This is a collection of utility functions that are used across the app to manage
 
 This functions is used in the InfiniteScroll component to fetch more data as the user scrolls down a page.
 
-**setTokenTimestamp, shouldRefreshToken, and removeTokenTimestamp**
+**setTokenTimestamp, shouldRefreshToken, and removeLocalStorageItems**
 
-These functions are used in the currentUserContext.js file to manage the user's token timestamp and keep the user logged in for longer.
+These functions are used in the currentUserContext.js file to manage the user's token timestamp and keep the user logged in for longer. The removeLocalStorageItems function is used in the SignOutButton component, it removes potentially sensitive data from local storage when the user signs out.
 
 **calculateAverageRatingPUT and calculateAverageRatingPOST**
 
