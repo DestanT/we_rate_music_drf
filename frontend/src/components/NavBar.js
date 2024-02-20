@@ -124,7 +124,7 @@ const NavBar = () => {
         <OverlayTrigger
           placement='top'
           overlay={
-            <Tooltip id='feedback-tooltip'>Playlists you've rated</Tooltip>
+            <Tooltip id='feedback-tooltip'>Playlists you&apos;ve rated</Tooltip>
           }
         >
           <NavLink activeClassName={styles.Active} to='/rated-playlists'>

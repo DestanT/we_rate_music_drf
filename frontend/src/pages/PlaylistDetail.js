@@ -173,12 +173,14 @@ const PlaylistDetail = () => {
             <Row>
               <Col className={styles.ScreenSizeContidionalPadding}>
                 {playlist.description ? (
-                  <p className={styles.WordBreak}>"{playlist.description}"</p>
+                  <p className={styles.WordBreak}>
+                    &quot;{playlist.description}&quot;
+                  </p>
                 ) : (
                   <p>
                     <em>
-                      -{playlist.owner} hasn't said anything about this playlist
-                      yet-
+                      -{playlist.owner} hasn&apos;t said anything about this
+                      playlist yet-
                     </em>
                   </p>
                 )}

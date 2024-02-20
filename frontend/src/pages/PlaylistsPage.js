@@ -64,9 +64,9 @@ const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
       case 'All Playlists':
         return <p>No playlists found!</p>;
       case 'Followed Users':
-        return <p>You aren't following any users yet...</p>;
+        return <p>You aren&apos;t following any users yet...</p>;
       case 'Your Rated Playlists':
-        return <p>You haven't rated any playlists yet...</p>;
+        return <p>You haven&apos;t rated any playlists yet...</p>;
       default:
         return <p>No playlists found!</p>;
     }

@@ -236,7 +236,7 @@ const Profile = ({ userId }) => {
           <Col xs={6}>
             <h2 className='mb-0'>{profileData.owner}</h2>
             {profileData.is_owner && (
-              <em className={styles.SmallText}>You're logged in as:</em>
+              <em className={styles.SmallText}>You&apos;re logged in as:</em>
             )}
           </Col>
           <Col xs={3}>

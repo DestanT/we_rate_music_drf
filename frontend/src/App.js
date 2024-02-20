@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import './api/axiosDefaults';
