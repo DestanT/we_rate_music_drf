@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import styles from '../styles/ModalWindow.module.css';
 import btnStyles from '../styles/Button.module.css';

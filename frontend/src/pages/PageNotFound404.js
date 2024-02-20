@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceDizzy } from '@fortawesome/free-regular-svg-icons';
-import { Col, Container, Row } from 'react-bootstrap';
+
 import waveform from '../assets/waveform.png';
 
 const PageNotFound404 = () => {

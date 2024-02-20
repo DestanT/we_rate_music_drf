@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Alert,
-  Button,
-  Col,
-  Container,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { useRedirect } from '../hooks/useRedirect';
-
-import { axiosReq } from '../api/axiosDefaults';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
+import { useRedirect } from '../hooks/useRedirect';
+import { axiosReq } from '../api/axiosDefaults';
 
 import Playlist from '../components/Playlist';
 import Profile from '../components/Profile';
 import { Rating, StickerStar } from '@smastrom/react-rating';
 import StarRating from '../components/StarRating';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Row from 'react-bootstrap/Row';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';

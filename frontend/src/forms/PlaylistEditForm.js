@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+
 import { axiosReq } from '../api/axiosDefaults';
-import { Container, Form, Row, Col, Button, Alert } from 'react-bootstrap';
+
 import Profile from '../components/Profile';
 import Playlist from '../components/Playlist';
 import ModalWindow from '../components/ModalWindow';
-import styles from '../styles/EditCreateForms.module.css';
-import btnStyles from '../styles/Button.module.css';
+
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+
+import styles from '../styles/EditCreateForms.module.css';
+import btnStyles from '../styles/Button.module.css';
 
 function PlaylistEditForm() {
   const [playlistData, setPlaylistData] = useState({

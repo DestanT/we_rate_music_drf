@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 
-import { useSpotifyAuth } from './useSpotifyAuth';
 import { useSetSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
+import { useSpotifyAuth } from './useSpotifyAuth';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { useRedirect } from '../hooks/useRedirect';
 import { getRefreshToken } from '../utils/spotifyAuthUtils';
@@ -11,9 +10,15 @@ import Profile from '../components/Profile';
 import SearchBar from '../components/SearchBar';
 import Playlist from '../components/Playlist';
 import AddPlaylistButton from './AddPlaylistButton';
+import ModalWindow from '../components/ModalWindow';
+
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 import styles from '../styles/SpotifySearchPage.module.css';
-import ModalWindow from '../components/ModalWindow';
 
 const SpotifySearchPage = () => {
   useRedirect();

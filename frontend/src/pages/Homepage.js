@@ -1,7 +1,11 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import styles from '../styles/Homepage.module.css';
 import { useRedirect } from '../hooks/useRedirect';
+
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
+import styles from '../styles/Homepage.module.css';
 
 const Homepage = () => {
   useRedirect();

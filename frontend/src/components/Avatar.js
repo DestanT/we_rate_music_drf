@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../styles/Avatar.module.css';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import styles from '../styles/Avatar.module.css';
 
 const Avatar = ({ src, height = 45 }) => {
   const currentUser = useCurrentUser();
@@ -14,7 +14,7 @@ const Avatar = ({ src, height = 45 }) => {
         alt={`${currentUser?.username}' avatar`}
       />
     </span>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;

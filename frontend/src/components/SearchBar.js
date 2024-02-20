@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Button, InputGroup, Row, Col, Container } from 'react-bootstrap';
 
 import { axiosReq } from '../api/axiosDefaults';
 import { fetchMoreData } from '../utils/dataUtils';
@@ -9,11 +8,18 @@ import Avatar from './Avatar';
 import LoadingSpinner from './LoadingSpinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import styles from '../styles/SearchBar.module.css';
-import btnStyles from '../styles/Button.module.css';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+import styles from '../styles/SearchBar.module.css';
+import btnStyles from '../styles/Button.module.css';
 
 function SearchBar({ onSearch, liveSearch = false }) {
   const [searchQuery, setSearchQuery] = useState('');

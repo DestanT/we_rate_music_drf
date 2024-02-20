@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../styles/AccordionWindow.module.css';
-import { Accordion, Card, Button } from 'react-bootstrap';
+
+import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
 import SpotifyPlayer from '../spotify/SpotifyPlayer';
+
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { useSpotifyPlayerUri } from '../contexts/SpotifyPlayerUriContext';
+
+import styles from '../styles/AccordionWindow.module.css';
 
 function AccordionWindow() {
   const spotifyPlayerUri = useSpotifyPlayerUri();

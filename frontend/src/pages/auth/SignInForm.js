@@ -1,17 +1,23 @@
 // CREDIT: Code taken from Code Institute's "Moments" walkthrough project
 import React, { useState } from 'react';
-import { Form, Alert, Button, Col, Row, Container } from 'react-bootstrap';
-
-import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 
-import styles from '../../styles/SignInUpForm.module.css';
-import appStyles from '../../App.module.css';
-import btnStyles from '../../styles/Button.module.css';
+import axios from 'axios';
+import { setTokenTimestamp } from '../../utils/dataUtils';
 
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useRedirect } from '../../hooks/useRedirect';
-import { setTokenTimestamp } from '../../utils/dataUtils';
+
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
+import styles from '../../styles/SignInUpForm.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();

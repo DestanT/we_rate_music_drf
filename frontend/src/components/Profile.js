@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  OverlayTrigger,
-  Tooltip,
-} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { axiosReq, axiosRes } from '../api/axiosDefaults';
 
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+
+import Avatar from './Avatar';
+import LoadingSpinner from './LoadingSpinner';
+import SignOutButton from './SignOutButton';
+
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -20,10 +23,6 @@ import {
   faCommentDots,
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
-
-import Avatar from './Avatar';
-import LoadingSpinner from './LoadingSpinner';
-import SignOutButton from './SignOutButton';
 
 import styles from '../styles/Profile.module.css';
 import btnStyles from '../styles/Button.module.css';

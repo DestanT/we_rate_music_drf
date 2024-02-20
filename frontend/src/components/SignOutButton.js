@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
-import ModalWindow from './ModalWindow';
-import { useSetCurrentUser } from '../contexts/CurrentUserContext';
 import { removeTokenTimestamp } from '../utils/dataUtils';
+
+import { useSetCurrentUser } from '../contexts/CurrentUserContext';
+import ModalWindow from './ModalWindow';
+
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';

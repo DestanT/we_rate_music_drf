@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
+import axios from 'axios';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 /**

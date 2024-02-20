@@ -1,12 +1,15 @@
-import styles from '../styles/NavBar.module.css';
 import React from 'react';
-import {
-  Navbar,
-  Container,
-  Nav,
-  OverlayTrigger,
-  Tooltip,
-} from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+
+import { useCurrentUser } from '../contexts/CurrentUserContext';
+import Avatar from './Avatar';
+
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -16,9 +19,8 @@ import {
   faRightToBracket,
   faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
-import { NavLink } from 'react-router-dom';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import Avatar from './Avatar';
+
+import styles from '../styles/NavBar.module.css';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();

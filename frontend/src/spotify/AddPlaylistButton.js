@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Alert } from 'react-bootstrap';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosRes } from '../api/axiosDefaults';
 
 import ModalWindow from '../components/ModalWindow';
 import Playlist from '../components/Playlist';
+
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 
 import btnStyles from '../styles/Button.module.css';
 

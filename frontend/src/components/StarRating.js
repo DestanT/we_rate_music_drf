@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-bootstrap';
-import { Rating, StickerStar } from '@smastrom/react-rating';
+
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import {
   calculateAverageRatingPUT,
   calculateAverageRatingPOST,
 } from '../utils/dataUtils';
+
+import { Rating, StickerStar } from '@smastrom/react-rating';
+import Alert from 'react-bootstrap/Alert';
 
 const StarRating = ({ playlist, setPlaylist }) => {
   const [rating, setRating] = useState(0);

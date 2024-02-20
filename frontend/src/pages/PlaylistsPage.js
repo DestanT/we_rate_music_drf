@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-import { useRedirect } from '../hooks/useRedirect';
 
 import axios from 'axios';
 import { axiosReq } from '../api/axiosDefaults';
+import { useRedirect } from '../hooks/useRedirect';
 import { fetchMoreData } from '../utils/dataUtils';
 
 import Playlist from '../components/Playlist';
+import SearchBar from '../components/SearchBar';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 import styles from '../styles/PlaylistsPage.module.css';
 import appStyles from '../App.module.css';
 import loadingStyles from '../styles/LoadingSpinner.module.css';
-import SearchBar from '../components/SearchBar';
 
 const PlaylistsPage = ({ filter = '', profileView = false, pageName = '' }) => {
   const [playlists, setPlaylists] = useState([]);

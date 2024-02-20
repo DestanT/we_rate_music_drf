@@ -1,8 +1,9 @@
 // CREDIT: Code taken from Code Institute's 'Moments' walkthrough project
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import axios from 'axios';
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import { useHistory } from 'react-router-dom';
 import { removeTokenTimestamp, shouldRefreshToken } from '../utils/dataUtils';
 
 export const CurrentUserContext = createContext();
